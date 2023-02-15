@@ -22,7 +22,7 @@ onMounted(async () => {
   <div>
     <div v-for="item in result?.hits" class="border border-1 p-2 rounded mb-2 border-gray-700">
       <p class="text-green-500 text-xl">{{ item.name }}</p>
-      <p class="text-green-500 pt-5 text-sm">{{ item.description }}</p>
+      <p class="dark:text-gray-100 text-gray-900 pt-5 text-sm">{{ item.description }}</p>
     </div>
   </div>
 </template>
