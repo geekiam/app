@@ -95,11 +95,6 @@
                     <div class="truncate text-base font-medium text-gray-800">{{ user.name }}</div>
                     <div class="truncate text-sm font-medium text-gray-500">{{ user.email }}</div>
                   </div>
-                  <a href="#" class="ml-auto flex-shrink-0 bg-gray-800 p-2 text-gray-400 hover:text-gray-500">
-                    <span class="sr-only">View notifications</span>
-                    <BellIcon class="h-6 w-6" aria-hidden="true" />
-                  </a>
-                  <p >cunt</p>
                   <layout-switch />
                 </div>
                 <div class="max-w-8xl mx-auto mt-3 space-y-1 px-2 sm:px-4">
