@@ -6,7 +6,7 @@
       <main class="min-w-0 flex-1 lg:flex ">
         <aside class="lg:order-first ">
           <div class="relative flex h-full w-96 flex-col overflow-y-auto dark:bg-gray-800 border  border-solid  border-gray-700 p-2
-          dark:text-gray-100 text-gray-900">
+          dark:text-gray-200 text-gray-900">
             <slot name="list"/>
           </div>
         </aside>
