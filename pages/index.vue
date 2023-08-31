@@ -2,7 +2,9 @@
 
 
 import List from "~/components/app/list.vue";
+import {AsyncLocalStorage} from "async_hooks";
 definePageMeta({ layout: 'default' })
+
 </script>
 
 <template>

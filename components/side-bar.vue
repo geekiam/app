@@ -21,7 +21,7 @@ const sidebarNavigation = [
         <a v-for="item in sidebarNavigation" :key="item.name" :href="item.href" :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-400 hover:bg-gray-700',
           'flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg']">
           <span class="sr-only">{{ item.name }}</span>
-          <Icon :name="item.icon" :title="item.name" class="h-6 w-6" aria-hidden="true" />
+          <Icon :name="item.icon" :title="item.name" class="h-6 w-6 text-orange-500" aria-hidden="true" />
         </a>
       </div>
     </nav>
