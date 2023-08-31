@@ -19,12 +19,14 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
+  <div class=" max-h-screen overflow-visible ">
     <div v-for="item in result?.hits" class="border border-1 p-2 rounded mb-2 border-gray-700">
-      <p class="text-green-500 text-xl">{{ item.name }}</p>
+      <p class="text-orange-500 text-xl">{{ item.name }}</p>
       <p class="dark:text-gray-100 text-gray-900 pt-5 text-sm">{{ item.description }}</p>
     </div>
   </div>
 </template>
 
+<style>
 
+</style>

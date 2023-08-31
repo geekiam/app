@@ -1,9 +1,4 @@
 <script lang="ts" setup>
-import {
-  FireIcon,
-  ArrowTrendingUpIcon,
-  ChatBubbleLeftRightIcon,
-} from '@heroicons/vue/24/outline'
 
 const sidebarNavigation = [
   { name: 'Popular', href: '#', icon: 'cil:fire', current: true , title: "Most Popular" },
