@@ -9,7 +9,6 @@ const sidebarNavigation = [
 </script>
 
 <template>
-
     <!-- Narrow sidebar-->
     <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:overflow-y-auto md:bg-gray-100 dark:md:bg-gray-800 bg-gray-100">
       <div class="relative flex w-20 flex-col space-y-3 p-3">
@@ -20,7 +19,6 @@ const sidebarNavigation = [
         </a>
       </div>
     </nav>
-
 </template>
 
 

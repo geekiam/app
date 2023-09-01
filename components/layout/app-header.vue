@@ -3,7 +3,7 @@
     <!-- Logo area -->
     <div class="absolute inset-y-0 left-0 md:static md:flex-shrink-0">
       <a href="#" class="flex h-16 w-16 items-center justify-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-600 md:w-20">
-        <img class="h-12 w-auto" src="~/assets/img/icon.png" alt="geekiam" />
+        <img class="h-12 w-auto" src="../../assets/img/icon.png" alt="geekiam" />
       </a>
     </div>
 
@@ -67,7 +67,7 @@
             <DialogPanel class="fixed inset-0 z-40 h-full w-full bg-white dark:bg-gray-800 sm:inset-y-0 sm:left-auto sm:right-0 sm:w-full sm:max-w-sm sm:shadow-lg" aria-label="Global">
               <div class="flex h-16 items-center justify-between px-4 sm:px-6">
                 <a href="#">
-                  <img class="block h-12 w-auto" src="~/assets/img/icon.png" alt="geekiam" />
+                  <img class="block h-12 w-auto" src="../../assets/img/icon.png" alt="geekiam" />
                 </a>
                 <button type="button" class="-mr-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-600" @click="mobileMenuOpen = false">
                   <span class="sr-only">Close main menu</span>
