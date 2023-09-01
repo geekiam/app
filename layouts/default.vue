@@ -1,7 +1,7 @@
 <template>
   <div class="flex h-full flex-col">
     <app-header />
-    <div class="flex min-h-0 flex-1 overflow-hidden">
+    <div class="flex  min-h-screen flex-1 overflow-hidden">
       <side-bar />
       <main class="min-w-0 flex-1 lg:flex ">
         <aside class="lg:order-first ">
