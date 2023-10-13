@@ -1,7 +1,7 @@
  // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     pages: true,
-    modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxtjs/algolia', '@nuxtjs/color-mode' ],
+    modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxtjs/algolia', '@nuxtjs/color-mode', '@pinia/nuxt' ],
     tailwindcss: {
         cssPath: '~/assets/css/tailwind.css',
         configPath: 'tailwind.config',
