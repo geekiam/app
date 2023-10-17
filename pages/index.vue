@@ -4,7 +4,10 @@
 import List from "~/components/app/list.vue";
 import {AsyncLocalStorage} from "async_hooks";
 import Chat from "~/components/app/chat.vue";
-definePageMeta({ layout: 'default' })
+definePageMeta({
+  layout: 'default',
+   middleware: 'auth'
+ })
 
 </script>
 

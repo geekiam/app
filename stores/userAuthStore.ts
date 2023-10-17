@@ -1,15 +1,18 @@
 import {defineStore} from "pinia";
 import NDK, {NDKEvent, NDKNip07Signer, NDKUser} from "@nostr-dev-kit/ndk";
+import router from "#app/plugins/router";
 // Create a new NDK instance with explicit relays
 const ndk = new NDK({
-    explicitRelayUrls: ["wss://relay.nostr.band/", "wss://eden.nostr.land/"],
+    explicitRelayUrls: ["wss://relay.geekiam.services"],
 });
 
 interface User {
     id: string;
 }
+const geekiamKey = "geekiam-key";
 
 export const userAuthStore = defineStore('userAuthStore', {
+
     state: () => ({
         user: null as User | null
     }),
@@ -26,14 +29,27 @@ export const userAuthStore = defineStore('userAuthStore', {
             nip07signer.user().then(async (ndkUser) => {
 
                 if (!!ndkUser.npub) {
-                    this.setUser(ndkUser)
-                    localStorage.setItem('geekiam-user', JSON.stringify(this.user))
+                    this.setUser(ndkUser);
+                    return useNuxtApp().$router.push('/')
                 }
             });
         },
         setUser(user: NDKUser) {
             this.user = {id: user.npub}
+            localStorage.setItem(geekiamKey, JSON.stringify(this.user));
+        },
+        removeUser(){
+            this.user = null;
+            localStorage.removeItem(geekiamKey)
+        },
+        signOut(){
+
+          this.removeUser();
+
+
         }
     }
+
+
 
 })
