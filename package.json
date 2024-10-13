@@ -9,8 +9,7 @@
   },
   "devDependencies": {
     "@headlessui/tailwindcss": "^0.2.0",
-    "@headlessui/vue": "^1.7.23",
-    "@heroicons/vue": "^2.0.14",
+    "nuxt-headlessui": "^1.1.4",
     "@nuxt/icon": "latest",
     "@nuxt/image": "^1.8.1",
     "@nuxtjs/color-mode": "^3.3.0",

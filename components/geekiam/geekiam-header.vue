@@ -12,7 +12,7 @@
       <!-- Mobile menu button -->
       <button type="button" class="-mr-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-600" @click="mobileMenuOpen = true">
         <span class="sr-only">Open main menu</span>
-        <Bars3Icon class="block h-6 w-6" aria-hidden="true" />
+        <Icon name="iconamoon:menu-burger-horizontal-bold" class="block h-6 w-6" aria-hidden="true" />
       </button>
     </div>
 
@@ -35,7 +35,7 @@
           <Menu as="div" class="relative inline-block text-left">
             <MenuButton class="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2">
               <span class="sr-only">Open user menu</span>
-              <img class="h-8 w-8 rounded-full" :src="user.imageUrl" alt="" />
+              <nuxt-img class="h-8 w-8 rounded-full" :src="user.imageUrl" alt="" />
             </MenuButton>
 
             <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
@@ -71,7 +71,7 @@
                 </a>
                 <button type="button" class="-mr-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-600" @click="mobileMenuOpen = false">
                   <span class="sr-only">Close main menu</span>
-                  <XMarkIcon class="block h-6 w-6" aria-hidden="true" />
+                  <Icon name="material-symbols:close" class="block h-6 w-6" aria-hidden="true" />
                 </button>
               </div>
               <div class="max-w-8xl mx-auto mt-2 px-4 sm:px-6">
@@ -120,7 +120,7 @@ import {
   TransitionChild,
   TransitionRoot,
 } from '@headlessui/vue'
-import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
+
 
 import {
    Bars3Icon,
