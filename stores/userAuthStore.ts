@@ -3,7 +3,7 @@ import NDK, {NDKEvent, NDKNip07Signer, NDKUser} from "@nostr-dev-kit/ndk";
 import router from "#app/plugins/router";
 // Create a new NDK instance with explicit relays
 const ndk = new NDK({
-    explicitRelayUrls: ["wss://relay.geekiam.services"],
+    explicitRelayUrls: ["wss://relay.damus.io"],
 });
 
 interface User {

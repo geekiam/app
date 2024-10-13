@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-full flex-col">
-    <app-header />
+    <geekiam-header />
     <div class="flex  min-h-screen flex-1 overflow-hidden">
       <side-bar />
       <main class="min-w-0 flex-1 lg:flex ">
@@ -16,7 +16,7 @@
         </section>
       </main>
     </div>
-    <app-footer/>
+    <geekiam-footer/>
   </div>
 </template>
 #'
@@ -24,8 +24,6 @@
 <script setup>
 
 
-import AppHeader from "~/components/layout/app-header.vue";
-import AppFooter from "~/components/layout/app-footer.vue";
 
 
 

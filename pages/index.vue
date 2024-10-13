@@ -14,7 +14,7 @@ definePageMeta({
 <template>
   <nuxt-layout name="default">
     <template #list >
-     <list indexName="Sample_Phone_Store_Index" query="Samsung" />
+
     </template>
 
   <template #content>

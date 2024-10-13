@@ -23,11 +23,6 @@
 <script setup>
 
 const navigation = [
-    {
-    name: 'Twitter',
-    href: 'https://twitter.com/geekiamio',
-    icon: 'ri:twitter-x-fill'
-  },
   {
     name: 'GitHub',
     href: 'https://github.com/geekiam',

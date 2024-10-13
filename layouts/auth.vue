@@ -1,16 +1,36 @@
 <script lang="ts" setup>
-import AppFooter from "~/components/layout/app-footer.vue";
-import AppHeader from "~/components/layout/app-header.vue";
+
 </script>
 
 <template>
-  <div class="flex h-full flex-col">
-    <app-header />
-    <div class="max-w-full max-h-screen bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100  text-center">
-             <slot name="main" />
+
+    <div class="flex h-screen flex-col justify-center bg-gray-200 dark:bg-gray-800">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap -mx-2">
+          <!-- Column 1 -->
+          <div class="w-full sm:w-1/2 px-2">
+            <div class="p-4 mb-4  justify-center h-full">
+              <slot name="left" />
+            </div>
+          </div>
+          <!-- Column 2 -->
+          <div class="w-full sm:w-1/2 px-2">
+            <div class="p-4 mb-4 justify-center h-full">
+              <slot name="right" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <app-footer/>
-  </div>
+
+
+
+    <geekiam-footer/>
+
 </template>
 
-<style scoped></style>
+<style scoped>
+html, body, #app {
+  height: 100%;
+}
+</style>
