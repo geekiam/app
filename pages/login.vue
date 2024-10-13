@@ -6,10 +6,14 @@
   <nuxt-layout name="auth">
 
     <template #left>
-      <nuxt-img src="brand/icon" class="h-64 w-64" />
+      <nuxt-img src="brand/icon" class="h-72 w-72" />
     </template>
     <template #right >
-     <nostr-login />
+      <div>
+        <p class="text-4xl font-bold text-white">What are you going to learn today? </p>
+        <nostr-login />
+      </div>
+
     </template>
   </nuxt-layout>
 </template>
