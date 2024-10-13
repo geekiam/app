@@ -26,6 +26,6 @@
   "dependencies": {
     "@nostr-dev-kit/ndk": "^2.10.1",
     "@pinia/nuxt": "^0.5.1",
-    "pinia": "^2.1.7"
+    "pinia": "^2.2.4"
   }
 }
