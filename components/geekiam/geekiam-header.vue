@@ -3,7 +3,7 @@
     <!-- Logo area -->
     <div class="absolute inset-y-0 left-0 md:static md:flex-shrink-0">
       <a href="https://geekiam.io" class="flex h-16 w-16 items-center justify-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-300 md:w-20">
-        <nuxt-img class="h-12 w-auto" src="brand/icon" alt="geekiam" />
+        <nuxt-img class="h-16 w-auto" src="brand/icon" alt="geekiam" />
       </a>
     </div>
 

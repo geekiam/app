@@ -14,20 +14,22 @@ title = "geekiam netlify deployment configuration file"
 [build.environment]
     NODE_VERSION = "20.12.0"
 
-
+[[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
 
 [[headers]]
-    for = "/*"
-    [headers.values]
-        X-Frame-Options = "DENY"
-        X-XSS-Protection = "1; mode=block"
-        Referrer-Policy = "no-referrer"
-        X-Content-Type-Options = "nosniff"
-        Strict-Transport-Security = "max-age=2592000; includeSubDomains; preload"
-        Feature-Policy = "geolocation 'none'; midi 'none'; sync-xhr 'none';microphone 'none'; camera 'none'; magnetometer 'none'; gyroscope 'none'; speaker 'none'; fullscreen 'none'; payment 'none'"
-        Content-Security-Policy = "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline'"
-        # Branch deploy context:
-        # All deploys that are not from a pull/merge request
-        # or from the production branch will inherit these settings.
+    for = "/manifest.webmanifest"
+[headers.values]
+    Content-Type = "application/manifest+json"
+
+[[headers]]
+    for = "/assets/*"
+[headers.values]
+    cache-control = '''
+        max-age=31536000,
+        immutable
+        '''
 [context.branch-deploy]
     command = "yarn build"
