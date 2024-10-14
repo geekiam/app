@@ -1,6 +1,6 @@
-import {userAuthStore} from "~/stores/userAuthStore";
+import {useAuthStore} from "~/stores/useAuthStore";
 
-const store = userAuthStore();
+const store = useAuthStore();
 export default defineNuxtRouteMiddleware((to, from) => {
     if(!store.isAuthenticated){
        return useNuxtApp().$router.push('/login')

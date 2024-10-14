@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import {userAuthStore} from '~/stores/userAuthStore'
+import {useAuthStore} from '~/stores/useAuthStore'
 
 function logIn() {
 
-  const store = userAuthStore();
+  const store = useAuthStore();
   store.signIn();
 
 

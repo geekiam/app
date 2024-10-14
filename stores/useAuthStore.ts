@@ -11,8 +11,8 @@ interface User {
 }
 const geekiamKey = "geekiam-key";
 
-export const userAuthStore = defineStore('userAuthStore', {
-
+export const useAuthStore = defineStore('useAuthStore', {
+    id: 'user-store',
     state: () => ({
         user: null as User | null
     }),
