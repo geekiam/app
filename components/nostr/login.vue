@@ -1,10 +1,24 @@
 <script lang="ts" setup>
-import {useAuthStore} from '~/stores/useAuthStore'
+import {useAuthStore} from "~/stores/useAuthStore";
+import {useNdkStore} from "~/stores/NdkStore";
+import {NDKNip07Signer} from "@nostr-dev-kit/ndk";
+const router = useRouter();
+const ndkStore = useNdkStore();
+const nip07Signer = new NDKNip07Signer()
+const userStore = useAuthStore();
 
-function logIn() {
+async function logIn() {
 
-  const store = useAuthStore();
-  store.signIn();
+      await ndkStore.initialize()
+  ndkStore.ndk.signer = nip07Signer
+  await ndkStore.ndk.connect()
+
+  const user = await nip07Signer.user()
+  await userStore.signIn(user, ndkStore.ndk)
+
+  if(userStore.signedIn) {
+    await router.push("/")
+  }
 
 
 }
