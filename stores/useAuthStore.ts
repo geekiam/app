@@ -25,15 +25,12 @@ export const useAuthStore = defineStore('useAuthStore', {
 
 
     actions: {
-
         async profile(user,ndk){
-            console.log('got here')
-            user = ndk.getUser({
+                user = ndk.getUser({
                 npub: user.npub,
             })
             if(user.profile === undefined){
                 await user.fetchProfile()
-                console.log(user)
                 this.name = user.profile.name
                 this.image = user.profile.image
             }
@@ -44,31 +41,6 @@ export const useAuthStore = defineStore('useAuthStore', {
           await this.profile(user,ndk)
           this.signedIn = true
           this.signedOut = false
-
-          /*  const ndk = new NDK()
-            ndk.signer = new NDKNip07Signer();
-           await ndk.connect()
-            const signer = await ndk.signer.user()
-
-          const user = ndk.getUser({npub: signer.npub})
-          await user.fetchProfile()
-          console.log(user.profile)*/
-          /*  const nip07signer = new NDKNip07Signer();
-            const ndk = new NDK({signer: nip07signer});
-            nip07signer.user().then(async (ndkUser) => {
-
-                if (!!ndkUser.npub) {
-                    const pablo = ndk.getUser({
-                        npub: ndkUser.npub,
-                    });
-
-                    console.log(pablo)
-                    await pablo.fetchProfile()
-                    console.log(pablo.profile)
-                    this.setUser(ndkUser);
-                    return useNuxtApp().$router.push('/')
-                }
-            });*/
         },
         setUser(user: NDKUser) {
             this.user = {id: user.npub}
@@ -78,10 +50,8 @@ export const useAuthStore = defineStore('useAuthStore', {
             this.user = null;
             localStorage.removeItem(geekiamKey)
         },
-        signOut(){
-
+       async signOut(){
           this.removeUser();
-
 
         }
     }
