@@ -20,7 +20,7 @@ export const useAuthStore = defineStore('authStore', {
             if(user.profile === undefined){
                 await user.fetchProfile()
                 this.profile = user.profile
-
+                this.signedIn = true
             }
         },
       async signIn(user,ndk) {
