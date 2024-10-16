@@ -23,44 +23,44 @@ const user: Profile = {
       <div class="container mx-auto px-4 sm:px-8 lg:px-16">
 
         <div class="group-container">
-          <label class="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
-                 for="email-address-icon">Username</label>
+          <label class="label-style"
+                 for="username">Username</label>
           <div class="relative">
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="material-symbols:alternate-email-rounded"/>
             </div>
-            <input v-model="user.name" class="text-input" placeholder="name" type="text">
+            <input v-model="user.name" class="text-input" name="username" placeholder="name" type="text">
           </div>
         </div>
         <div class="group-container">
-          <label class="block mb-2 text-lg font-medium text-gray-900 dark:text-white" for="email-address-icon">Display
+          <label class="label-style" for="displayName">Display
             Name</label>
           <div class="relative">
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="material-symbols:person-3-outline"/>
             </div>
-            <input v-model="user.displayName" class="text-input" placeholder="name" type="text">
+            <input v-model="user.displayName" name="displayName" class="text-input" placeholder="name" type="text">
           </div>
         </div>
         <div class="group-container">
-          <label class="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
-                 for="email-address-icon">Website</label>
+          <label class="label-style"
+                 for="website">Website</label>
           <div class="relative">
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="gg:website"/>
             </div>
-            <input v-model="user.website" class="text-input" placeholder="name" type="text">
+            <input v-model="user.website" name="website" class="text-input" placeholder="name" type="text">
           </div>
         </div>
         <div class="group-container">
-          <label class="block mb-2 text-lg font-medium text-gray-900 dark:text-white" for="email-address-icon">About
+          <label class="label-style" for="about">About
             me</label>
 
-          <textarea id="message" v-model="user.about" class="text-area" rows="4"></textarea>
+          <textarea id="message" v-model="user.about" name="about" class="text-area" rows="4"></textarea>
 
         </div>
         <div class="group-container">
-          <label class="block mb-2 text-lg font-medium text-gray-900 dark:text-white" for="email-address-icon">Verified
+          <label class="label-style" for="email-address-icon">Verified
             Nost Address (NIP05)</label>
           <div class="relative">
             <div class="icon-inset">
@@ -88,15 +88,15 @@ const user: Profile = {
 }
 
 .icon-style {
-  @apply w-6 h-6 text-orange-400
+  @apply w-7 h-7 text-orange-400
 }
 
 .label-style {
-  @apply ml-px block pl-4 text-sm font-medium leading-6 text-gray-900
+  @apply block mb-2 text-lg font-medium text-gray-900 dark:text-white
 }
 
 .text-input {
-  @apply bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+  @apply ml-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
 }
 
 .text-area {
