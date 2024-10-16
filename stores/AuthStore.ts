@@ -1,11 +1,11 @@
 import {defineStore} from "pinia";
-export const useAuthStore = defineStore('useAuthStore', {
-    id: 'user-store',
+import type {Profile} from "~/types/Profile";
+
+
+export const useAuthStore = defineStore('authStore', {
+    id: 'settings-store',
     state: () => ({
-        npub:'',
-        pubKey: '',
-        name: '',
-        image: '',
+        profile: null as Profile | null,
         signedIn: false,
         signedOut: true
     }),
@@ -19,9 +19,8 @@ export const useAuthStore = defineStore('useAuthStore', {
             })
             if(user.profile === undefined){
                 await user.fetchProfile()
-                this.name = user.profile.name
-                this.image = user.profile.image
-                this.npub = user.npub
+                this.profile = user.profile
+
             }
         },
       async signIn(user,ndk) {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {useAuthStore} from "~/stores/useAuthStore";
+import {useAuthStore} from "~/stores/AuthStore";
 import {useNdkStore} from "~/stores/NdkStore";
 import {NDKNip07Signer} from "@nostr-dev-kit/ndk";
 const router = useRouter();

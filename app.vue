@@ -1,7 +1,5 @@
 <template>
-
       <nuxt-page/>
-
 </template>
 
 <script>

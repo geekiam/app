@@ -9,7 +9,6 @@
   },
   "devDependencies": {
     "@headlessui/tailwindcss": "^0.2.0",
-    "nuxt-headlessui": "^1.1.4",
     "@nuxt/icon": "latest",
     "@nuxt/image": "^1.8.1",
     "@nuxtjs/color-mode": "^3.3.0",
@@ -20,6 +19,7 @@
     "@ubclaunchpad/vue-fathom": "^2.0.0",
     "@vite-pwa/nuxt": "^0.10.5",
     "nuxt": "^3.13.2",
+    "nuxt-headlessui": "^1.1.4",
     "tailwindcss": "^3.2.4"
   },
   "dependencies": {
