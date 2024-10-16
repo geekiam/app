@@ -1,7 +1,7 @@
-<script setup lang="ts">
-import { useNdkStore} from "~/stores/NdkStore";
-import { useAuthStore } from "~/stores/AuthStore";
-import { Profile } from '~/types/Profile'
+<script lang="ts" setup>
+import {useNdkStore} from "~/stores/NdkStore";
+import {useAuthStore} from "~/stores/AuthStore";
+import {Profile} from '~/types/Profile'
 
 const ndkStore = useNdkStore();
 const authStore = useAuthStore();
@@ -20,46 +20,56 @@ const user: Profile = {
     </template>
     <template #content>
 
+      <div class="container mx-auto px-4 sm:px-8 lg:px-16">
 
-      <label for="email-address-icon" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Username</label>
-      <div class="relative">
-        <div class="icon-inset">
-          <Icon name="material-symbols:alternate-email-rounded" class="icon-style" aria-hidden="true" />
+        <div class="group-container">
+          <label class="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
+                 for="email-address-icon">Username</label>
+          <div class="relative">
+            <div class="icon-inset">
+              <Icon aria-hidden="true" class="icon-style" name="material-symbols:alternate-email-rounded"/>
+            </div>
+            <input v-model="user.name" class="text-input" placeholder="name" type="text">
+          </div>
         </div>
-        <input type="text" v-model="user.name"  class="text-input" placeholder="name">
-      </div>
-
-      <label for="email-address-icon" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Display Name</label>
-      <div class="relative">
-        <div class="icon-inset">
-          <Icon name="material-symbols:person-3-outline" class="icon-style" aria-hidden="true" />
+        <div class="group-container">
+          <label class="block mb-2 text-lg font-medium text-gray-900 dark:text-white" for="email-address-icon">Display
+            Name</label>
+          <div class="relative">
+            <div class="icon-inset">
+              <Icon aria-hidden="true" class="icon-style" name="material-symbols:person-3-outline"/>
+            </div>
+            <input v-model="user.displayName" class="text-input" placeholder="name" type="text">
+          </div>
         </div>
-        <input type="text" v-model="user.displayName"  class="text-input" placeholder="name">
-      </div>
-
-      <label for="email-address-icon" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Website</label>
-      <div class="relative">
-        <div class="icon-inset">
-          <Icon name="gg:website" class="icon-style" aria-hidden="true" />
+        <div class="group-container">
+          <label class="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
+                 for="email-address-icon">Website</label>
+          <div class="relative">
+            <div class="icon-inset">
+              <Icon aria-hidden="true" class="icon-style" name="gg:website"/>
+            </div>
+            <input v-model="user.website" class="text-input" placeholder="name" type="text">
+          </div>
         </div>
-        <input type="text" v-model="user.website"  class="text-input" placeholder="name">
-      </div>
+        <div class="group-container">
+          <label class="block mb-2 text-lg font-medium text-gray-900 dark:text-white" for="email-address-icon">About
+            me</label>
 
-      <label for="email-address-icon" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">About me</label>
+          <textarea id="message" v-model="user.about" class="text-area" rows="4"></textarea>
 
-      <textarea id="message" rows="4" class="text-area" v-model="user.about"></textarea>
-
-
-      <label for="email-address-icon" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Verified Nost Address (NIP05)</label>
-      <div class="relative">
-        <div class="icon-inset">
-          <Icon name="material-symbols:person-3-outline" class="icon-style" aria-hidden="true" />
         </div>
-        <input type="text" v-model="user.nip05"  class="text-input" placeholder="name">
+        <div class="group-container">
+          <label class="block mb-2 text-lg font-medium text-gray-900 dark:text-white" for="email-address-icon">Verified
+            Nost Address (NIP05)</label>
+          <div class="relative">
+            <div class="icon-inset">
+              <Icon aria-hidden="true" class="icon-style" name="material-symbols:person-3-outline"/>
+            </div>
+            <input v-model="user.nip05" class="text-input" placeholder="name" type="text">
+          </div>
+        </div>
       </div>
-
-
-
 
 
     </template>
@@ -69,16 +79,22 @@ const user: Profile = {
 </template>
 
 <style scoped>
+.group-container {
+  @apply flex flex-col space-y-4 max-w-lg mx-auto p-4;
+}
 
 .icon-inset {
   @apply absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none
 }
+
 .icon-style {
   @apply w-6 h-6 text-orange-400
 }
+
 .label-style {
   @apply ml-px block pl-4 text-sm font-medium leading-6 text-gray-900
 }
+
 .text-input {
   @apply bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
 }
