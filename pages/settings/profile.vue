@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-import {useNdkStore} from "~/stores/NdkStore";
 import {useAuthStore} from "~/stores/AuthStore";
 import {Profile} from '~/types/Profile'
 
-const ndkStore = useNdkStore();
 const authStore = useAuthStore();
 
 const user: Profile = {
@@ -70,10 +68,7 @@ const user: Profile = {
           </div>
         </div>
       </div>
-
-
     </template>
-
   </nuxt-layout>
 
 </template>
