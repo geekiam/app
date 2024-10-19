@@ -3,10 +3,18 @@ import {useProfileStore} from "~/stores/useProfileStore";
 import {useNdkStore} from "~/stores/NdkStore";
 const authStore = useProfileStore();
 const ndkStore = useNdkStore();
+const toast = useToast()
+
+if(!authStore.isAuthenticated) {
+  await useNuxtApp().$router.push('/auth')
+}
+
+
 const profile = ref(authStore.profile)
-console.log(JSON.stringify(profile.value))
+
 const updateProfile = async ()=> {
   await authStore.updateProfile(profile.value, ndkStore.ndk);
+  toast.add({title: 'Profile updated successfully'})
 
 }
 </script>

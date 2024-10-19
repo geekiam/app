@@ -26,7 +26,6 @@
       <div class="ml-10 flex flex-shrink-0 items-center space-x-10 pr-4 dark:text-gray-100">
         <div class="flex items-center space-x-8">
             <span class="inline-flex">
-              <theme-switch />
               <a href="#" class="-mx-1 rounded-full bg-gray-100 dark:bg-gray-800 p-1 text-gray-400 hover:text-gray-500">
                 <span class="sr-only">View notifications</span>
                 <icon name="material-symbols:notifications-outline" class="text-orange-400 text-3xl ml-5" />

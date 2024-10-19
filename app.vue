@@ -1,5 +1,8 @@
 <template>
-      <nuxt-page/>
+
+  <nuxt-page/>
+<u-notifications/>
+
 </template>
 
 <script>
