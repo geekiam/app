@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import {useProfileStore} from "~/stores/useProfileStore";
-import type { NDKUserProfile} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/NdkStore";
 const authStore = useProfileStore();
 const ndkStore = useNdkStore();
 const profile = ref(authStore.profile)
+console.log(JSON.stringify(profile.value))
 const updateProfile = async ()=> {
   await authStore.updateProfile(profile.value, ndkStore.ndk);
 
@@ -56,7 +56,7 @@ const updateProfile = async ()=> {
           <label class="label-style" for="about">About
             me</label>
 
-          <textarea id="message" v-model="profile.bio" name="bio" class="text-area" rows="4"></textarea>
+          <textarea id="message" v-model="profile.about" name="about" class="text-area" rows="4"></textarea>
 
         </div>
         <div class="group-container">
