@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-import {useAuthStore} from "~/stores/AuthStore";
-import {Profile} from '~/types/Profile'
+import {useProfileStore} from "~/stores/useProfileStore";
+import type { NDKUserProfile} from "@nostr-dev-kit/ndk";
+import {useNdkStore} from "~/stores/NdkStore";
+const authStore = useProfileStore();
+const ndkStore = useNdkStore();
+const profile = ref(authStore.profile)
+const updateProfile = async ()=> {
+  await authStore.updateProfile(profile.value, ndkStore.ndk);
 
-const authStore = useAuthStore();
-
-const user: Profile = {
-  ...authStore.profile
 }
 </script>
 
@@ -18,8 +20,8 @@ const user: Profile = {
     </template>
     <template #content>
 
-      <div class="container mx-auto px-4 sm:px-8 lg:px-16">
 
+<form @sumbit.prevent="updateProfile" class="container mx-auto px-4 sm:px-8 lg:px-16">
         <div class="group-container">
           <label class="label-style"
                  for="username">Username</label>
@@ -27,7 +29,7 @@ const user: Profile = {
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="material-symbols:alternate-email-rounded"/>
             </div>
-            <input v-model="user.name" class="text-input" name="username" placeholder="name" type="text">
+            <input v-model="profile.name" class="text-input" name="username" placeholder="name" type="text">
           </div>
         </div>
         <div class="group-container">
@@ -37,7 +39,7 @@ const user: Profile = {
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="material-symbols:person-3-outline"/>
             </div>
-            <input v-model="user.displayName" name="displayName" class="text-input" placeholder="name" type="text">
+            <input v-model="profile.displayName" name="displayName" class="text-input" placeholder="name" type="text">
           </div>
         </div>
         <div class="group-container">
@@ -47,14 +49,14 @@ const user: Profile = {
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="gg:website"/>
             </div>
-            <input v-model="user.website" name="website" class="text-input" placeholder="name" type="text">
+            <input v-model="profile.website" name="website" class="text-input" placeholder="name" type="text">
           </div>
         </div>
         <div class="group-container">
           <label class="label-style" for="about">About
             me</label>
 
-          <textarea id="message" v-model="user.about" name="about" class="text-area" rows="4"></textarea>
+          <textarea id="message" v-model="profile.bio" name="bio" class="text-area" rows="4"></textarea>
 
         </div>
         <div class="group-container">
@@ -64,16 +66,21 @@ const user: Profile = {
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="material-symbols:person-3-outline"/>
             </div>
-            <input v-model="user.nip05" class="text-input" placeholder="name" type="text">
+            <input v-model="profile.nip05" class="text-input" placeholder="name" type="text">
           </div>
         </div>
-      </div>
+           <button type="submit" class="btn" @click.prevent="updateProfile">Save</button>
+</form>
+
     </template>
   </nuxt-layout>
 
 </template>
 
 <style scoped>
+.btn {
+  @apply rounded-full bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600
+}
 .group-container {
   @apply flex flex-col space-y-4 max-w-lg mx-auto p-4;
 }

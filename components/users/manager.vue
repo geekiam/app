@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
 import { useNdkStore} from "~/stores/NdkStore";
-import { useAuthStore } from "~/stores/AuthStore";
+import { useProfileStore } from "~/stores/useProfileStore";
 import { Profile } from '~/types/Profile'
 
 const ndkStore = useNdkStore();
-const authStore = useAuthStore();
+const authStore = useProfileStore();
 
 const user: Profile = {
-  ...authStore.profile
+  ...authStore.getProfile
 }
 
 const userNavigation = [

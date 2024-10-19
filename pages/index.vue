@@ -18,9 +18,7 @@ definePageMeta({
     </template>
 
   <template #content>
-    <chat >
-      <p class="text-white">The Page Content will go here</p>
-    </chat>
+    <chat />
   </template>
 
   </nuxt-layout>
