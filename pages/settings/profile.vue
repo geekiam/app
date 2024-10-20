@@ -35,7 +35,7 @@ const updateProfile = async () => {
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="material-symbols:key-vertical-outline-rounded"/>
             </div>
-            <input v-model="profile.npub" class="text-input" name="npub" placeholder="name" type="text" readonly>
+            <input v-model="profile.npub" class="key-input" name="npub" placeholder="name" type="text" readonly>
           </div>
         </div>
         <div class="group-container">
@@ -115,9 +115,11 @@ const updateProfile = async () => {
 .label-style {
   @apply block mb-2 text-lg font-medium text-gray-900 dark:text-white
 }
-
+.key-input {
+  @apply ml-1.5 bg-gray-50 border border-gray-300 text-gray-900  text-xs rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-blue-500 dark:focus:border-blue-500
+}
 .text-input {
-  @apply ml-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+  @apply ml-1.5 bg-gray-50 border border-gray-300 text-gray-900  text-xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-blue-500 dark:focus:border-blue-500
 }
 
 .text-area {

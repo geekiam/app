@@ -2,14 +2,12 @@
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
 import { useNdkStore} from "~/stores/NdkStore";
 import { useProfileStore } from "~/stores/useProfileStore";
-import { Profile } from '~/types/Profile'
 
 const ndkStore = useNdkStore();
 const authStore = useProfileStore();
+await authStore.getProfile(authStore.user, ndkStore.ndk)
+const user  =   authStore.profile
 
-const user: Profile = {
-  ...authStore.getProfile
-}
 
 const userNavigation = [
   { name: 'Your Profile', href: '/settings/profile' },
