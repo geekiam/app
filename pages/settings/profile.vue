@@ -6,7 +6,7 @@ const authStore = useProfileStore();
 const ndkStore = useNdkStore();
 const toast = useToast()
 
-authStore.getProfile(authStore.user, ndkStore.ndk)
+await authStore.getProfile(authStore.user, ndkStore.ndk)
 
 const profile = ref(authStore.profile)
 
