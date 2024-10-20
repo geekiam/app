@@ -1,18 +1,19 @@
 <script lang="ts" setup>
 import {useProfileStore} from "~/stores/useProfileStore";
 import {useNdkStore} from "~/stores/NdkStore";
+
 const authStore = useProfileStore();
 const ndkStore = useNdkStore();
 const toast = useToast()
 
-if(!authStore.isAuthenticated) {
+if (!authStore.isAuthenticated) {
   await useNuxtApp().$router.push('/auth')
 }
 
 
 const profile = ref(authStore.profile)
 
-const updateProfile = async ()=> {
+const updateProfile = async () => {
   await authStore.updateProfile(profile.value, ndkStore.ndk);
   toast.add({title: 'Profile updated successfully'})
 
@@ -29,7 +30,7 @@ const updateProfile = async ()=> {
     <template #content>
 
 
-<form @sumbit.prevent="updateProfile" class="container mx-auto px-4 sm:px-8 lg:px-16">
+      <form @sumbit.prevent="updateProfile" class="container mx-auto px-4 sm:px-8 lg:px-16">
         <div class="group-container">
           <label class="label-style"
                  for="username">Username</label>
@@ -77,8 +78,10 @@ const updateProfile = async ()=> {
             <input v-model="profile.nip05" class="text-input" placeholder="name" type="text">
           </div>
         </div>
-           <button type="submit" class="btn" @click.prevent="updateProfile">Save</button>
-</form>
+        <div class="group-container">
+          <button type="submit" class="btn" @click.prevent="updateProfile">Save</button>
+        </div>
+      </form>
 
     </template>
   </nuxt-layout>
@@ -89,6 +92,7 @@ const updateProfile = async ()=> {
 .btn {
   @apply rounded-full bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600
 }
+
 .group-container {
   @apply flex flex-col space-y-4 max-w-lg mx-auto p-4;
 }
