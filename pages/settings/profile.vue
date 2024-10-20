@@ -6,10 +6,7 @@ const authStore = useProfileStore();
 const ndkStore = useNdkStore();
 const toast = useToast()
 
-if (!authStore.isAuthenticated) {
-  await useNuxtApp().$router.push('/auth')
-}
-
+authStore.getProfile(authStore.user, ndkStore.ndk)
 
 const profile = ref(authStore.profile)
 
@@ -31,6 +28,16 @@ const updateProfile = async () => {
 
 
       <form @sumbit.prevent="updateProfile" class="container mx-auto px-4 sm:px-8 lg:px-16">
+        <div class="group-container">
+          <label class="label-style"
+                 for="username">Public Key</label>
+          <div class="relative">
+            <div class="icon-inset">
+              <Icon aria-hidden="true" class="icon-style" name="material-symbols:key-vertical-outline-rounded"/>
+            </div>
+            <input v-model="profile.npub" class="text-input" name="npub" placeholder="name" type="text" readonly>
+          </div>
+        </div>
         <div class="group-container">
           <label class="label-style"
                  for="username">Username</label>

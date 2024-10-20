@@ -78,7 +78,6 @@
                     <div class="truncate text-base font-medium text-gray-800">{{ user.name }}</div>
                     <div class="truncate text-sm font-medium text-gray-500">{{ user.email }}</div>
                   </div>
-                  <theme-switch />
                 </div>
                 <div class="max-w-8xl mx-auto mt-3 space-y-1 px-2 sm:px-4">
                   <a v-for="item in userNavigation" :key="item.name" :href="item.href" class="block rounded-md py-2 px-3 text-base font-medium text-gray-100 dark:text-gray-800 hover:bg-gray-50">{{ item.name }}</a>
@@ -96,10 +95,6 @@
 import {
   Dialog,
   DialogPanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
   TransitionChild,
   TransitionRoot,
 } from '@headlessui/vue'
