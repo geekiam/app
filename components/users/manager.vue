@@ -4,9 +4,9 @@ import { useNdkStore} from "~/stores/NdkStore";
 import { useProfileStore } from "~/stores/useProfileStore";
 
 const ndkStore = useNdkStore();
-const authStore = useProfileStore();
-await authStore.getProfile(authStore.user, ndkStore.ndk)
-const user  =   authStore.profile
+const profileStore = useProfileStore();
+await profileStore.getProfile(profileStore.user, ndkStore.ndk)
+const user  = profileStore.profile
 
 
 const userNavigation = [

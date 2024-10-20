@@ -9,6 +9,10 @@
   },
   "devDependencies": {
     "@headlessui/tailwindcss": "^0.2.0",
+    "@iconify-json/bitcoin-icons": "^1.2.1",
+    "@iconify-json/gg": "^1.2.1",
+    "@iconify-json/heroicons-outline": "^1.2.0",
+    "@iconify-json/material-symbols": "^1.2.4",
     "@nuxt/image": "^1.8.1",
     "@nuxt/ui": "^2.18.7",
     "@ubclaunchpad/vue-fathom": "^2.0.0",
