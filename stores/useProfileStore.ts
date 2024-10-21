@@ -1,6 +1,7 @@
 import {defineStore} from "pinia";
 
-import type {NDKUser, NDKUserProfile} from "@nostr-dev-kit/ndk";
+import type {NDK,NDKUser, NDKUserProfile} from "@nostr-dev-kit/ndk";
+import {Kind} from "~/types/Kind";
 
 export const useProfileStore = defineStore('authStore', {
     id: 'settings-store',
@@ -26,11 +27,9 @@ export const useProfileStore = defineStore('authStore', {
             }
         },
         async updateProfile(profile: NDKUserProfile, ndk) {
-
             const updateUser = await ndk.getUser({
                 npub: this.user.npub,
             });
-
             await updateUser.fetchProfile()
 
             const updateProfile = updateUser.profile
@@ -49,29 +48,12 @@ export const useProfileStore = defineStore('authStore', {
             this.signedOut = false
         },
 
-        async getFeed(user, ndk) {
 
-            const fetchKinds = [
-                0, // Profile metadata
-                1, // Notes
-                3, // Contacts
-                6, // Repost
-                7, // Reaction
-                1985, // Label
-                9735, // Zap receipt event
-                10002, // Relay list metadata
-                30023 // Long-form content
-            ]
-            const filter = {kinds: fetchKinds, limit:65}
 
-          return await ndk.fetchEvents(filter)
 
-        },
         async signOut() {
             this.user = null
 
         }
     }
-
-
 })

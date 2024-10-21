@@ -1,33 +1,35 @@
-import {defineStore} from 'pinia'
+import { defineStore } from 'pinia'
 import NDK from "@nostr-dev-kit/ndk";
 
-export const useNdkStore = defineStore('useNdkStore', {
-    id: 'ndk-store',
+const DEFAULT_EXPLICIT_RELAY_URLS = [
+    'wss://relay.damus.io',
+    'wss://relay.primal.net',
+    'wss://relay.sovereign-stack.org'
+];
+
+const DEFAULT_OUTBOX_RELAY_URLS = [
+    "wss://purplepag.es"
+];
+
+function createNdkInstance(explicitRelayUrls: string[], outboxRelayUrls: string[]) {
+    return new NDK({
+        explicitRelayUrls,
+        outboxRelayUrls
+    });
+}
+
+export const useNdkStore = defineStore('ndkStore', {
     state: () => ({
         initialized: false,
-        defaultExplicitRelayUrls: [
-            'wss://relay.damus.io',
-            'wss://relay.primal.net',
-            'wss://relay.sovereign-stack.org'
-        ],
-        explicitRelayUrls:[
-            'wss://relay.damus.io',
-            'wss://relay.primal.net',
-            'wss://relay.sovereign-stack.org'
-        ],
-        defaultOutboxRelayUrls: [
-            "wss://purplepag.es"
-        ],
+        defaultExplicitRelayUrls: DEFAULT_EXPLICIT_RELAY_URLS,
+        explicitRelayUrls: DEFAULT_EXPLICIT_RELAY_URLS,
+        defaultOutboxRelayUrls: DEFAULT_OUTBOX_RELAY_URLS,
         ndk: null
     }),
     actions: {
         async initialize() {
             if (this.ndk === null) {
-                let options = {
-                    explicitRelayUrls: this.explicitRelayUrls,
-                    outboxRelayUrls: this.defaultOutboxRelayUrls
-                }
-                this.ndk = new NDK(options)
+                this.ndk = createNdkInstance(this.explicitRelayUrls, this.defaultOutboxRelayUrls)
                 this.initialized = true
             }
         }

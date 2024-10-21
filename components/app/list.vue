@@ -11,14 +11,13 @@ const props = defineProps( {
 })
 
 import { useNdkStore} from "~/stores/NdkStore";
-import { useProfileStore } from "~/stores/useProfileStore";
+import { useHomeContext} from "~/stores/HomeContext";
 import {NDKEvent} from "@nostr-dev-kit/ndk";
 
 const ndkStore = useNdkStore();
-const profileStore = useProfileStore();
+const context = useHomeContext()
 
-
-const feed = await profileStore.getFeed(profileStore.user, ndkStore.ndk)
+const feed = await context.fetchUserFeed(ndkStore.ndk)
 console.log(feed)
 </script>
 
