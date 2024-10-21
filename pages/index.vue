@@ -10,9 +10,9 @@ definePageMeta({
 </script>
 
 <template>
-  <nuxt-layout name="default">
+  <nuxt-layout>
     <template #list >
-      <list query="cunt" index-name="asdf"/>
+      <list />
     </template>
 
   <template #content>

@@ -3,8 +3,7 @@ import NDK from "@nostr-dev-kit/ndk";
 
 const DEFAULT_EXPLICIT_RELAY_URLS = [
     'wss://relay.damus.io',
-    'wss://relay.primal.net',
-    'wss://relay.sovereign-stack.org'
+    'wss://relay.primal.net'
 ];
 
 const DEFAULT_OUTBOX_RELAY_URLS = [
