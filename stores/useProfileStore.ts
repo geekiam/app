@@ -24,7 +24,6 @@ export const useProfileStore = defineStore('authStore', {
                     this.profile = user.profile
                 }
             }
-
         },
         async updateProfile(profile: NDKUserProfile, ndk) {
 
@@ -49,8 +48,27 @@ export const useProfileStore = defineStore('authStore', {
             this.signedIn = true
             this.signedOut = false
         },
+
+        async getFeed(user, ndk) {
+
+            const fetchKinds = [
+                0, // Profile metadata
+                1, // Notes
+                3, // Contacts
+                6, // Repost
+                7, // Reaction
+                1985, // Label
+                9735, // Zap receipt event
+                10002, // Relay list metadata
+                30023 // Long-form content
+            ]
+            const filter = {kinds: fetchKinds, limit:65}
+
+          return await ndk.fetchEvents(filter)
+
+        },
         async signOut() {
-            this.removeUser();
+            this.user = null
 
         }
     }

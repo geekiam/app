@@ -1,22 +1,29 @@
 <script lang="ts" setup>
-import {useProfileStore} from "~/stores/useProfileStore";
-import {useNdkStore} from "~/stores/NdkStore";
+definePageMeta({
+  layout: 'settings',
+  middleware: 'auth'
+})
 
-const authStore = useProfileStore();
+import { useProfileStore } from "~/stores/useProfileStore";
+import { useNdkStore } from "~/stores/NdkStore";
+
+const profileStore = useProfileStore();
 const ndkStore = useNdkStore();
-const toast = useToast()
+const toastService = useToast();
 
-await authStore.getProfile(authStore.user, ndkStore.ndk)
+const loadProfile = async () => {
+  await profileStore.getProfile(profileStore.user, ndkStore.ndk);
+}
 
-const profile = ref(authStore.profile)
+const profile = ref(profileStore.profile);
 
 const updateProfile = async () => {
-  await authStore.updateProfile(profile.value, ndkStore.ndk).then(() => {
-    toast.add({title: 'Profile updated successfully'})
+  await profileStore.updateProfile(profile.value, ndkStore.ndk).then(() => {
+    toastService.add({ title: 'Profile updated successfully' });
   });
-
-
 }
+
+await loadProfile();
 </script>
 
 <template>

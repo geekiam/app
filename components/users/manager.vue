@@ -20,7 +20,7 @@ const userNavigation = [
     <Menu as="div" class="menu">
       <MenuButton class="menu-button">
         <span class="sr-only">Open user menu</span>
-        <img class="profile-image" :src="user.image" :alt="user.name" />
+        <UAvatar :src="user.image" :alt="user.name" />
       </MenuButton>
 
       <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">

@@ -22,14 +22,14 @@ async function logIn() {
 </script>
 
 <template>
-  <div class="items-center justify-center">
-    <p class="txt-2xl mb-5 ">Sign in with an existing nostr account </p>
-    <p>
+  <div class="items-center">
+    <p class="txt-2xl mb-5 text-gray-800 dark:text-gray-200 ">Sign in with an existing nostr account </p>
+
       <button class="bg-orange-500 text-white text-xl py-4 px-8 rounded-lg hover:bg-orange-700 focus:outline-none"
               @click="logIn">
         nostr extension
       </button>
-    </p>
+
   </div>
 
 </template>
