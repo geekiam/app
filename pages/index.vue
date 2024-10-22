@@ -4,7 +4,8 @@ import Chat from "~/components/app/chat.vue";
 import List from "~/components/app/list.vue";
 definePageMeta({
   layout: 'default',
-   middleware: 'auth'
+   middleware: 'auth',
+
  })
 
 </script>

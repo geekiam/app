@@ -1,5 +1,5 @@
 <template>
-
+  <vite-pwa-manifest />
   <nuxt-page/>
 <u-notifications/>
 
