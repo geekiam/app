@@ -1,7 +1,6 @@
 import {defineStore} from "pinia";
 
 import type {NDK,NDKUser, NDKUserProfile} from "@nostr-dev-kit/ndk";
-import {Kind} from "~/types/Kind";
 
 export const useProfileStore = defineStore('authStore', {
     id: 'settings-store',

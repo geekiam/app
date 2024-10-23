@@ -23,12 +23,13 @@ export const useNdkStore = defineStore('ndkStore', {
         defaultExplicitRelayUrls: DEFAULT_EXPLICIT_RELAY_URLS,
         explicitRelayUrls: DEFAULT_EXPLICIT_RELAY_URLS,
         defaultOutboxRelayUrls: DEFAULT_OUTBOX_RELAY_URLS,
-        ndk: null
+        ndk: null as NDK | null,
     }),
     actions: {
         async initialize() {
             if (this.ndk === null) {
                 this.ndk = createNdkInstance(this.explicitRelayUrls, this.defaultOutboxRelayUrls)
+                this.ndk.connect()
                 this.initialized = true
             }
         }
