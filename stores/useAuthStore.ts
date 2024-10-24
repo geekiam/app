@@ -1,7 +1,7 @@
 import {defineStore} from "pinia";
-import type {NDKUser} from "@nostr-dev-kit/ndk";
+import {NDKUser, NDKNip07Signer} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/NdkStore";
-import {NDKNip07Signer} from "@nostr-dev-kit/ndk";
+
 
 export const USER_STORAGE_KEY = "geekiam-key";
 export const useAuthStore = defineStore('authStore', {
@@ -20,7 +20,7 @@ export const useAuthStore = defineStore('authStore', {
            if(!this.ndkStore.initialized) await this.ndkStore.initialize()
            this.ndkStore.ndk.signer = nip07Signer
            let user = await nip07Signer.user()
-            console.log(user)
+
           user = await this.ndkStore.ndk.getUser({
               npub: user.npub,
           });

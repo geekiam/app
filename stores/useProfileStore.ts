@@ -1,23 +1,21 @@
 import {defineStore} from "pinia";
 import type {NDK, NDKUser, NDKUserProfile} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/NdkStore";
+import {useAuthStore} from "~/stores/useAuthStore";
 import {USER_STORAGE_KEY} from "~/stores/useAuthStore";
 
 export const useProfileStore = defineStore('profileStore', {
     id: 'profile-store',
     state: () => ({
-        profile: null as NDKUserProfile | null,
-        user: null as NDKUser | null,
-        ndkStore: useNdkStore()
+       ndkStore: useNdkStore(),
+        authStore: useAuthStore()
     }),
-    getters: {
-        isAuthenticated: (state) => state.user !== null,
-    },
+
     actions: {
         async getProfile(user: NDKUser) {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
             user = await this.ndkStore.ndk.getUser({
-                npub: user.npub,
+                npub: this.authStore.user.npub,
             })
             if (user !== undefined) {
                 this.user = user
