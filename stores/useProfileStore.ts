@@ -1,6 +1,7 @@
 import {defineStore} from "pinia";
 import type {NDK,NDKUser, NDKUserProfile} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/NdkStore";
+import {USER_STORAGE_KEY} from "~/stores/useAuthStore";
 
 export const useProfileStore = defineStore('profileStore', {
     id: 'profile-store',
@@ -13,7 +14,7 @@ export const useProfileStore = defineStore('profileStore', {
         isAuthenticated: (state) => state.user !== null,
     },
     actions: {
-        async getProfile(user) {
+        async getProfile(user: NDKUser) {
             if(!this.ndkStore.initialized) await this.ndkStore.initialize()
             user = await this.ndkStore.ndk.getUser({
                 npub: user.npub,
@@ -31,29 +32,21 @@ export const useProfileStore = defineStore('profileStore', {
                 npub: this.user.npub,
             });
             await updateUser.fetchProfile()
-
-            const updateProfile = updateUser.profile
+             delete updateUser.profile.profile
+             const updateProfile = updateUser.profile
             updateProfile.about = profile.about
             updateProfile.nip05 = profile.nip05
             updateProfile.name = profile.name
             updateProfile.displayName = profile.displayName
             updateProfile.website = profile.website
+            updateProfile.profile = null
+
             await updateUser.publish()
+            this.setUser(updateUser)
         },
-        async signIn(user, ndk) {
-
-            this.pubKey = user.pubKey
-            await this.getProfile(user, ndk)
-            this.signedIn = true
-            this.signedOut = false
+        setUser(user: NDKUser) {
+            this.user = user
+            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
         },
-
-
-
-
-        async signOut() {
-            this.user = null
-
-        }
     }
 })

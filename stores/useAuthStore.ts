@@ -15,7 +15,8 @@ export const useAuthStore = defineStore('authStore', {
     },
     actions: {
        async signIn() {
-             const nip07Signer = new NDKNip07Signer()
+
+           const nip07Signer = new NDKNip07Signer()
            if(!this.ndkStore.initialized) await this.ndkStore.initialize()
            this.ndkStore.ndk.signer = nip07Signer
            let user = await nip07Signer.user()
