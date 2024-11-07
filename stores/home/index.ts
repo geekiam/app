@@ -2,16 +2,14 @@ import {defineStore} from "pinia";
 import NDK, {NDKEvent, NDKKind} from "@nostr-dev-kit/ndk";
 
 
-export const useHomeContext = defineStore('homeContext', {
-   id: 'home-context',
-
+export const useHomeStore = defineStore('homeStore', {
     actions: {
-        async fetchUserFeed( ndk:NDK): Promise<NDKEvent[]> {
+       fetchFeed:  async  function fetchUserFeed( ndk:NDK): Promise<Set<NDKEvent>> {
             const filter = {
                 kinds: [NDKKind.Text],
                 limit: 20
             };
-            return await ndk.fetchEvents(filter);
+            return await ndk.fetchEvents(filter) ;
         },
     }
 

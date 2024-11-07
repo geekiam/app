@@ -26,7 +26,7 @@ export const useNdkStore = defineStore('ndkStore', {
         ndkInstance: null as NDK | null,
     }),
     getters: {
-        ndk: (state) => state.ndkInstance
+        ndk: (state) => state.ndkInstance as NDK
     },
     actions: {
         async initialize() {

@@ -1,8 +1,9 @@
-import { useProfileStore} from "~/stores/useProfileStore";
-import {useAuthStore} from "~/stores/useAuthStore";
 
-const store = useAuthStore();
+import {useAuthStore} from "~/stores/auth";
+
+
 export default defineNuxtRouteMiddleware((to, from) => {
+    const store = useAuthStore();
     if(!store.isAuthenticated){
        return useNuxtApp().$router.push('/auth')
     }

@@ -1,29 +1,40 @@
-<script lang="ts" setup>
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import { useProfileStore } from "~/stores/profile";
+import { useAuthStore } from "~/stores/auth";
+import type { NDKUserProfile} from "@nostr-dev-kit/ndk";
+
 definePageMeta({
   layout: 'settings',
   middleware: 'auth'
-})
+});
 
-import { useProfileStore } from "~/stores/useProfileStore";
-import { useNdkStore } from "~/stores/NdkStore";
+const PROFILE_UPDATED_SUCCESS_MESSAGE = 'Profile updated successfully';
 
 const profileStore = useProfileStore();
-const ndkStore = useNdkStore();
+const authStore = useAuthStore();
 const toastService = useToast();
 
-const loadProfile = async () => {
-  await profileStore.getProfile(profileStore.user, ndkStore.ndk);
+const profile = ref<NDKUserProfile | null>(null);
+
+async function loadUserProfile(npub: string): Promise<NDKUserProfile> {
+  alert(npub);
+  return profileStore.getProfile(npub);
 }
 
-const profile = ref(profileStore.profile);
-
-const updateProfile = async () => {
-  await profileStore.updateProfile(profile.value, ndkStore.ndk).then(() => {
-    toastService.add({ title: 'Profile updated successfully' });
-  });
+async function fetchUserProfile() {
+  profile.value = await loadUserProfile(authStore.npub);
 }
 
-await loadProfile();
+function notifyProfileUpdated() {
+  toastService.add({ title: PROFILE_UPDATED_SUCCESS_MESSAGE });
+}
+
+async function saveProfile() {
+  await profileStore.updateProfile(profile.value).then(notifyProfileUpdated);
+}
+
+onMounted(fetchUserProfile);
 </script>
 
 <template>
@@ -34,12 +45,9 @@ await loadProfile();
       </div>
     </template>
     <template #content>
-
-
-      <form @sumbit.prevent="updateProfile" class="container mx-auto px-4 sm:px-8 lg:px-16">
+      <form @submit.prevent="saveProfile" class="container mx-auto px-4 sm:px-8 lg:px-16">
         <div class="group-container">
-          <label class="label-style"
-                 for="username">Public Key</label>
+          <label class="label-style" for="username">Public Key</label>
           <div class="relative">
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="material-symbols:key-vertical-outline-rounded"/>
@@ -48,8 +56,7 @@ await loadProfile();
           </div>
         </div>
         <div class="group-container">
-          <label class="label-style"
-                 for="username">Username</label>
+          <label class="label-style" for="username">Username</label>
           <div class="relative">
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="material-symbols:alternate-email-rounded"/>
@@ -58,8 +65,7 @@ await loadProfile();
           </div>
         </div>
         <div class="group-container">
-          <label class="label-style" for="displayName">Display
-            Name</label>
+          <label class="label-style" for="displayName">Display Name</label>
           <div class="relative">
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="material-symbols:person-3-outline"/>
@@ -68,8 +74,7 @@ await loadProfile();
           </div>
         </div>
         <div class="group-container">
-          <label class="label-style"
-                 for="website">Website</label>
+          <label class="label-style" for="website">Website</label>
           <div class="relative">
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="gg:website"/>
@@ -78,15 +83,11 @@ await loadProfile();
           </div>
         </div>
         <div class="group-container">
-          <label class="label-style" for="about">About
-            me</label>
-
+          <label class="label-style" for="about">About me</label>
           <textarea id="message" v-model="profile.about" name="about" class="text-area" rows="4"></textarea>
-
         </div>
         <div class="group-container">
-          <label class="label-style" for="email-address-icon">Verified
-            Nost Address (NIP05)</label>
+          <label class="label-style" for="email-address-icon">Verified Nost Address (NIP05)</label>
           <div class="relative">
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="material-symbols:person-3-outline"/>
@@ -95,43 +96,36 @@ await loadProfile();
           </div>
         </div>
         <div class="group-container">
-          <button type="submit" class="btn" @click.prevent="updateProfile">Save</button>
+          <button type="submit" class="btn">Save</button>
         </div>
       </form>
-
     </template>
   </nuxt-layout>
-
 </template>
 
 <style scoped>
 .btn {
-  @apply rounded-full bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600
+  @apply rounded-full bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600;
 }
-
 .group-container {
   @apply flex flex-col space-y-4 max-w-lg mx-auto p-4;
 }
-
 .icon-inset {
-  @apply absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none
+  @apply absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none;
 }
-
 .icon-style {
-  @apply w-7 h-7 text-orange-400
+  @apply w-7 h-7 text-orange-400;
 }
-
 .label-style {
-  @apply block mb-2 text-lg font-medium text-gray-900 dark:text-white
+  @apply block mb-2 text-lg font-medium text-gray-900 dark:text-white;
 }
 .key-input {
-  @apply ml-1.5 bg-gray-50 border border-orange-500 text-gray-900  text-xs rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-orange-600 dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-blue-500 dark:focus:border-blue-500
+  @apply ml-1.5 bg-gray-50 border border-orange-500 text-gray-900 text-xs rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-orange-600 dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
 .text-input {
-  @apply ml-1.5 bg-gray-50 border border-gray-300 text-gray-900  text-xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-blue-500 dark:focus:border-blue-500
+  @apply ml-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
-
 .text-area {
-  @apply block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+  @apply block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
 </style>
