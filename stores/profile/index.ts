@@ -4,7 +4,21 @@ import {useNdkStore} from "~/stores/ndk";
 
 import {USER_STORAGE_KEY} from "~/types/Globals";
 import {useAuthStore} from "~/stores/auth"
-
+import type {Profile} from "~/types/User";
+function mapUserToProfile(user: NDKUser): Profile {
+   console.log('mapUserToProfile: ' + JSON.stringify(user))
+    return <Profile>{
+        user: {
+            name: user.profile?.name || '',
+            avatar: user.profile?.image || '',
+            npub: user.profile?.npub || ''
+        },
+        about: user.profile?.about || '',
+        website: user.profile?.website || '',
+        displayName: user.profile?.displayName || '',
+        nip05: user.profile?.nip05 || ''
+    };
+}
 export const useProfileStore = defineStore('profileStore', {
 
     state: () => ({
@@ -13,37 +27,35 @@ export const useProfileStore = defineStore('profileStore', {
     }),
 
     actions: {
-       getProfile: async function(npub: string): Promise<NDKUserProfile> {
+       getProfile: async function(npub: string): Promise<Profile | null> {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
-           alert(npub)
+
             let user: NDKUser = this.ndkStore.ndk.getUser({
                 npub: npub,
             })
+
             if (user !== undefined) {
                 if (user.profile === undefined) {
                     await user.fetchProfile()
+                  return mapUserToProfile(user)
                 }
             }
-            return user.profile as NDKUserProfile;
+           return null;
         },
-        updateProfile: async function (profile: NDKUserProfile): Promise<void> {
+        updateProfile: async function (profile: Profile | null): Promise<void> {
+          if(profile === null) return;
+           let updateUser: NDKUser = await this.authStore.getUser()
+                await updateUser.fetchProfile()
+                const updateProfile: NDKUserProfile = updateUser.profile as NDKUserProfile;
+                if (updateProfile !== undefined) {
+                    updateProfile.about = profile.about
+                    updateProfile.nip05 = profile.nip05
+                    updateProfile.name = profile.user.name
+                    updateProfile.displayName = profile.displayName
+                    updateProfile.website = profile.website
+                    await updateUser.publish()
 
-
-            const updateUser : NDKUser = this.ndkStore.ndk.getUser({
-                npub: this.authStore.npub,
-            });
-            await updateUser.fetchProfile()
-
-            const updateProfile: NDKUserProfile = updateUser.profile as NDKUserProfile;
-            if (updateProfile !== undefined) {
-                updateProfile.about = profile.about
-                updateProfile.nip05 = profile.nip05
-                updateProfile.name = profile.name
-                updateProfile.displayName = profile.displayName
-                updateProfile.website = profile.website
-                await updateUser.publish()
-                this.setUser(updateUser)
-            }
+                }
 
 
         },

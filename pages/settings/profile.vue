@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
 import { useProfileStore } from "~/stores/profile";
 import { useAuthStore } from "~/stores/auth";
-import type { NDKUserProfile} from "@nostr-dev-kit/ndk";
+import type {Profile} from "~/types/User";
 
 definePageMeta({
   layout: 'settings',
@@ -14,27 +13,27 @@ const PROFILE_UPDATED_SUCCESS_MESSAGE = 'Profile updated successfully';
 const profileStore = useProfileStore();
 const authStore = useAuthStore();
 const toastService = useToast();
+let key: string| undefined = authStore.npub
 
-const profile = ref<NDKUserProfile | null>(null);
+const profile =await loadUserProfile(<string>key);
 
-async function loadUserProfile(npub: string): Promise<NDKUserProfile> {
-  alert(npub);
-  return profileStore.getProfile(npub);
+async function loadUserProfile(npub: string): Promise<Profile | null> {
+return await profileStore.getProfile(npub);
+
 }
 
-async function fetchUserProfile() {
-  profile.value = await loadUserProfile(authStore.npub);
-}
 
-function notifyProfileUpdated() {
+function notifyProfileUpdated()  {
   toastService.add({ title: PROFILE_UPDATED_SUCCESS_MESSAGE });
 }
 
-async function saveProfile() {
-  await profileStore.updateProfile(profile.value).then(notifyProfileUpdated);
+async function saveProfile() : Promise<void> {
+    await profileStore.updateProfile(profile);
+     notifyProfileUpdated();
+
 }
 
-onMounted(fetchUserProfile);
+
 </script>
 
 <template>
@@ -52,7 +51,7 @@ onMounted(fetchUserProfile);
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="material-symbols:key-vertical-outline-rounded"/>
             </div>
-            <input v-model="profile.npub" class="key-input" name="npub" type="text" readonly>
+            <input v-model="profile.user.npub" class="key-input" name="npub" type="text" readonly>
           </div>
         </div>
         <div class="group-container">
@@ -61,10 +60,9 @@ onMounted(fetchUserProfile);
             <div class="icon-inset">
               <Icon aria-hidden="true" class="icon-style" name="material-symbols:alternate-email-rounded"/>
             </div>
-            <input v-model="profile.name" class="text-input" name="username" placeholder="name" type="text">
+            <input v-model="profile.user.name" class="text-input" name="username" placeholder="name" type="text">
           </div>
-        </div>
-        <div class="group-container">
+
           <label class="label-style" for="displayName">Display Name</label>
           <div class="relative">
             <div class="icon-inset">

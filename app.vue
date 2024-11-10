@@ -1,7 +1,8 @@
 <template>
-  <vite-pwa-manifest />
+  <nuxt-route-announcer />
+  <nuxt-pwa-manifest/>
   <nuxt-page/>
-<u-notifications/>
+  <u-notifications/>
 
 </template>
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useAuthStore} from "~/stores/auth";
-import type {User} from "~/types/Account";
+import type {User} from "~/types/User";
 
 const auth = useAuthStore();
 const user: User = auth.user || {};

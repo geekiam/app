@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {User} from "~/types/Account";
+import type {User} from "~/types/User";
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
 
 const props = defineProps<{
@@ -18,9 +18,9 @@ const props = defineProps<{
                 leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
       <MenuItems class="menu-items">
         <div class="py-1">
-          <MenuItem v-slot="{ active }" v-for="item in props.menuItems" :key="item.name">
-            <nuxt-link :to="item.href" :class="[active ? 'menu-item-active' : '', 'menu-item']">{{
-                item.name
+          <MenuItem v-slot="{ active }" v-for="{href, name} in props.menuItems" :key="name">
+            <nuxt-link :to="href" :class="[active ? 'menu-item-active' : '', 'menu-item']">{{
+                name
               }}
             </nuxt-link>
           </MenuItem>
