@@ -1,4 +1,4 @@
-# Geekiam App
+# Geekiam
 
 <div align="center">
   <a href="https://geekiam.io">
