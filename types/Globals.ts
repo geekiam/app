@@ -1,1 +1,1 @@
-export const USER_STORAGE_KEY = "geekiam-key";
+export const USER_STORAGE_KEY = "geekiam-user";

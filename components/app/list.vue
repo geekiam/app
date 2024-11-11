@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-import { useNdkStore } from "~/stores/ndk";
 import { useHomeStore } from "~/stores/home";
 
-const ndkStore = useNdkStore();
 const homeContext = useHomeStore();
 const events = ref()
 
 async function fetchUserFeed() {
 
-  return await homeContext.fetchFeed(ndkStore.ndk);
+  return await homeContext.fetchFeed();
 }
 
 onMounted(async () => {

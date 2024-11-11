@@ -4,7 +4,7 @@ import {useNdkStore} from "~/stores/ndk";
 
 import {USER_STORAGE_KEY} from "~/types/Globals";
 import {useAuthStore} from "~/stores/auth"
-import type {Profile} from "~/types/User";
+import type {Profile} from "~/types";
 function mapUserToProfile(user: NDKUser): Profile {
    console.log('mapUserToProfile: ' + JSON.stringify(user))
     return <Profile>{

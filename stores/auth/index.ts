@@ -3,7 +3,7 @@ import {NDKNip07Signer} from "@nostr-dev-kit/ndk";
 import type { NDKUser, NDKUserProfile} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/ndk";
 import {USER_STORAGE_KEY} from "~/types/Globals";
-import type {User} from "~/types/User";
+import type {User} from "~/types";
 
 
 function getUserAccount(): User | null {

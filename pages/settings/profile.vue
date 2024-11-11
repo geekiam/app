@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useProfileStore } from "~/stores/profile";
 import { useAuthStore } from "~/stores/auth";
-import type {Profile} from "~/types/User";
+import type {Profile} from "~/types";
+
 
 definePageMeta({
   layout: 'settings',
@@ -44,7 +45,7 @@ async function saveProfile() : Promise<void> {
       </div>
     </template>
     <template #content>
-      <form @submit.prevent="saveProfile" class="container mx-auto px-4 sm:px-8 lg:px-16">
+      <UForm @submit.prevent="saveProfile" class="container mx-auto px-4 sm:px-8 lg:px-16">
         <div class="group-container">
           <label class="label-style" for="username">Public Key</label>
           <div class="relative">
@@ -96,7 +97,7 @@ async function saveProfile() : Promise<void> {
         <div class="group-container">
           <button type="submit" class="btn">Save</button>
         </div>
-      </form>
+      </UForm>
     </template>
   </nuxt-layout>
 </template>
