@@ -5,7 +5,7 @@
     <img src="https://res.cloudinary.com/geekiam-io/image/upload/v1612480367/Brand/icon.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Primal</h3>
+<h3 align="center">geekiam</h3>
 
   <p align="center">
     Featuring easy onboarding, fast & snappy UI, ability to explore Nostr, and create & manage custom feeds
