@@ -3,6 +3,7 @@ export interface User  {
     name: string;
     avatar: string;
     npub: string ;
+    pubKey: string;
 }
 
 export interface Profile {

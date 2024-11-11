@@ -11,10 +11,12 @@ function getUserAccount(): User | null {
     return JSON.parse(<string>userJson) as User;
 }
 function createUserFromProfile(userProfile: NDKUserProfile): User {
+   console.log(userProfile)
     return <User>{
         name: userProfile?.name || "",
         npub: userProfile?.npub || "",
-        avatar: userProfile?.image || ""
+        avatar: userProfile?.image || "",
+        pubKey: userProfile?.pubkey || ""
     }
 }
 export const useAuthStore = defineStore('useAuthStore', {

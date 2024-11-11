@@ -10,7 +10,7 @@ export const useHomeStore = defineStore('homeStore', {
        fetchFeed:  async  function fetchUserFeed(): Promise<Set<NDKEvent>> {
            if (!this.ndkStore.initialized) await this.ndkStore.initialize()
             const filter = {
-                kinds: [NDKKind.Text],
+                kinds: [NDKKind.Article],
                 limit: 20
             };
             return await this.ndkStore.ndk.fetchEvents(filter) ;
