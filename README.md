@@ -1,42 +1,22 @@
-# Nuxt 3 Minimal Starter
+# Geekiam App
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+<div align="center">
+  <a href="https://geekiam.io">
+    <img src="https://res.cloudinary.com/geekiam-io/image/upload/v1612480367/Brand/icon.png" alt="Logo" width="80" height="80">
+  </a>
 
-## Setup
+<h3 align="center">Primal</h3>
 
-Make sure to install the dependencies:
-
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+  <p align="center">
+    Featuring easy onboarding, fast & snappy UI, ability to explore Nostr, and create & manage custom feeds
+    <br />
+    <a href="https://github.com/geekiam/app/wiki"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://geekiam.app/">View App</a>
+    ·
+    <a href="https://github.com/geekiam/app/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/geekiam/app/issues">Request Feature</a>
+  </p>
+</div>
