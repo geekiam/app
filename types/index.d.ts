@@ -12,6 +12,18 @@ export interface Profile {
     website: string | "";
     displayName: string | "";
     nip05: string | "";
+}
 
+export interface Author  {
+    name: string;
+    avatar: string;
+    npub: string;
+    displayName: string;
+}
+
+export interface Note {
+    content: string;
+    date: string;
+    author: Author;
 
 }

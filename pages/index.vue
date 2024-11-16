@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 
 import Chat from "~/components/app/chat.vue";
-import List from "~/components/app/list.vue";
+import List from "~/components/app/feed.vue";
 definePageMeta({
   layout: 'default',
   middleware: 'auth'
@@ -13,7 +13,7 @@ definePageMeta({
 <template>
   <nuxt-layout>
     <template #list >
-      <list />
+      <list filter="Cunt" />
     </template>
 
   <template #content>
