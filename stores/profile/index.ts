@@ -4,7 +4,7 @@ import {useNdkStore} from "~/stores/ndk";
 
 import {USER_STORAGE_KEY} from "~/types/Globals";
 import {useAuthStore} from "~/stores/auth"
-import type {Profile} from "~/types";
+import type {Profile, User} from "~/types";
 function mapUserToProfile(user: NDKUser): Profile {
    console.log('mapUserToProfile: ' + JSON.stringify(user))
     return <Profile>{
@@ -42,6 +42,23 @@ export const useProfileStore = defineStore('profileStore', {
             }
            return null;
         },
+        getAuthor: async function getAuthor(pubKey: string): Promise<Profile | null> {
+            if (!this.ndkStore.initialized) await this.ndkStore.initialize()
+
+            let user: NDKUser = this.ndkStore.ndk.getUser({
+                pubkey: pubKey,
+            })
+           alert(JSON.stringify(user))
+            if (user !== undefined) {
+                if (user.profile === undefined) {
+                    await user.fetchProfile()
+                    return mapUserToProfile(user)
+                }
+            }
+
+            return null;
+        },
+
         updateProfile: async function (profile: Profile | null): Promise<void> {
           if(profile === null) return;
            let updateUser: NDKUser = await this.authStore.getUser()

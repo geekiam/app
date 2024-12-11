@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {format} from "date-fns";
-
+import { marked } from "marked"
 const props = defineProps({
   filter: {
     type : String,
@@ -14,7 +14,7 @@ const events = ref()
 
 async function fetchUserFeed() {
 
-  return await homeContext.fetchFeed([NDKKind.Text, NDKKind.Article, NDKKind.Repost, NDKKind.Reaction]);
+  return await homeContext.fetchFeed([NDKKind.Article]);
 }
 
 onMounted(async () => {
@@ -30,8 +30,10 @@ onMounted(async () => {
   <div class="column-style">
 
     <div v-for="event in events" :key="event.id" class="box-style">
-
-      <div class="text-orange-500 text-lg break-all">{{ event.content }}</div>
+      <h1>{{ event.title }}</h1>
+      <div class="text-orange-500 text-lg break-all">
+        <div class="" v-html="marked.parse(event.content )"> </div>
+        </div>
       <p class="text-orange-200 text-xl">{{ format(new Date(event.created_at * 1000 ),'dd MMM yyyy')}}</p>
       <p class="dark:text-gray-100 text-gray-900 pt-5 text-sm">{{ event.author }}</p>
     </div>

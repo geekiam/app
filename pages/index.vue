@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 
-import Chat from "~/components/app/chat.vue";
-import List from "~/components/app/feed.vue";
+import Chat from "~/components/feeds/chat.vue";
+import List from "~/components/feeds/feed.vue";
 definePageMeta({
   layout: 'default',
   middleware: 'auth'

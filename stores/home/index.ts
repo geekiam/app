@@ -1,6 +1,7 @@
 import {defineStore} from "pinia";
 import {NDKEvent, NDKKind} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/ndk";
+import type {User} from "~/types";
 
 export const useHomeStore = defineStore('homeStore', {
     state: () => ({
@@ -20,6 +21,7 @@ export const useHomeStore = defineStore('homeStore', {
             };
             return await this.ndkStore.ndk.fetchEvents(filter);
         },
+
         getEvents: async function getEvents(): Promise<void> {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
 
