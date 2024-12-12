@@ -16,7 +16,7 @@ const authStore = useAuthStore();
 const toastService = useToast();
 let key: string| undefined = authStore.npub
 
-const profile =await loadUserProfile(<string>key);
+const profile = await loadUserProfile(<string>key);
 
 async function loadUserProfile(npub: string): Promise<Profile | null> {
 return await profileStore.getProfile(npub);

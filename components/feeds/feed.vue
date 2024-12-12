@@ -51,6 +51,6 @@ onMounted(async () => {
   @apply prose prose-lg max-w-full dark:text-gray-200 text-gray-800 sm:px-1
   dark:prose-blockquote:text-orange-500 prose-blockquote:text-xl
   prose-headings:text-orange-500 prose-a:no-underline
-  prose-a:text-orange-500 dark:prose-a:text-orange-500 justify-evenly
+  prose-a:text-orange-500 dark:prose-a:text-orange-500 justify-evenly prose-strong:text-orange-500
 }
 </style>
