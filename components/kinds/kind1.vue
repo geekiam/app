@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {useNdkStore} from "~/stores/ndk";
-import {NDKArticle, NDKEvent} from "@nostr-dev-kit/ndk";
+import {NDKEvent} from "@nostr-dev-kit/ndk";
 import {marked} from "marked";
 import {format} from "date-fns";
-import FeedsAuthor from "#components";
+
 
 const props = defineProps({
   id: String,
@@ -20,7 +20,10 @@ onMounted(async () => {
 <template>
   <div>
     <div v-if="event" class="p-4">
-      <div class="" v-html="marked.parse(event.content)"></div>
+      <div class="text-lg break-all">
+        <div class="content" v-html="marked.parse(event.content )"> </div>
+      </div>
+
       <pre class="bg-gray-800 text-white text-xs overflow-x-scroll py-5">
       <code class=" flex-wrap">
         {{ event.rawEvent() }}
