@@ -40,7 +40,7 @@ async function saveProfile() : Promise<void> {
 <template>
   <nuxt-layout name="settings">
     <template #menu>
-      <div class="min-h-full max-w-xs shadow-lg">
+      <div class="min-h-full max-w-xs">
        <settings-menu />
       </div>
     </template>
