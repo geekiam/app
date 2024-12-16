@@ -10,13 +10,13 @@ function getUserAccount(): User | null {
     const userJson: string | null = localStorage.getItem(USER_STORAGE_KEY);
     return JSON.parse(<string>userJson) as User;
 }
-function createUserFromProfile(userProfile: NDKUserProfile): User {
-   console.log(userProfile)
+function createUserFromProfile(user: NDKUser): User {
+   console.log(user)
     return <User>{
-        name: userProfile?.name || "",
-        npub: userProfile?.npub || "",
-        avatar: userProfile?.image || "",
-        pubKey: userProfile?.pubkey || ""
+        name: user?.profile?.name || "",
+        npub: user?.npub || "",
+        avatar: user?.profile?.image || "",
+        pubKey: user?.pubkey || ""
     }
 }
 export const useAuthStore = defineStore('useAuthStore', {
@@ -34,8 +34,9 @@ export const useAuthStore = defineStore('useAuthStore', {
             if (user !== undefined) {
                 if (user.profile === undefined) {
                     await user.fetchProfile()
+                    console.log(user)
                     if(user.profile !== undefined) this.setUser(
-                        createUserFromProfile(user.profile)
+                        createUserFromProfile(user)
                     )
                     return true
                 }
