@@ -6,7 +6,6 @@ const authStore = useAuthStore();
 async function signInWithAlby() {
   let authenticated = await authStore.signIn();
    if(authenticated){
-
     await router.push('/');
   }
 
