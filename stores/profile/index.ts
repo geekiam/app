@@ -6,12 +6,11 @@ import {USER_STORAGE_KEY} from "~/types/Globals";
 import {useAuthStore} from "~/stores/auth"
 import type {Profile, User} from "~/types";
 function mapUserToProfile(user: NDKUser): Profile {
-   console.log('mapUserToProfile: ' + JSON.stringify(user))
-    return <Profile>{
+     return <Profile>{
         user: {
             name: user.profile?.name || '',
             avatar: user.profile?.image || '',
-            npub: user.profile?.npub || ''
+            npub: user.npub || ''
         },
         about: user.profile?.about || '',
         website: user.profile?.website || '',
