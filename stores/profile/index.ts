@@ -32,7 +32,6 @@ export const useProfileStore = defineStore('profileStore', {
             let user: NDKUser = this.ndkStore.ndk.getUser({
                 npub: npub,
             })
-
             if (user !== undefined) {
                 if (user.profile === undefined) {
                     await user.fetchProfile()
@@ -47,7 +46,7 @@ export const useProfileStore = defineStore('profileStore', {
             let user: NDKUser = this.ndkStore.ndk.getUser({
                 pubkey: pubKey,
             })
-           alert(JSON.stringify(user))
+
             if (user !== undefined) {
                 if (user.profile === undefined) {
                     await user.fetchProfile()
@@ -55,7 +54,7 @@ export const useProfileStore = defineStore('profileStore', {
                 }
             }
 
-            return null;
+            return null ;
         },
 
         updateProfile: async function (profile: Profile | null): Promise<void> {

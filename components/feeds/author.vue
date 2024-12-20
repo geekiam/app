@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import {useProfileStore} from "~/stores/profile";
-import { onMounted } from "vue";
+
 
 
 const props = defineProps({
@@ -12,19 +12,15 @@ const props = defineProps({
 })
 const store = useProfileStore()
 
-const profile = ref()
+const profile = await store.getAuthor(props.pubkey)
+console.log("profile: ",profile)
 
-onMounted(async () => {
 
-  let use = await store.getAuthor(props.pubkey)
-  console.log(use)
-  profile.value = await store.getAuthor(props.pubkey)
-})
 </script>
 
 <template>
   <div>
-    <UAvatar :src="profile.user.avatar" :alt="profile.user.name" class="profile-image"></UAvatar>
+    <UAvatar :src="profile?.user.avatar" :alt="profile?.user.name" class="profile-image" /><span class="text-gray-100">{{ profile?.user.name }}</span>
   </div>
 </template>
 

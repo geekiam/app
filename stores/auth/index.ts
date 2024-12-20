@@ -11,7 +11,6 @@ function getUserAccount(): User | null {
     return JSON.parse(<string>userJson) as User;
 }
 function createUserFromProfile(user: NDKUser): User {
-   console.log(user)
     return <User>{
         name: user?.profile?.name || "",
         npub: user?.npub || "",
@@ -34,7 +33,6 @@ export const useAuthStore = defineStore('useAuthStore', {
             if (user !== undefined) {
                 if (user.profile === undefined) {
                     await user.fetchProfile()
-                    console.log(user)
                     if(user.profile !== undefined) this.setUser(
                         createUserFromProfile(user)
                     )

@@ -25,5 +25,19 @@ export interface Note {
     content: string;
     date: string;
     author: Author;
+}
 
+export interface Article {
+    id: string;
+    pubkey: string;
+    title: string;
+    summary:string;
+    content: string;
+    date: string;
+    image: string;
+    tags: {
+        name: string;
+        value: string;
+    }[];
+    published: Date;
 }

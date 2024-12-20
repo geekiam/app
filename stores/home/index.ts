@@ -17,7 +17,6 @@ export const useHomeStore = defineStore('homeStore', {
             const filter = {
                 kinds: kinds,
                 limit: 20,
-
             };
             return await this.ndkStore.ndk.fetchEvents(filter);
         },
