@@ -18,7 +18,7 @@ definePageMeta({
     </template>
 
   <template #content>
-
+     <feeds-article />
   </template>
 
   </nuxt-layout>

@@ -62,10 +62,12 @@ function getSummaryFromTags(tags: [string, ...any[]][]): string {
 export const useArticlesStore = defineStore('articleStore', {
     state: () => ({
         ndkStore: useNdkStore(),
-        articleSet: new Set<Article>
+        articleSet: new Set<Article>,
+        selectedArticle: null as Article | null,
     }),
     getters: {
-        articles: state => state.articleSet
+        articles: state => state.articleSet,
+        article: state => state.selectedArticle
     },
     actions: {
         fetchFeed: async function fetchUserFeed(kinds: NDKKind[]): Promise<Set<NDKEvent>> {
@@ -76,7 +78,10 @@ export const useArticlesStore = defineStore('articleStore', {
             };
             return await this.ndkStore.ndk.fetchEvents(filter);
         },
+        select: function select(id: string): void {
 
+            this.selectedArticle = Array.from(this.articleSet).find(x => x.id === id) || null
+        },
         getArticles: async function getArticles(): Promise<void> {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
 
