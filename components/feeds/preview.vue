@@ -1,11 +1,8 @@
 <script setup lang="ts">
-
 import {marked} from "marked";
+import {useArticlesStore} from '~/stores/articles';
 
-import { useArticlesStore } from '~/stores/articles';
-const { emit } = useMitter()
-
-
+const {emit} = useMitter()
 const articlesStore = useArticlesStore();
 const articles = articlesStore.articles;
 await articlesStore.getArticles();
@@ -18,33 +15,31 @@ function select(id: string) {
 
 <template>
   <section class="container mx-auto px-4 max-h-screen overflow-visible">
-
-      <article v-for="article in articles" :key="article.id" class="article-container content" @click="select(article.id)"  >
-        <!-- Image Section -->
-        <div
-            class="group image-container">
-          <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" loading="lazy"
-               class="image"/>
-          <nuxt-img v-else :alt="article.title" src="brand/icon" loading="lazy" class="image"/>
+    <article v-for="article in articles" :key="article.id" class="article-container content"
+             @click="select(article.id)">
+      <!-- Image Section -->
+      <div
+          class="group image-container">
+        <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" loading="lazy"
+             class="image"/>
+        <nuxt-img v-else :alt="article.title" src="brand/geekiam-preview_bsgujb" loading="lazy" class="image"/>
+      </div>
+      <!-- Content Section -->
+      <div class="flex flex-col flex-grow lg:max-w-full">
+        <p class="text-lg font-bold text-orange-500" v-if="article.title">
+          {{ article.title }}
+        </p>
+        <div v-if="article.summary" class="break-all mt-2 lg:mt-4">
+          <div v-html="marked.parse(article.summary)"></div>
         </div>
-        <!-- Content Section -->
-        <div class="flex flex-col flex-grow lg:max-w-full">
-          <p class="text-lg font-bold text-orange-500" v-if="article.title">
-            {{ article.title }}
-          </p>
-          <div class="break-all mt-2 lg:mt-4">
-            <div v-html="marked.parse(article.summary)"></div>
-          </div>
-          <div>
-          </div>
-          <!-- Metadata -->
-          <div class="flex flex-col md:flex-row gap-2 mt-4">
-            <span class="text-sm text-gray-400">{{ article.published }}</span>
-          </div>
+        <div>
         </div>
-
-      </article>
-
+        <!-- Metadata -->
+        <div class="flex flex-col md:flex-row gap-2 mt-4">
+          <span class="text-sm text-gray-400">{{ article.published }}</span>
+        </div>
+      </div>
+    </article>
   </section>
 </template>
 

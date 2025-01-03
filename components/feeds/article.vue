@@ -18,14 +18,16 @@ const article = computed(() => articlesStore.selectedArticle);
   <section class="container mx-auto px-4 max-h-screen overflow-visible">
     <article v-if="article" class="article-container content">
       <!-- Content Section -->
-      <div class="flex flex-col flex-grow lg:max-w-full">
-        <h2 class="text-xl font-bold text-orange-500 lg:text-2xl">
+      <div class="flex flex-col flex-grow max-w-full">
+       <div class="text-center">
+        <h3 class="text-xl font-bold text-orange-500">
           {{ article.title }}
-        </h2>
-        <div class="break-all mt-2 lg:mt-4">
-          <div v-html="marked.parse(article.content)"></div>
-        </div>
+        </h3>
+      </div>
         <div>
+          <div class="break-all mt-2 lg:mt-4 p-5">
+            <div v-html="marked.parse(article.content)"></div>
+          </div>
         </div>
       </div>
 
@@ -52,6 +54,6 @@ const article = computed(() => articlesStore.selectedArticle);
   @apply prose prose-sm max-w-full dark:text-gray-200 text-gray-800 sm:px-1
   dark:prose-blockquote:text-orange-500 prose-blockquote:text-xl
   prose-headings:text-orange-500 prose-a:no-underline
-  prose-a:text-orange-500 dark:prose-a:text-orange-500 justify-evenly prose-strong:text-orange-500
+  prose-a:text-orange-500 dark:prose-a:text-orange-500 justify-evenly prose-strong:text-orange-500;
 }
 </style>
