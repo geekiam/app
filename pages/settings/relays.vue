@@ -1,7 +1,8 @@
 <script setup lang="ts">
 definePageMeta({
   layout: 'settings',
-  middleware: 'auth'
+  middleware: 'auth',
+  title: 'Relays'
 });
 </script>
 

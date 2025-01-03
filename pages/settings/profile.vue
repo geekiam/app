@@ -6,7 +6,8 @@ import type {Profile} from "~/types";
 
 definePageMeta({
   layout: 'settings',
-  middleware: 'auth'
+  middleware: 'auth',
+  title: 'Profile'
 });
 
 const PROFILE_UPDATED_SUCCESS_MESSAGE = 'Profile updated successfully';
