@@ -23,14 +23,15 @@ function select(id: string) {
         <!-- Image Section -->
         <div
             class="group image-container">
-          <img v-if="article.image" :src="article.image" :alt="article.title" loading="lazy"
+          <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" loading="lazy"
                class="image"/>
+          <nuxt-img v-else :alt="article.title" src="brand/icon" loading="lazy" class="image"/>
         </div>
         <!-- Content Section -->
         <div class="flex flex-col flex-grow lg:max-w-full">
-          <h2 class="text-xl font-bold text-orange-500 lg:text-2xl">
+          <p class="text-lg font-bold text-orange-500" v-if="article.title">
             {{ article.title }}
-          </h2>
+          </p>
           <div class="break-all mt-2 lg:mt-4">
             <div v-html="marked.parse(article.summary)"></div>
           </div>
@@ -54,11 +55,11 @@ function select(id: string) {
 }
 
 .image {
-  @apply absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110
+  @apply absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110;
 }
 
 .image-container {
-  @apply relative block h-56 w-full shrink-0 self-start overflow-hidden rounded-lg shadow-lg md:h-32 md:w-32 lg:h-48 lg:w-48;
+  @apply relative block h-64 w-full shrink-0 self-start overflow-hidden rounded-lg shadow-lg md:h-24 md:w-24 lg:h-32 lg:w-32;
 }
 
 .content {
