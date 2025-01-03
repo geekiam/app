@@ -25,18 +25,19 @@ function select(id: string) {
         <nuxt-img v-else :alt="article.title" src="brand/geekiam-preview_bsgujb" loading="lazy" class="image"/>
       </div>
       <!-- Content Section -->
+
       <div class="flex flex-col flex-grow lg:max-w-full">
+        <div class="flex items-center gap-x-2 text-xs">
+          <time class="text-sm text-gray-400">{{ article.published }}</time>
+        </div>
         <p class="text-lg font-bold text-orange-500" v-if="article.title">
           {{ article.title }}
         </p>
-        <div v-if="article.summary" class="break-all mt-2 lg:mt-4">
+
+        <div v-if="article.summary" class="break-all ">
           <div v-html="marked.parse(article.summary)"></div>
         </div>
         <div>
-        </div>
-        <!-- Metadata -->
-        <div class="flex flex-col md:flex-row gap-2 mt-4">
-          <span class="text-sm text-gray-400">{{ article.published }}</span>
         </div>
       </div>
     </article>

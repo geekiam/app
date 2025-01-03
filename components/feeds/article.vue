@@ -26,7 +26,7 @@ const article = computed(() => articlesStore.selectedArticle);
       </div>
         <div>
           <div class="break-all mt-2 lg:mt-4 p-5">
-            <div v-html="marked.parse(article.content)"></div>
+            <div v-html="marked.parse(article.content)" ></div>
           </div>
         </div>
       </div>
@@ -42,13 +42,6 @@ const article = computed(() => articlesStore.selectedArticle);
   @apply flex flex-col items-center gap-4 md:flex-row lg:gap-9 m-2 border-2 border-gray-700 rounded-lg lg:items-start lg:p-4 shadow-md;
 }
 
-.image {
-  @apply w-full h-auto object-cover object-center transition duration-200 group-hover:scale-110;
-}
-
-.image-container {
-  @apply relative block w-full self-start overflow-hidden rounded-lg shadow-lg;
-}
 
 .content {
   @apply prose prose-sm max-w-full dark:text-gray-200 text-gray-800 sm:px-1
