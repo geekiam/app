@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 
-import PreviewFeed from "~/components/feeds/preview.vue";
 definePageMeta({
   layout: 'default',
   middleware: 'auth',
@@ -13,7 +12,7 @@ definePageMeta({
 <template>
   <nuxt-layout>
     <template #list >
-      <preview-feed  />
+      <feeds-preview />
     </template>
 
   <template #content>

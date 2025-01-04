@@ -9,7 +9,7 @@
             <slot name="list"/>
           </div>
         </aside>
-        <section aria-labelledby="primary-heading" class="flex-1 h-full min-w-0 flex-col overflow-y-auto dark:bg-gray-800 bg-gray-100 dark:text-gray-100">
+        <section aria-labelledby="primary-heading" class="flex-1 border border-solid  border-gray-700 p-2 h-full min-w-0 flex-col overflow-y-auto dark:bg-gray-800 bg-gray-100 dark:text-gray-100">
           <slot name="content" />
         </section>
       </main>
