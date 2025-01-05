@@ -44,15 +44,15 @@ export const useProfileStore = defineStore('profileStore', {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
 
             let user: NDKUser = this.ndkStore.ndk.getUser({
-                pubkey: pubKey,
+               pubkey:  pubKey,
             })
-
             if (user !== undefined) {
                 if (user.profile === undefined) {
                     await user.fetchProfile()
                     return mapUserToProfile(user)
                 }
             }
+
 
             return null ;
         },

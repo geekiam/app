@@ -1,17 +1,12 @@
 import {defineStore} from "pinia";
-import {NDKEvent, NDKKind} from "@nostr-dev-kit/ndk";
+import {NDKArticle, NDKEvent, NDKKind, NDKUser} from "@nostr-dev-kit/ndk";
 import {format} from "date-fns";
 import {useNdkStore} from "~/stores/ndk";
 import type {Article} from "~/types";
+import {useProfileStore} from "~/stores/profile";
 
-interface NDKEventWithMetadata extends NDKEvent {
-    metadata?: {
-        title?: string;
-        image?: string;
-    };
-}
 
-function mapArticle(event: NDKEventWithMetadata): Article {
+function mapArticle(event: NDKArticle): Article {
     const tags = event.tags as [string, ...any[]][];
     const summary = getSummaryFromTags(tags);
 
@@ -62,6 +57,7 @@ function getSummaryFromTags(tags: [string, ...any[]][]): string {
 export const useArticlesStore = defineStore('articleStore', {
     state: () => ({
         ndkStore: useNdkStore(),
+        profileStore: useProfileStore(),
         articleSet: new Set<Article>,
         selectedArticle: null as Article | null,
     }),
@@ -74,7 +70,7 @@ export const useArticlesStore = defineStore('articleStore', {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
             const filter = {
                 kinds: kinds,
-                limit: 20,
+                limit: 5,
             };
             return await this.ndkStore.ndk.fetchEvents(filter);
         },
@@ -87,26 +83,26 @@ export const useArticlesStore = defineStore('articleStore', {
 
             const subscriptionConfig = {
                 kinds: [NDKKind.Article],
-                limit: 100,
+                limit: 50,
             };
 
             const subscriptionOptions = {
                 closeOnEose: true,
                 groupable: false,
+                includeSelf: true,
             };
 
-            const sub = this.ndkStore.ndk.subscribe(subscriptionConfig, subscriptionOptions)
+            const sub =  this.ndkStore.ndk.subscribe(subscriptionConfig, subscriptionOptions)
 
-            sub.on("event", (event: NDKEvent) => {
-                console.log("orginal event:", event)
+            sub.on("event", async (event: NDKEvent) => {
                 if (event && event.created_at && !Array.from(this.articleSet).some(e => e.id === event.id)) {
                     if (event.publishStatus === "success") {
-                        let article = mapArticle(event as NDKEventWithMetadata)
-                        console.log("transformed article: ", article)
+                        let article = mapArticle(NDKArticle.from(event))
                         this.articleSet.add(article)
                     }
                 }
             })
+
 
         }
     }

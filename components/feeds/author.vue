@@ -20,7 +20,7 @@ console.log("profile: ",profile)
 
 <template>
   <div>
-    <UAvatar :src="profile?.user.avatar" :alt="profile?.user.name" class="profile-image" /><span class="text-gray-100">{{ profile?.user.name }}</span>
+    <UAvatar :src="profile?.user.avatar" :alt="profile?.user.name" class="profile-image" /><span class="text-gray-100 ml-2">{{ profile?.user.name }}</span>
   </div>
 </template>
 

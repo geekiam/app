@@ -9,7 +9,6 @@ listen('selectedArticle', e => select(e))
 
 
 function select(id: string) {
- console.log("select: ",id)
   articlesStore.select(id);
 }
 

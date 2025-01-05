@@ -37,6 +37,7 @@ function select(id: string) {
         <div v-if="article.summary" class="break-all ">
           <div v-html="marked.parse(article.summary)"></div>
         </div>
+        <feeds-author :pubkey="article.pubkey" lazy="true" />
         <div>
         </div>
       </div>
