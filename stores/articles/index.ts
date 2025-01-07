@@ -78,7 +78,7 @@ export const useArticlesStore = defineStore('articleStore', {
 
             const subscriptionConfig = {
                 kinds: [NDKKind.Article],
-                limit: 50,
+                limit: 100,
             };
 
             const subscriptionOptions = {

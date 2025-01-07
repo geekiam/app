@@ -4,14 +4,15 @@ import {useArticlesStore} from '~/stores/articles';
 
 const {emit} = useMitter()
 const articlesStore = useArticlesStore();
-await articlesStore.getArticles();
-const articles = articlesStore.articles;
 
-
+onMounted(async () => {
+  await articlesStore.getArticles();
+})
 
 function select(id: string) {
   emit('selectedArticle', id);
 }
+const articles = articlesStore.articles;
 </script>
 
 <template>
