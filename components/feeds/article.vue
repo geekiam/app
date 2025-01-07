@@ -7,7 +7,9 @@ const {listen} = useMitter()
 
 listen('selectedArticle', e => select(e))
 
+onMounted(async () => {
 
+})
 function select(id: string) {
   articlesStore.select(id);
 }

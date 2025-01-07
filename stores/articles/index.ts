@@ -49,6 +49,7 @@ export const excludeTags = new Set([
     "gitlog", "nostrcooking", "travelblog", "airdrop", "test", "cryptoairdrops", "CryptoAirdrop", "earnfreecrypto"
 ])
 
+
 export const useArticlesStore = defineStore('articleStore', {
     state: () => ({
         ndkStore: useNdkStore(),
@@ -58,7 +59,7 @@ export const useArticlesStore = defineStore('articleStore', {
     }),
     getters: {
         articles: state => state.articleSet,
-        article: state => state.selectedArticle
+        article: state => state.selectedArticle,
     },
     actions: {
         fetchFeed: async function fetchUserFeed(kinds: NDKKind[]): Promise<Set<NDKEvent>> {
@@ -78,7 +79,7 @@ export const useArticlesStore = defineStore('articleStore', {
 
             const subscriptionConfig = {
                 kinds: [NDKKind.Article],
-                limit: 100,
+                limit: 400,
             };
 
             const subscriptionOptions = {

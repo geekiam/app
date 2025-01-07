@@ -7,6 +7,7 @@ const articlesStore = useArticlesStore();
 
 onMounted(async () => {
   await articlesStore.getArticles();
+
 })
 
 function select(id: string) {
