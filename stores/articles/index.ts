@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {NDKArticle, NDKEvent, NDKKind, NDKUser} from "@nostr-dev-kit/ndk";
+import {NDKArticle, NDKEvent, NDKKind} from "@nostr-dev-kit/ndk";
 import {format} from "date-fns";
 import {useNdkStore} from "~/stores/ndk";
 import type {Article} from "~/types";
@@ -8,16 +8,6 @@ import {useProfileStore} from "~/stores/profile";
 
 function mapArticle(event: NDKArticle): Article {
     const tags = event.tags as [string, ...any[]][];
-    const summary = getSummaryFromTags(tags);
-
-    /* if(summary) {
-         const wordCount = summary.split(/\s+/).filter(word => word).length;
-         if(wordCount > 50) {
-             tags.push(["summary", summary.substring(0, 100) + "..."])
-         }
-
-     }*/
-
 
     return <Article>{
         id: event.id,
@@ -62,7 +52,7 @@ function shouldExcludeArticle(tags: string[][]): boolean {
 }
 
 export const excludeTags = new Set([
-    "gitlog", "nostrcooking", "travelblog", "airdrop"
+    "gitlog", "nostrcooking", "travelblog", "airdrop", "test"
 ])
 
 export const useArticlesStore = defineStore('articleStore', {
