@@ -4,8 +4,9 @@ import {useArticlesStore} from '~/stores/articles';
 
 const {emit} = useMitter()
 const articlesStore = useArticlesStore();
-const articles = articlesStore.articles;
 await articlesStore.getArticles();
+const articles = articlesStore.articles;
+
 
 
 function select(id: string) {
@@ -39,6 +40,7 @@ function select(id: string) {
         </div>
         <feeds-author :pubkey="article.pubkey" lazy="true" />
         <div>
+          <span class="text-md text-orange-300 ml-1" v-for="tag in article.tags" :key="tag">#{{tag}}</span>
         </div>
       </div>
     </article>

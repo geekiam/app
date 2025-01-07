@@ -35,9 +35,6 @@ export interface Article {
     content: string;
     date: string;
     image: string;
-    tags: {
-        name: string;
-        value: string;
-    }[];
+    tags: [];
     published: Date;
 }

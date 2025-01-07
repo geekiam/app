@@ -27,7 +27,7 @@ function mapArticle(event: NDKArticle): Article {
         content: event.content || "",
         date: event.created_at ? new Date(event.created_at * 1000).toISOString() : "",
         image: getImageFromTags(tags) || "",
-        tags: extractTags(event.tags),
+        tags: getTopicTagsFromTags(event) || [],
         published: event.created_at ? format(new Date(event.created_at * 1000), 'dd MMM yyyy') : new Date(),
     }
 }
@@ -53,6 +53,17 @@ function getSummaryFromTags(tags: [string, ...any[]][]): string {
     const titleTag = tags.find(tag => tag[0] === "summary");
     return titleTag ? titleTag[1] : "";
 }
+function getTopicTagsFromTags(article: NDKArticle): string[] {
+    const articleTags = article.getMatchingTags("t");
+    return articleTags.map(tag => tag[1] as string).filter(Boolean);
+}
+function shouldExcludeArticle(tags: string[][]): boolean {
+    return tags.some(tag => excludeTags.has(tag[1]));
+}
+
+export const excludeTags = new Set([
+    "gitlog", "nostrcooking"
+])
 
 export const useArticlesStore = defineStore('articleStore', {
     state: () => ({
@@ -87,21 +98,25 @@ export const useArticlesStore = defineStore('articleStore', {
             };
 
             const subscriptionOptions = {
-                closeOnEose: true,
+                closeOnEose: false,
                 groupable: false,
                 includeSelf: true,
             };
 
-            const sub =  this.ndkStore.ndk.subscribe(subscriptionConfig, subscriptionOptions)
+            const subscription = this.ndkStore.ndk.subscribe(subscriptionConfig, subscriptionOptions);
+            const articles: NDKArticle[] = [];
 
-            sub.on("event", async (event: NDKEvent) => {
-                if (event && event.created_at && !Array.from(this.articleSet).some(e => e.id === event.id)) {
-                    if (event.publishStatus === "success") {
-                        let article = mapArticle(NDKArticle.from(event))
-                        this.articleSet.add(article)
-                    }
-                }
-            })
+            subscription.on("event", event => {
+                if (!event || !event.created_at) return;
+
+                const isDuplicate = Array.from(this.articleSet).some(existingArticle => existingArticle.id === event.id);
+                if (isDuplicate || event.publishStatus !== "success") return;
+
+                const articleTags = event.getMatchingTags("t");
+                if (shouldExcludeArticle(articleTags)) return;
+
+                this.articleSet.add(mapArticle(NDKArticle.from(event)));
+            });
 
 
         }
