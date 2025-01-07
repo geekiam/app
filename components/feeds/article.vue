@@ -28,7 +28,7 @@ const article = computed(() => articlesStore.selectedArticle);
         </h3>
       </div>
         <div>
-          <div class="break-all mt-2 lg:mt-4 p-5">
+          <div class="break-all mt-2 lg:mt-4 p-5 content">
             <div v-html="marked.parse(article.content)" ></div>
           </div>
         </div>
@@ -46,9 +46,9 @@ const article = computed(() => articlesStore.selectedArticle);
 }
 
 .content {
-  @apply prose prose-sm max-w-full dark:text-gray-200 text-gray-800 sm:px-1
+  @apply prose prose-base max-w-full dark:text-gray-200 text-gray-800 sm:px-1
   dark:prose-blockquote:text-orange-500 prose-blockquote:text-xl
-  prose-headings:text-orange-500 prose-a:no-underline
-  prose-a:text-orange-500 dark:prose-a:text-orange-500 justify-evenly prose-strong:text-orange-500;
+  prose-headings:text-orange-500 prose-a:no-underline justify-stretch
+  prose-a:text-orange-500 dark:prose-a:text-orange-500  prose-strong:text-orange-500;
 }
 </style>
