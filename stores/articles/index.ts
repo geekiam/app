@@ -46,7 +46,7 @@ function shouldExcludeArticle(tags: string[][]): boolean {
 }
 
 export const excludeTags = new Set([
-    "gitlog", "nostrcooking", "travelblog", "airdrop", "test"
+    "gitlog", "nostrcooking", "travelblog", "airdrop", "test", "cryptoairdrops", "CryptoAirdrop", "earnfreecrypto"
 ])
 
 export const useArticlesStore = defineStore('articleStore', {
