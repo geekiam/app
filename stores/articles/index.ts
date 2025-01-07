@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
 import {NDKArticle, NDKEvent, NDKKind} from "@nostr-dev-kit/ndk";
+import type { NDKFilter } from "@nostr-dev-kit/ndk";
 import {format} from "date-fns";
 import {useNdkStore} from "~/stores/ndk";
 import type {Article} from "~/types";
@@ -20,13 +21,6 @@ function mapArticle(event: NDKArticle): Article {
         tags: getTopicTagsFromTags(event) || [],
         published: event.created_at ? format(new Date(event.created_at * 1000), 'dd MMM yyyy') : new Date(),
     }
-}
-
-function extractTags(tags: string[][]): { name: string; value: string }[] {
-    if (!Array.isArray(tags)) return [];
-    return tags
-        .filter((tag) => Array.isArray(tag) && tag.length >= 2)
-        .map((tag) => ({name: tag[0] as string, value: tag[1] as string}));
 }
 
 function getTitleFromTags(tags: [string, ...string[]][]): string {
@@ -69,9 +63,9 @@ export const useArticlesStore = defineStore('articleStore', {
     actions: {
         fetchFeed: async function fetchUserFeed(kinds: NDKKind[]): Promise<Set<NDKEvent>> {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
-            const filter = {
+            const filter: NDKFilter = {
                 kinds: kinds,
-                limit: 5,
+                limit: 50,
             };
             return await this.ndkStore.ndk.fetchEvents(filter);
         },
@@ -94,7 +88,6 @@ export const useArticlesStore = defineStore('articleStore', {
             };
 
             const subscription = this.ndkStore.ndk.subscribe(subscriptionConfig, subscriptionOptions);
-            const articles: NDKArticle[] = [];
 
             subscription.on("event", event => {
                 if (!event || !event.created_at) return;

@@ -16,32 +16,34 @@ function select(id: string) {
 
 <template>
   <section class="container mx-auto px-4 max-h-screen overflow-visible">
-    <article v-for="article in articles" :key="article.id" class="article-container content"
-             @click="select(article.id)">
-      <!-- Image Section -->
-      <div
-          class="group image-container">
-        <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" loading="lazy"
-             class="image"/>
-        <nuxt-img v-else :alt="article.title" src="brand/geekiam-preview_bsgujb" loading="lazy" class="image"/>
+    <article v-for="article in articles" :key="article.id" class="border-2 border-gray-700 rounded-lg m-2 shadow-md">
+      <div class=" article-container content"   @click="select(article.id)">
+        <div
+            class="group image-container">
+          <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" loading="lazy"
+               class="image"/>
+          <nuxt-img v-else :alt="article.title" src="brand/question-mark" loading="lazy" class="image"/>
+        </div>
+        <!-- Content Section -->
+
+        <div class="flex flex-col flex-grow lg:max-w-full">
+          <div class="flex items-center gap-x-2 text-xs">
+            <feeds-author :pubkey="article.pubkey" :published="article.published" lazy="true" />
+          </div>
+          <p class="text-lg font-bold text-orange-500" v-if="article.title">
+            {{ article.title }}
+          </p>
+
+          <div v-if="article.summary" class="break-all ">
+            <div v-html="marked.parse(article.summary)"></div>
+          </div>
       </div>
-      <!-- Content Section -->
 
-      <div class="flex flex-col flex-grow lg:max-w-full">
-        <div class="flex items-center gap-x-2 text-xs">
-          <time class="text-sm text-gray-400">{{ article.published }}</time>
-        </div>
-        <p class="text-lg font-bold text-orange-500" v-if="article.title">
-          {{ article.title }}
-        </p>
 
-        <div v-if="article.summary" class="break-all ">
-          <div v-html="marked.parse(article.summary)"></div>
-        </div>
-        <feeds-author :pubkey="article.pubkey" lazy="true" />
-        <div>
-          <span class="text-md text-orange-300 ml-1" v-for="tag in article.tags" :key="tag">#{{tag}}</span>
-        </div>
+
+      </div>
+      <div class="flex justify-center gap-2 flex-wrap p-4">
+        <span class="text-md text-orange-300 ml-1" v-for="tag in article.tags" :key="tag">#{{tag}}</span>
       </div>
     </article>
   </section>
@@ -50,7 +52,7 @@ function select(id: string) {
 <style scoped>
 .article-container {
   @apply grid gap-8 sm:grid-cols-2 sm:gap-12 lg:grid-cols-4 xl:grid-cols-2 xl:gap-16 cursor-pointer ;
-  @apply flex flex-col items-center gap-4 md:flex-row lg:gap-9 m-2 border-2 border-gray-700 rounded-lg lg:items-start lg:p-4 shadow-md;
+  @apply flex flex-col items-center gap-4 md:flex-row lg:gap-9   lg:items-start lg:p-4 ;
 }
 
 .image {
