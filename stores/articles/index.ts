@@ -5,6 +5,7 @@ import {format} from "date-fns";
 import {useNdkStore} from "~/stores/ndk";
 import type {Article} from "~/types";
 import {useProfileStore} from "~/stores/profile";
+import {useAuthStore} from "~/stores/auth";
 
 
 function mapArticle(event: NDKArticle): Article {
@@ -54,6 +55,7 @@ export const useArticlesStore = defineStore('articleStore', {
     state: () => ({
         ndkStore: useNdkStore(),
         profileStore: useProfileStore(),
+        authStore: useAuthStore(),
         articleSet: new Set<Article>,
         selectedArticle: null as Article | null,
     }),
@@ -67,6 +69,7 @@ export const useArticlesStore = defineStore('articleStore', {
             const filter: NDKFilter = {
                 kinds: kinds,
                 limit: 50,
+
             };
             return await this.ndkStore.ndk.fetchEvents(filter);
         },
@@ -76,10 +79,10 @@ export const useArticlesStore = defineStore('articleStore', {
         },
         getArticles: async function getArticles(): Promise<void> {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
-
-            const subscriptionConfig = {
+            const subscriptionConfig: NDKFilter<NDKKind> = {
                 kinds: [NDKKind.Article],
-                limit: 400,
+                limit: 10,
+                authors: this.authStore.npub ? [this.authStore.npub] : []
             };
 
             const subscriptionOptions = {
@@ -98,7 +101,6 @@ export const useArticlesStore = defineStore('articleStore', {
 
                 const articleTags = event.getMatchingTags("t");
                 if (shouldExcludeArticle(articleTags)) return;
-
                 this.articleSet.add(mapArticle(NDKArticle.from(event)));
             });
 

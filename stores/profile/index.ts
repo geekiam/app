@@ -4,9 +4,10 @@ import {useNdkStore} from "~/stores/ndk";
 
 import {USER_STORAGE_KEY} from "~/types/Globals";
 import {useAuthStore} from "~/stores/auth"
-import type {Profile, User} from "~/types";
+import type {Profile} from "~/types";
+
 function mapUserToProfile(user: NDKUser): Profile {
-     return <Profile>{
+    return <Profile>{
         user: {
             name: user.profile?.name || '',
             avatar: user.profile?.image || '',
@@ -18,33 +19,39 @@ function mapUserToProfile(user: NDKUser): Profile {
         nip05: user.profile?.nip05 || ''
     };
 }
+
 export const useProfileStore = defineStore('profileStore', {
 
     state: () => ({
         ndkStore: useNdkStore(),
-        authStore: useAuthStore()
+        authStore: useAuthStore(),
+        id : '',
     }),
-
+    getters: {
+        npub: state => state.id,
+    },
     actions: {
-       getProfile: async function(npub: string): Promise<Profile | null> {
+        getProfile: async function (npub: string): Promise<Profile | null> {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
 
             let user: NDKUser = this.ndkStore.ndk.getUser({
                 npub: npub,
             })
+            this.id = npub;
             if (user !== undefined) {
                 if (user.profile === undefined) {
                     await user.fetchProfile()
-                  return mapUserToProfile(user)
+                    return mapUserToProfile(user)
                 }
+
             }
-           return null;
+            return null;
         },
         getAuthor: async function getAuthor(pubKey: string): Promise<Profile | null> {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
 
             let user: NDKUser = this.ndkStore.ndk.getUser({
-               pubkey:  pubKey,
+                pubkey: pubKey,
             })
             if (user !== undefined) {
                 if (user.profile === undefined) {
@@ -54,28 +61,27 @@ export const useProfileStore = defineStore('profileStore', {
             }
 
 
-            return null ;
+            return null;
         },
 
         updateProfile: async function (profile: Profile | null): Promise<void> {
-          if(profile === null) return;
-           let updateUser: NDKUser = await this.authStore.getUser()
-                await updateUser.fetchProfile()
-                const updateProfile: NDKUserProfile = updateUser.profile as NDKUserProfile;
-                if (updateProfile !== undefined) {
-                    updateProfile.about = profile.about
-                    updateProfile.nip05 = profile.nip05
-                    updateProfile.name = profile.user.name
-                    updateProfile.displayName = profile.displayName
-                    updateProfile.website = profile.website
-                    await updateUser.publish()
+            if (profile === null) return;
+            let updateUser: NDKUser = await this.authStore.getUser()
+            await updateUser.fetchProfile()
+            const updateProfile: NDKUserProfile = updateUser.profile as NDKUserProfile;
+            if (updateProfile !== undefined) {
+                updateProfile.about = profile.about
+                updateProfile.nip05 = profile.nip05
+                updateProfile.name = profile.user.name
+                updateProfile.displayName = profile.displayName
+                updateProfile.website = profile.website
+                await updateUser.publish()
 
-                }
+            }
 
 
         },
         setUser(user: NDKUser) {
-
             localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
         },
     }

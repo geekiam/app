@@ -24,4 +24,6 @@ export default defineNuxtConfig({
           siteUrl: 'https://geekiam.app',
       },
   },
+
+  compatibilityDate: '2025-01-08',
 })
