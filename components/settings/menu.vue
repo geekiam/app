@@ -6,18 +6,16 @@ const SETTINGS_MENU_ITEMS = [
 ]
 </script>
 <template>
-  <div class="min-h-full max-w-xs">
-  <aside class="w-64 bg-gray-800 text-white">
-    <nav class="mt-4">
-      <ul>
+
+    <nav class="flex flex-1 flex-col">
+      <ul role="list" class="flex flex-1 flex-col gap-y-7">
         <li v-for="item in SETTINGS_MENU_ITEMS" :key="name">
           <a :href="item.href" class="flex items-center px-6 py-3 hover:bg-gray-700 transition-colors" >
             <Icon class="mr-4" :name="item.icon" />{{ item.name }}</a>
         </li>
       </ul>
     </nav>
-  </aside>
-  </div>
+
 </template>
 
 
