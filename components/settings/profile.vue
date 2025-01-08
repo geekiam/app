@@ -10,6 +10,12 @@ const authStore = useAuthStore();
 const toastService = useToast();
 let key: string| undefined = authStore.npub
 
+const state = reactive({
+  profile: <Profile>{}
+})
+
+
+
 const profile = await loadUserProfile(<string>key);
 
 async function loadUserProfile(npub: string): Promise<Profile | null> {
@@ -30,7 +36,7 @@ async function saveProfile() : Promise<void> {
 </script>
 
 <template>
-  <UForm  @submit.prevent="saveProfile" >
+  <UForm :state="state"  @submit.prevent="saveProfile" >
     <div class="group-container">
       <label class="label-style" for="username">npub</label>
       <div class="relative">
@@ -102,12 +108,12 @@ async function saveProfile() : Promise<void> {
   @apply block mb-2 text-lg font-medium text-gray-900 dark:text-white;
 }
 .key-input {
-  @apply ml-1.5 bg-gray-50 border border-orange-500 text-gray-900 text-xs rounded-full focus:ring-green-500 focus:border-green-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-orange-600 dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-green-500 dark:focus:border-green-500;
+  @apply ml-1.5 bg-gray-50 border border-orange-500 text-gray-900 text-xs rounded-full focus:ring-orange-500 focus:border-orange-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-orange-600 dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-orange-500 dark:focus:border-orange-500;
 }
 .text-input {
-  @apply ml-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-full focus:ring-green-500 focus:border-green-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-green-500 dark:focus:border-green-500;
+  @apply ml-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-full focus:ring-orange-500 focus:border-orange-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-orange-500 dark:focus:border-orange-500;
 }
 .text-area {
-  @apply block p-2.5 w-full text-xl text-gray-800 bg-gray-50 rounded-xl border border-gray-300 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500;
+  @apply block p-2.5 w-full text-xl text-gray-800 bg-gray-50 rounded-xl border border-gray-300 focus:ring-orange-500 focus:border-orange-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500;
 }
 </style>

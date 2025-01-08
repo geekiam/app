@@ -6,17 +6,12 @@ definePageMeta({
   title: 'Profile'
 });
 
-
-
-
 </script>
 
 <template>
   <nuxt-layout>
     <template #menu>
-
         <settings-menu />
-
     </template>
 
     <template #content>
