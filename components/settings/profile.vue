@@ -16,6 +16,7 @@ const state = reactive({
 
 
 
+
 const profile = await loadUserProfile(<string>key);
 
 async function loadUserProfile(npub: string): Promise<Profile | null> {
