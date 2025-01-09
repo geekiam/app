@@ -79,7 +79,7 @@ function copyToClipboard(text: string) {
       </div>
     </div>
     <div class="group-container">
-      <label class="label-style" for="about">About me</label>
+      <label class="label-style" for="about">About</label>
       <textarea id="message" v-model="profile.about" name="about" class="text-area" rows="4"></textarea>
     </div>
     <div class="group-container">
