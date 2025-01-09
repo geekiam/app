@@ -93,7 +93,7 @@ export const useArticlesStore = defineStore('articleStore', {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
             const subscriptionConfig: NDKFilter<NDKKind> = {
                 kinds: [NDKKind.Article],
-                limit: 10
+                limit: 60
             };
 
             const subscriptionOptions = {
@@ -109,16 +109,10 @@ export const useArticlesStore = defineStore('articleStore', {
 
                 const isDuplicate = Array.from(this.articleSet).some(existingArticle => existingArticle.id === event.id);
                 if (isDuplicate || event.publishStatus !== "success") return;
-
                 const author = event.author;
                 const profile = await author.fetchProfile();
-
-                const articleTags = event.getMatchingTags("t");
-                if (shouldExcludeArticle(articleTags)) return;
                 let article = mapArticle(NDKArticle.from(event));
-
                 article.author = mapAuthor(profile as NDKUserProfile);
-
                 this.articleSet.add(article);
             });
 
