@@ -16,7 +16,8 @@ function mapUserToProfile(user: NDKUser): Profile {
         about: user.profile?.about || '',
         website: user.profile?.website || '',
         displayName: user.profile?.displayName || '',
-        nip05: user.profile?.nip05 || ''
+        nip05: user.profile?.nip05 || '',
+        lightning: user.profile?.lud16 || ''
     };
 }
 

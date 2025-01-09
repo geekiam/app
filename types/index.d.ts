@@ -12,6 +12,7 @@ export interface Profile {
     website: string | "";
     displayName: string | "";
     nip05: string | "";
+    lightning: string | "";
 }
 
 export interface Author  {

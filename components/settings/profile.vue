@@ -14,9 +14,6 @@ const state = reactive({
   profile: <Profile>{}
 })
 
-
-
-
 const profile = await loadUserProfile(<string>key);
 
 async function loadUserProfile(npub: string): Promise<Profile | null> {
@@ -40,7 +37,8 @@ function copyToClipboard(text: string) {
 </script>
 
 <template>
-  <UForm :state="state"  @submit.prevent="saveProfile" >
+
+  <UForm :state="state"  @submit.prevent="saveProfile" class="mb-16 mt-5" >
     <div class="group-container">
       <label class="label-style" for="username">Your Public Key</label>
       <div class="relative">
@@ -48,6 +46,10 @@ function copyToClipboard(text: string) {
           <Icon aria-hidden="true" class="icon-style" name="material-symbols:key-vertical-outline-rounded"/>
         </div>
         <input v-model="profile.user.npub" class="key-input cursor-copy" name="npub" type="text" readonly @click="copyToClipboard(profile.user.npub)">
+        <div class="icon-inset-end">
+          <Icon aria-hidden="true" class="icon-style-end items-end" name="material-symbols-light:content-copy-outline-rounded"  />
+        </div>
+
       </div>
     </div>
     <div class="group-container">
@@ -90,9 +92,19 @@ function copyToClipboard(text: string) {
       </div>
     </div>
     <div class="group-container">
+      <label class="label-style" for="email-address-icon">Lightning Address</label>
+      <div class="relative">
+        <div class="icon-inset">
+          <Icon aria-hidden="true" class="icon-style" name="material-symbols:person-3-outline"/>
+        </div>
+        <input v-model="profile.lightning" class="text-input" placeholder="name" type="text">
+      </div>
+    </div>
+    <div class="group-container">
       <button type="submit" class="btn">Save</button>
     </div>
   </UForm>
+
 </template>
 
 <style scoped>
@@ -105,8 +117,14 @@ function copyToClipboard(text: string) {
 .icon-inset {
   @apply absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none;
 }
+.icon-inset-end {
+  @apply absolute inset-y-0 flex right-0 items-center pr-1 pointer-events-none;
+}
 .icon-style {
   @apply w-7 h-7 text-orange-400;
+}
+.icon-style-end {
+  @apply w-4 h-4 text-orange-400;
 }
 .label-style {
   @apply block mb-2 text-lg font-medium text-gray-900 dark:text-white;
