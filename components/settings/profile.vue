@@ -21,7 +21,6 @@ async function loadUserProfile(npub: string): Promise<Profile | null> {
 
 }
 
-
 function notifyProfileUpdated()  {
   toastService.add({ title: PROFILE_UPDATED_SUCCESS_MESSAGE });
 }
