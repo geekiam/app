@@ -30,7 +30,7 @@ const articles = articlesStore.articles;
 
         <div class="flex flex-col flex-grow lg:max-w-full">
           <div class="flex items-center gap-x-2 text-xs">
-            <feeds-author :pubkey="article.pubkey" :published="article.published" lazy="true" />
+            <feeds-author :author="article.author" :published="article.published" lazy="true" />
           </div>
           <p class="text-lg font-bold text-orange-500" v-if="article.title">
             {{ article.title }}

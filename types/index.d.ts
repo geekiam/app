@@ -20,6 +20,10 @@ export interface Author  {
     avatar: string;
     npub: string;
     displayName: string;
+    lightning: string;
+    lnUrl: string;
+    website: string;
+    about: string;
 }
 
 export interface Note {
@@ -38,4 +42,5 @@ export interface Article {
     image: string;
     tags: [];
     published: Date;
+    author: Author;
 }

@@ -1,9 +1,9 @@
 import {defineStore} from "pinia";
 import {NDKArticle, NDKEvent, NDKKind} from "@nostr-dev-kit/ndk";
-import type { NDKFilter } from "@nostr-dev-kit/ndk";
+import type { NDKFilter, NDKUserProfile } from "@nostr-dev-kit/ndk";
 import {format} from "date-fns";
 import {useNdkStore} from "~/stores/ndk";
-import type {Article} from "~/types";
+import type {Article, Author} from "~/types";
 import {useProfileStore} from "~/stores/profile";
 import {useAuthStore} from "~/stores/auth";
 
@@ -45,7 +45,19 @@ function getTopicTagsFromTags(article: NDKArticle): string[] {
 function shouldExcludeArticle(tags: string[][]): boolean {
     return tags.some(tag => excludeTags.has(tag[1]));
 }
+function mapAuthor(profile: NDKUserProfile) : Author {
+    return <Author>{
+        name: profile.name,
+        avatar: profile.image,
+        npub: profile.npub,
+        displayName: profile.displayName,
+        lightning: profile.lud16,
+        lnUrl: profile.lnurl,
+        website: profile.website,
+        about: profile.about,
+    }
 
+}
 export const excludeTags = new Set([
     "gitlog", "nostrcooking", "travelblog", "airdrop", "test", "cryptoairdrops", "CryptoAirdrop", "earnfreecrypto"
 ])
@@ -92,15 +104,22 @@ export const useArticlesStore = defineStore('articleStore', {
 
             const subscription = this.ndkStore.ndk.subscribe(subscriptionConfig, subscriptionOptions);
 
-            subscription.on("event", event => {
+            subscription.on("event", async event => {
                 if (!event || !event.created_at) return;
 
                 const isDuplicate = Array.from(this.articleSet).some(existingArticle => existingArticle.id === event.id);
                 if (isDuplicate || event.publishStatus !== "success") return;
 
+                const author = event.author;
+                const profile = await author.fetchProfile();
+
                 const articleTags = event.getMatchingTags("t");
                 if (shouldExcludeArticle(articleTags)) return;
-                this.articleSet.add(mapArticle(NDKArticle.from(event)));
+                let article = mapArticle(NDKArticle.from(event));
+
+                article.author = mapAuthor(profile as NDKUserProfile);
+
+                this.articleSet.add(article);
             });
 
 
