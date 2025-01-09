@@ -8,7 +8,7 @@ import {useProfileStore} from "~/stores/profile";
 import {useAuthStore} from "~/stores/auth";
 
 
-function mapArticle(event: NDKArticle): Article {
+function mapArticle(event: NDKArticle , profile : NDKUserProfile): Article {
     const tags = event.tags as [string, ...any[]][];
 
     return <Article>{
@@ -21,6 +21,7 @@ function mapArticle(event: NDKArticle): Article {
         image: getImageFromTags(tags) || "",
         tags: getTopicTagsFromTags(event) || [],
         published: event.created_at ? format(new Date(event.created_at * 1000), 'dd MMM yyyy') : new Date(),
+        author: mapAuthor(profile),
     }
 }
 
@@ -93,7 +94,7 @@ export const useArticlesStore = defineStore('articleStore', {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
             const subscriptionConfig: NDKFilter<NDKKind> = {
                 kinds: [NDKKind.Article],
-                limit: 60
+                limit: 200
             };
 
             const subscriptionOptions = {
@@ -109,10 +110,8 @@ export const useArticlesStore = defineStore('articleStore', {
 
                 const isDuplicate = Array.from(this.articleSet).some(existingArticle => existingArticle.id === event.id);
                 if (isDuplicate || event.publishStatus !== "success") return;
-                const author = event.author;
-                const profile = await author.fetchProfile();
-                let article = mapArticle(NDKArticle.from(event));
-                article.author = mapAuthor(profile as NDKUserProfile);
+                const profile = await event.author.fetchProfile();
+                let article = mapArticle(NDKArticle.from(event), profile as NDKUserProfile);
                 this.articleSet.add(article);
             });
 
