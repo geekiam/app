@@ -32,19 +32,22 @@ function notifyProfileUpdated()  {
 async function saveProfile() : Promise<void> {
   await profileStore.updateProfile(profile);
   notifyProfileUpdated();
-
+}
+function copyToClipboard(text: string) {
+  navigator.clipboard.writeText(text);
+  toastService.add({ title: "Copied to clipboard" });
 }
 </script>
 
 <template>
   <UForm :state="state"  @submit.prevent="saveProfile" >
     <div class="group-container">
-      <label class="label-style" for="username">npub</label>
+      <label class="label-style" for="username">Your Public Key</label>
       <div class="relative">
         <div class="icon-inset">
           <Icon aria-hidden="true" class="icon-style" name="material-symbols:key-vertical-outline-rounded"/>
         </div>
-        <input v-model="profile.user.npub" class="key-input" name="npub" type="text" readonly>
+        <input v-model="profile.user.npub" class="key-input cursor-copy" name="npub" type="text" readonly @click="copyToClipboard(profile.user.npub)">
       </div>
     </div>
     <div class="group-container">
