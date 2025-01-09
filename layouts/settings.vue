@@ -13,7 +13,7 @@ const secondaryNavigation = [
 <template>
   <html class="h-full bg-gray-200 dark:bg-gray-800">
   <body class="h-full">
-  <div>
+  <div class="flex h-full">
     <TransitionRoot as="template" :show="sidebarOpen">
       <Dialog class="relative z-50 xl:hidden" @close="sidebarOpen = false">
         <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0"
@@ -99,6 +99,7 @@ const secondaryNavigation = [
 
     </main>
   </div>
+  <geekiam-footer />
   </body>
   </html>
 </template>

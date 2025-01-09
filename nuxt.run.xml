@@ -10,7 +10,7 @@
     </configuration>
 
     <configuration default="false" name="fullstack: nuxt" type="CompoundRunConfigurationType">
-        <toRun name="client: chrome" type="JavascriptDebugType"/>
+        <toRun name="client: brave" type="JavascriptDebugType"/>
         <toRun name="server: nuxt" type="NodeJSConfigurationType"/>
         <method v="2"/>
     </configuration>

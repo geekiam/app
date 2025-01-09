@@ -8,8 +8,10 @@
 <h3 align="center">geekiam</h3>
 
   <p align="center">
-    Featuring easy onboarding, fast & snappy UI, ability to explore Nostr, and create & manage custom feeds
-    <br />
+  A decentralized long-form content media platform, with the aims to provide users with an intuitive and seamless 
+experience with full Nostr integration.
+
+<br />
     <a href="https://github.com/geekiam/app/wiki"><strong>Explore the docs »</strong></a>
     <br />
     <br />
