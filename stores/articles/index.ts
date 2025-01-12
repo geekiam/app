@@ -94,7 +94,7 @@ export const useArticlesStore = defineStore('articleStore', {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
             const subscriptionConfig: NDKFilter<NDKKind> = {
                 kinds: [NDKKind.Article],
-                limit: 200
+                limit: 10
             };
 
             const subscriptionOptions = {

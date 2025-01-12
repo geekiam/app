@@ -1,11 +1,18 @@
+import {type Hexpubkey} from "@nostr-dev-kit/ndk";
 
 export interface User  {
     name: string;
     avatar: string;
     npub: string ;
     pubKey: string;
+    following: Set<string>;
+
 }
 
+export interface Settings {
+    following: string[];
+    relays: string[];
+}
 export interface Profile {
     user: User;
     about: string | "";
@@ -14,6 +21,8 @@ export interface Profile {
     nip05: string | "";
     lightning: string | "";
 }
+
+
 
 export interface Author  {
     name: string;

@@ -1,59 +1,49 @@
 import {defineStore} from "pinia";
 import {NDKNip07Signer} from "@nostr-dev-kit/ndk";
-import type { NDKUser, NDKUserProfile} from "@nostr-dev-kit/ndk";
+import type { NDKUser} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/ndk";
-import {USER_STORAGE_KEY} from "~/types/Globals";
-import type {User} from "~/types";
+import {USER_PUB_KEY} from "~/types/Globals";
+import {setUserSettings} from "~/stores/extensions";
 
-
-function getUserAccount(): User | null {
-    const userJson: string | null = localStorage.getItem(USER_STORAGE_KEY);
-    return JSON.parse(<string>userJson) as User;
-}
-function createUserFromProfile(user: NDKUser): User {
-    return <User>{
-        name: user?.profile?.name || "",
-        npub: user?.npub || "",
-        avatar: user?.profile?.image || "",
-        pubKey: user?.pubkey || ""
-    }
-}
 export const useAuthStore = defineStore('useAuthStore', {
     state: () => ({
-        user: getUserAccount(),
+        authenticated: false,
         ndkStore: useNdkStore()
     }),
     getters: {
-        isAuthenticated: state => state.user !== null,
-        npub: state => state.user?.npub,
+        isAuthenticated: state => state.authenticated,
     },
     actions: {
-        signIn: async function (): Promise<boolean> {
-            let user = await this.getUser()
-            if (user !== undefined) {
-                if (user.profile === undefined) {
-                    await user.fetchProfile()
-                    if(user.profile !== undefined) this.setUser(
-                        createUserFromProfile(user)
-                    )
-                    return true
-                }
-            }
-            return false
-        },
-        getUser: async function (): Promise<NDKUser> {
+        signInWithSigner: async function(): Promise<boolean> {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
             const nip07Signer: NDKNip07Signer = new NDKNip07Signer()
             this.ndkStore.ndk.signer = nip07Signer
             let user: NDKUser = await nip07Signer.user()
 
-           return this.ndkStore.ndk.getUser({
-                npub: user.npub,
-            });
+            if(user !== undefined){
+                this.setPubkey(user.pubkey)
+                await this.setSettings(user.pubkey)
+                this.ndkStore.close()
+                this.authenticated = true
+                return true
+            }
+
+            return false
         },
-        setUser(user: User): void {
-            this.user = user;
-            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+
+
+        setSettings: async function (pubkey : string): Promise<void> {
+            if(!this.ndkStore.initialized) await this.ndkStore.initialize()
+            let user: NDKUser = this.ndkStore.ndk.getUser({
+                pubkey: pubkey,
+            })
+            if (user !== undefined) {
+                setUserSettings( this.ndkStore.defaultExplicitRelayUrls, await user.followSet())
+            }
         },
+
+        setPubkey(pubkey: string): void {
+            localStorage.setItem(USER_PUB_KEY, pubkey);
+        }
     }
 })

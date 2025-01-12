@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia'
 import NDK from "@nostr-dev-kit/ndk";
 
 const DEFAULT_EXPLICIT_RELAY_URLS = [
@@ -7,15 +7,20 @@ const DEFAULT_EXPLICIT_RELAY_URLS = [
 ];
 
 const DEFAULT_OUTBOX_RELAY_URLS = [
-    "wss://purplepag.es"
+    "wss://purplepag.es",
+    "wss://relay.primal.net"
 ];
 
 function createNdkInstance(explicitRelayUrls: string[], outboxRelayUrls: string[]) {
+
     return new NDK({
-        explicitRelayUrls,
-        outboxRelayUrls
+       explicitRelayUrls:  explicitRelayUrls,
+        outboxRelayUrls: outboxRelayUrls,
+        clientName: "geekiam",
+
     });
 }
+
 
 export const useNdkStore = defineStore('ndkStore', {
     state: () => ({
@@ -31,10 +36,22 @@ export const useNdkStore = defineStore('ndkStore', {
     actions: {
         async initialize() {
             if (this.ndkInstance === null) {
+                console.log("Initializing NDK")
                 this.ndkInstance = createNdkInstance(this.explicitRelayUrls, this.defaultOutboxRelayUrls)
                 await this.ndkInstance.connect()
                 this.initialized = true
+
             }
+        },
+        async close(): Promise<void> {
+            console.log("Closing NDK")
+            if (this.ndkInstance !== null) {
+                this.ndkInstance = null
+                this.initialized = false
+            }
+
         }
+
+
     },
 })

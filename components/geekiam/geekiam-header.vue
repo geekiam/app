@@ -30,9 +30,8 @@
                 <span class="sr-only">View notifications</span>
                 <icon name="material-symbols:notifications-outline" class="text-orange-400 text-3xl ml-5" />
               </a>
-
             </span>
-             <users-manager />
+
 
         </div>
       </div>
@@ -62,7 +61,7 @@
 
                 </div>
               </div>
-              <div class="max-w-8xl mx-auto py-3 px-2 sm:px-4">
+<!--              <div class="max-w-8xl mx-auto py-3 px-2 sm:px-4">
                 <template v-for="item in navigation" :key="item.name">
                   <a :href="item.href" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-100">{{ item.name }}</a>
                   <a v-for="child in item.children" :key="child.name" :href="child.href" class="block rounded-md py-2 pl-5 pr-3
@@ -82,7 +81,7 @@
                 <div class="max-w-8xl mx-auto mt-3 space-y-1 px-2 sm:px-4">
                   <a v-for="item in userNavigation" :key="item.name" :href="item.href" class="block rounded-md py-2 px-3 text-base font-medium text-gray-100 dark:text-gray-800 hover:bg-gray-50">{{ item.name }}</a>
                 </div>
-              </div>
+              </div>-->
             </DialogPanel>
           </TransitionChild>
         </div>
@@ -102,15 +101,9 @@ import {
 
 
 
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
 const mobileMenuOpen = ref(false)
 
-const navigation = [
-  {}
-]
+
 </script>
 
 <style scoped></style>

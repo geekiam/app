@@ -3,12 +3,11 @@ import {useAuthStore} from "~/stores/auth";
 const router = useRouter();
 const authStore = useAuthStore();
 
-async function signInWithAlby() {
-  let authenticated = await authStore.signIn();
+async function signInWithAlby(): Promise<void> {
+  let authenticated = await authStore.signInWithSigner();
    if(authenticated){
-    await router.push('/');
+       await router.push('/');
   }
-
 }
 
 </script>
