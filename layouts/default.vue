@@ -1,8 +1,17 @@
-<script setup>
+<script setup lang="ts">
+
+const {listen} = useMitter()
 import {Dialog, DialogPanel, TransitionChild, TransitionRoot,} from '@headlessui/vue'
+listen('selectedArticle', e => select(e))
 
 const sidebarOpen = ref(false)
 const show = ref(false)
+
+function select(id: string) : boolean {
+  if (id) {
+    show.value = true;
+  }
+}
 </script>
 <template>
   <html class="h-full bg-gray-800">

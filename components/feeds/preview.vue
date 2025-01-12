@@ -2,6 +2,7 @@
 import {marked} from "marked";
 import {useArticlesStore} from '~/stores/articles';
 
+
 const {emit} = useMitter()
 const articlesStore = useArticlesStore();
 
@@ -17,17 +18,28 @@ function select(id: string) {
 const articles = articlesStore.articles;
 </script>
 
+
 <template>
   <section class="container mx-auto px-4 max-h-screen overflow-visible">
     <article v-for="article in articles" :key="article.id" class="border-2 border-gray-700 rounded-lg m-2 shadow-md">
       <div class=" article-container content"   @click="select(article.id)">
-        <div
+        <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" class="image">
+        <nuxt-img v-else :alt="article.title" src="brand/question-mark" :title="article.title" loading="lazy" class="image"/>
+        <div>
+          <div class="flex items-center mb-2">
+            <feeds-author :author="article.author" lazy="true" />
+          </div>
+          <h2 class="text-xl font-semibold">Server 1</h2>
+          <p>Server IP: 123.456.789.1</p>
+          <p>Players Online: 24/32</p>
+        </div>
+<!--        <div
             class="group image-container">
           <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" loading="lazy"
                class="image"/>
           <nuxt-img v-else :alt="article.title" src="brand/question-mark" loading="lazy" class="image"/>
         </div>
-        <!-- Content Section -->
+        &lt;!&ndash; Content Section &ndash;&gt;
 
         <div class="flex flex-col flex-grow lg:max-w-full">
           <div class="flex items-center gap-x-2 text-xs">
@@ -47,6 +59,7 @@ const articles = articlesStore.articles;
       </div>
       <div class="flex justify-center gap-2 flex-wrap p-4">
         <span class="text-md text-orange-300 ml-1" v-for="tag in article.tags" :key="tag">#{{tag}}</span>
+      </div>-->
       </div>
     </article>
   </section>
@@ -59,7 +72,7 @@ const articles = articlesStore.articles;
 }
 
 .image {
-  @apply absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110;
+  @apply w-28 h-28 object-cover rounded-t-lg mr-4;
 }
 
 .image-container {

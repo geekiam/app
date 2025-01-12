@@ -1,6 +1,4 @@
 <script setup lang="ts">
-
-
 import type {Author} from "~/types";
 
 
@@ -8,11 +6,7 @@ const props = defineProps({
   author: {
         type: Object as () => Author,
         required : true
-  },
-    published: {
-      type: String,
-      required : true
-    },
+  }
 })
 
 
@@ -22,11 +16,15 @@ const props = defineProps({
 
 <template>
   <div class="flex items-center md:space-x-2">
-    <UAvatar v-if="props.author.avatar" :src="props.author.avatar" :alt="props.author.name" class=" h-4 border rounded-full" />
-    <nuxt-img v-else src="brand/incognito" :alt="props.author.name" class=" h-8 w-8 border rounded-full" />
-    <p class="text-sm">{{ props.author.name }} • {{ props.published }}</p>
+    <UAvatar v-if="props.author.avatar" :src="props.author.avatar" :alt="props.author.name" class="avatar" />
+    <nuxt-img v-else src="brand/incognito" :alt="props.author.name" class="avatar" />
+    <p class="text-sm">{{ props.author.name }}</p>
   </div>
 
 </template>
 
-<style scoped></style>
+<style scoped>
+.avatar {
+  @apply h-6 w-6 border rounded-full
+}
+</style>
