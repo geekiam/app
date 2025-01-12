@@ -23,7 +23,5 @@ export default defineNuxtConfig({
           fathom_analytics_id: process.env.fathom_analytics_id,
           siteUrl: 'https://geekiam.app',
       },
-  },
-
-  compatibilityDate: '2025-01-12'
+  }
 })
