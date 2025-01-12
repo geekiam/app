@@ -3,15 +3,15 @@ import {NDKNip07Signer} from "@nostr-dev-kit/ndk";
 import type { NDKUser} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/ndk";
 import {USER_PUB_KEY} from "~/types/Globals";
-import {setUserSettings} from "~/stores/extensions";
+import {setUserSettings, getUserPubkey} from "~/stores/extensions";
 
 export const useAuthStore = defineStore('useAuthStore', {
     state: () => ({
-        authenticated: false,
-        ndkStore: useNdkStore()
+        ndkStore: useNdkStore(),
+        pubkey: getPubkey() ,
     }),
     getters: {
-        isAuthenticated: state => state.authenticated,
+        isAuthenticated: state => state.pubkey !== null,
     },
     actions: {
         signInWithSigner: async function(): Promise<boolean> {
@@ -24,7 +24,6 @@ export const useAuthStore = defineStore('useAuthStore', {
                 this.setPubkey(user.pubkey)
                 await this.setSettings(user.pubkey)
                 this.ndkStore.close()
-                this.authenticated = true
                 return true
             }
 
@@ -43,6 +42,7 @@ export const useAuthStore = defineStore('useAuthStore', {
         },
 
         setPubkey(pubkey: string): void {
+            this.pubkey = pubkey;
             localStorage.setItem(USER_PUB_KEY, pubkey);
         }
     }

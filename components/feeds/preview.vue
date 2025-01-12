@@ -20,18 +20,23 @@ const articles = articlesStore.articles;
 
 
 <template>
-  <section class="container mx-auto px-4 max-h-screen overflow-visible">
-    <article v-for="article in articles" :key="article.id" class="border-2 border-gray-700 rounded-lg m-2 shadow-md">
+  <section class="container mx-auto px-1 max-h-screen overflow-visible">
+    <article v-for="article in articles" :key="article.id" class="border-2 border-gray-700 rounded-lg m-1 shadow-md">
       <div class=" article-container content"   @click="select(article.id)">
         <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" class="image">
         <nuxt-img v-else :alt="article.title" src="brand/question-mark" :title="article.title" loading="lazy" class="image"/>
-        <div>
+        <div class="flex flex-col flex-grow lg:max-w-full">
           <div class="flex items-center mb-2">
-            <feeds-author :author="article.author" lazy="true" />
+            <feeds-author :author="article.author" lazy="true" class="mr-2" />
+            <p class="text-xs text-gray-400 ml-2">{{ article.published }}</p>
           </div>
-          <h2 class="text-xl font-semibold">Server 1</h2>
-          <p>Server IP: 123.456.789.1</p>
-          <p>Players Online: 24/32</p>
+          <p class="text-lg font-semibold text-orange-500 justify-center m-2">{{article.title}}</p>
+          <div v-if="article.summary" class="break-all ">
+            <div v-html="marked.parse(article.summary)"></div>
+          </div>
+          <div class="flex justify-center gap-2 flex-wrap p-4">
+            <span class="text-md text-orange-300 ml-1" v-for="tag in article.tags" :key="tag">#{{tag}}</span>
+          </div>
         </div>
 <!--        <div
             class="group image-container">
@@ -72,7 +77,7 @@ const articles = articlesStore.articles;
 }
 
 .image {
-  @apply w-28 h-28 object-cover rounded-t-lg mr-4;
+  @apply w-28 h-28 object-cover rounded-t-lg mr-4 ml-2;
 }
 
 .image-container {

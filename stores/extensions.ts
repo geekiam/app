@@ -3,12 +3,12 @@ import {SETTINGS_STORAGE_KEY, USER_PUB_KEY, USER_STORAGE_KEY} from "~/types/Glob
 import type {Hexpubkey} from "@nostr-dev-kit/ndk";
 
 
-export function getPubkey() : string {
+export function getPubkey() : string | null {
     const pubKey = localStorage.getItem(USER_PUB_KEY);
     if( pubKey )
-        return pubKey;
+        return pubKey as string;
     else
-    throw new Error("No pubkey found");
+    return null;
 }
 
 export function signOut(): void {
