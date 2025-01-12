@@ -88,7 +88,6 @@ const show = ref(false)
           dark:text-gray-200 text-gray-900">
             <div class="relative flex flex-col overflow-y-auto">
               <slot name="list"/>
-
             </div>
           </aside>
           <section id="content"
@@ -98,8 +97,6 @@ const show = ref(false)
           </section>
         </main>
       </div>
-
-
     </div>
   </div>
   </body>
