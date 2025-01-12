@@ -7,7 +7,6 @@ const {emit} = useMitter()
 const articlesStore = useArticlesStore();
 
 onMounted(async () => {
-  console.log('mounted')
   await articlesStore.getArticles();
 
 })

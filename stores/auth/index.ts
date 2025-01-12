@@ -3,7 +3,7 @@ import {NDKNip07Signer} from "@nostr-dev-kit/ndk";
 import type { NDKUser} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/ndk";
 import {USER_PUB_KEY} from "~/types/Globals";
-import {setUserSettings, getUserPubkey} from "~/stores/extensions";
+import {setUserSettings, getPubkey} from "~/stores/extensions";
 
 export const useAuthStore = defineStore('useAuthStore', {
     state: () => ({

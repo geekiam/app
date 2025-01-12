@@ -7,17 +7,18 @@ import {useAuthStore} from "~/stores/auth"
 import type {Profile} from "~/types";
 
 function mapUserToProfile(user: NDKUser): Profile {
+    const profile = user.profile || {} as NDKUserProfile;
     return <Profile>{
         user: {
-            name: user.profile?.name || '',
-            avatar: user.profile?.image || '',
+            name: profile.name || '',
+            avatar: profile.image || '',
             npub: user.npub || ''
         },
-        about: user.profile?.about || '',
-        website: user.profile?.website || '',
-        displayName: user.profile?.displayName || '',
-        nip05: user.profile?.nip05 || '',
-        lightning: user.profile?.lud16 || ''
+        about: profile.about || '',
+        website: profile.website || '',
+        displayName: profile.displayName || '',
+        nip05: profile.nip05 || '',
+        lightning: profile.lud16 || ''
     };
 }
 
@@ -30,6 +31,7 @@ export const useProfileStore = defineStore('profileStore', {
 
     actions: {
         getProfile: async function (npub: string): Promise<Profile | null> {
+
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
 
             let user: NDKUser = this.ndkStore.ndk.getUser({
@@ -46,6 +48,7 @@ export const useProfileStore = defineStore('profileStore', {
             return null;
         },
         getAuthor: async function getAuthor(pubKey: string): Promise<Profile | null> {
+
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
 
             let user: NDKUser = this.ndkStore.ndk.getUser({
@@ -64,9 +67,9 @@ export const useProfileStore = defineStore('profileStore', {
 
         updateProfile: async function (profile: Profile | null): Promise<void> {
             if (profile === null) return;
-            let updateUser: NDKUser = await this.authStore.getUser()
+            let updateUser: NDKUser = this.ndkStore.ndk.getUser({ pubkey: this.authStore.pubkey as string})
             await updateUser.fetchProfile()
-            const updateProfile: NDKUserProfile = updateUser.profile as NDKUserProfile;
+            const updateProfile: NDKUserProfile = updateUser.profile || {} as NDKUserProfile;
             if (updateProfile !== undefined) {
                 updateProfile.about = profile.about
                 updateProfile.nip05 = profile.nip05

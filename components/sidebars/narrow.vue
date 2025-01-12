@@ -12,7 +12,7 @@ import {sidebarNavigation} from "~/components/sidebars/menu";
           <ul role="list" class="-mx-2 space-y-1">
             <li v-for="item in sidebarNavigation" :key="item.name">
               <a :href="item.href" :class="[item.current ? 'bg-gray-800 text-gray-400' : 'text-gray-400 hover:bg-gray-800 hover:text-white', 'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold']">
-                <Icon :name="item.icon" class="size-6 shrink-0 text-orange-500" aria-hidden="true" />
+                <Icon :name="item.icon" class="size-6 shrink-0 text-orange-500" aria-hidden="true" :title="item.title" />
               </a>
             </li>
           </ul>

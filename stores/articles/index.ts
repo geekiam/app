@@ -6,7 +6,7 @@ import {useNdkStore} from "~/stores/ndk";
 import type {Article, Author} from "~/types";
 import {useProfileStore} from "~/stores/profile";
 import {useAuthStore} from "~/stores/auth";
-
+import {getUserSettings} from "~/stores/extensions";
 
 function mapArticle(event: NDKArticle , profile : NDKUserProfile): Article {
     const tags = event.tags as [string, ...any[]][];
@@ -71,6 +71,7 @@ export const useArticlesStore = defineStore('articleStore', {
         authStore: useAuthStore(),
         articleSet: new Set<Article>,
         selectedArticle: null as Article | null,
+
     }),
     getters: {
         articles: state => state.articleSet,
@@ -92,9 +93,15 @@ export const useArticlesStore = defineStore('articleStore', {
         },
         getArticles: async function getArticles(): Promise<void> {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
+
+            let settings = getUserSettings()
+            let followSet = settings?.following ? Array.from(settings.following) : [];
+
             const subscriptionConfig: NDKFilter<NDKKind> = {
                 kinds: [NDKKind.Article],
-                limit: 10
+                authors: followSet,
+                limit: 200,
+
             };
 
             const subscriptionOptions = {
