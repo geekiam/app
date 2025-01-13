@@ -15,8 +15,8 @@ async function signInWithAlby(): Promise<void> {
 <template>
   <div class="sign-up-container">
     <button class="sign-up-container-button" @click="signInWithAlby">
-      <Icon name="simple-icons:alby" class="w-8 h-8 mr-2" />
-      <span>Sign in with Alby</span>
+      <Icon name="game-icons:ostrich" class="w-8 h-8 mr-2" />
+      <span>Sign in with extension</span>
     </button>
   </div>
 </template>
