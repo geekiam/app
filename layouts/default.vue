@@ -10,7 +10,9 @@ const show = ref(false)
 function select(id: string) : boolean {
   if (id) {
     show.value = true;
+    return true;
   }
+  return false;
 }
 </script>
 <template>
