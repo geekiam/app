@@ -29,6 +29,7 @@ const articles = articlesStore.articles as Set<Article>;
             <p class="text-xs text-gray-400 ml-2">{{ article.published }}</p>
           </div>
           <p class="text-lg font-semibold text-orange-500 justify-center m-2">{{ article.title }}</p>
+        </div>
           <div v-if="article.summary" class="break-all ">
             <div v-html="marked.parse(article.summary)"></div>
           </div>
@@ -36,7 +37,7 @@ const articles = articlesStore.articles as Set<Article>;
             <span class="text-md text-orange-300 ml-1" v-for="tag in article.tags" :key="tag">#{{ tag }}</span>
           </div>
         </div>
-      </div>
+
     </article>
   </section>
 </template>
