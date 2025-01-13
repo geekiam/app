@@ -14,7 +14,7 @@ const state = reactive({
   profile: <Profile>{}
 })
 
-const profile = await loadUserProfile(<string>key);
+const profile = await loadUserProfile(<string>key) as Profile;
 
 async function loadUserProfile(pubkey: string): Promise<Profile | null> {
   return await profileStore.getProfile(pubkey);
