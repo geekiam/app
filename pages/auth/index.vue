@@ -11,7 +11,7 @@
     <template #right >
       <div>
         <p class="text-4xl font-bold text-white mb-10">What are you going to learn today? </p>
-        <nostr-signin />
+        <authentication-alby-signer />
       </div>
 
     </template>

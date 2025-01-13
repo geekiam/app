@@ -14,27 +14,19 @@ async function signInWithAlby(): Promise<void> {
 
 <template>
   <div class="sign-up-container">
-    <p class="sign-up-container-intro-text">Sign in with signer</p>
-    <button class="sign-up-container-button"
-            @click="signInWithAlby">
-      <Icon name="simple-icons:alby" class="w-8 h-8 mr-2"/>
-      Sign in with Alby
+    <button class="sign-up-container-button" @click="signInWithAlby">
+      <Icon name="simple-icons:alby" class="w-8 h-8 mr-2" />
+      <span>Sign in with Alby</span>
     </button>
-
   </div>
-
 </template>
 
 <style scoped>
 .sign-up-container {
-  @apply items-center
+  @apply items-center;
 }
 
-.sign-up-container-intro-text {
-  @apply text-2xl mb-5 text-gray-800 dark:text-gray-200
-}
 .sign-up-container-button {
-  @apply bg-orange-500 text-white text-xl py-4 px-8 rounded-lg hover:bg-orange-700 focus:outline-none
+  @apply bg-orange-500 text-white text-lg py-1 px-4 rounded-xl hover:bg-orange-700 focus:outline-none flex items-center;
 }
-
 </style>

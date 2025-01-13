@@ -1,6 +1,6 @@
 export default defineAppConfig({
     title: 'geekiam',
-    description: 'nostr client',
+    description: 'authentication client',
     app: {
 
         head: {

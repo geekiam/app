@@ -30,6 +30,7 @@
     "axios": "^1.7.9",
     "date-fns": "^4.1.0",
     "marked": "^15.0.0",
+    "nostr-tools": "^2.10.4",
     "nuxt-mitter": "^1.1.1",
     "pinia": "^2.2.4"
   }
