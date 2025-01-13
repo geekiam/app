@@ -8,7 +8,7 @@ const PROFILE_UPDATED_SUCCESS_MESSAGE = 'Profile updated successfully';
 const profileStore = useProfileStore();
 const authStore = useAuthStore();
 const toastService = useToast();
-let key: string| undefined = authStore.npub
+let key: string| undefined = authStore.pubkey;
 
 const state = reactive({
   profile: <Profile>{}
@@ -16,8 +16,8 @@ const state = reactive({
 
 const profile = await loadUserProfile(<string>key);
 
-async function loadUserProfile(npub: string): Promise<Profile | null> {
-  return await profileStore.getProfile(npub);
+async function loadUserProfile(pubkey: string): Promise<Profile | null> {
+  return await profileStore.getProfile(pubkey);
 
 }
 

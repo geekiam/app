@@ -30,12 +30,12 @@ export const useProfileStore = defineStore('profileStore', {
     }),
 
     actions: {
-        getProfile: async function (npub: string): Promise<Profile | null> {
+        getProfile: async function (pubkey: string): Promise<Profile | null> {
 
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
 
             let user: NDKUser = this.ndkStore.ndk.getUser({
-                npub: npub,
+                pubkey: pubkey,
             })
 
             if (user !== undefined) {
