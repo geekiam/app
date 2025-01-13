@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import {sidebarNavigation} from "~/components/sidebars/menu";
-
-
 </script>
 
 <template>
