@@ -34,7 +34,7 @@ const articles = articlesStore.articles as Set<Article>;
       <div v-if="article.summary" class="break-all content">
         <div v-html="marked.parse(article.summary)"></div>
       </div>
-      <div class="flex flex-wrap gap-2"> <span class="text-md text-orange-300" v-for="tag in article.tags" :key="tag">#{{ tag }}</span>
+      <div class="flex flex-wrap gap-2 mb-2"> <span class="text-md text-orange-300" v-for="tag in article.tags" :key="tag">#{{ tag }}</span>
       </div>
       </div>
     </article>
