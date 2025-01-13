@@ -11,7 +11,7 @@ definePageMeta({
 <template>
   <nuxt-layout>
     <template #menu>
-        <settings-menu />
+       <navigation-profile-menu />
     </template>
 
     <template #content>

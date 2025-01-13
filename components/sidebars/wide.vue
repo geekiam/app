@@ -1,12 +1,19 @@
 <script setup lang="ts">
+import {useProfileStore} from "~/stores/profile";
+import {useAuthStore} from "~/stores/auth";
 import {sidebarNavigation} from "~/components/sidebars/menu";
+import type {Profile} from "~/types";
+
+const authStore = useAuthStore();
+const profileStore = useProfileStore();
+const profile =  await profileStore.getProfile(<string>authStore.pubkey) as Profile;
 
 
 </script>
 
 <template>
-  <nav aria-label="Sidebar" class="">
-    <div class="relative flex w-40 flex-col space-y-3 p-3">
+  <nav aria-label="Sidebar" class="flex grow flex-col gap-y-5 relative">
+    <div class="relative flex-1 w-40 flex-col space-y-3 p-3">
       <ul role="list" class="flex flex-1 flex-col gap-y-7">
         <li>
           <ul role="list" class="-mx-2 space-y-1">
@@ -15,6 +22,13 @@ import {sidebarNavigation} from "~/components/sidebars/menu";
                 <Icon :name="item.icon" class="size-6 shrink-0 text-orange-500" aria-hidden="true" />
                 {{ item.title }}
               </a>
+            </li>
+            <li class="-mx-6 absolute bottom-0 w-full">
+              <nuxt-link to="/settings/profile" class="flex items-center gap-x-4 px-6 py-3 hover:bg-gray-700 rounded-md w-full group">
+                <LazyUAvatar class=" rounded-full bg-gray-700 group-hover:bg-gray-700" :src="profile.user.avatar" :alt="profile.user.name" :title="profile.user.name" />
+                <span class="sr-only">Your profile</span>
+                <span aria-hidden="true">{{ profile.user.name}}</span>
+              </nuxt-link>
             </li>
           </ul>
         </li>
