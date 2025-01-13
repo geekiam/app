@@ -23,11 +23,11 @@ const articles = articlesStore.articles as Set<Article>;
         <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" class="image">
         <nuxt-img v-else :alt="article.title" src="brand/question-mark" :title="article.title" loading="lazy" class="image" />
         <div class="flex flex-col flex-grow lg:max-w-full">
-          <div class="flex items-center mb-2">
+          <div class="flex items-center mb-1">
             <feeds-author :author="article.author" lazy="true" class="mr-2" />
             <p class="text-xs text-gray-400 ml-2">{{ article.published }}</p>
           </div>
-          <p class="text-lg font-semibold text-orange-500 justify-center m-2">{{ article.title }}</p>
+          <p class="text-lg font-semibold text-orange-500 justify-center m-1">{{ article.title }}</p>
         </div>
       </div>
       <div class="mt-2 px-5">
