@@ -67,6 +67,7 @@ export const useProfileStore = defineStore('profileStore', {
 
         updateProfile: async function (profile: Profile | null): Promise<void> {
             if (profile === null) return;
+            if (!this.ndkStore.initialized) await this.ndkStore.initialize()
             let updateUser: NDKUser = this.ndkStore.ndk.getUser({ pubkey: this.authStore.pubkey as string})
             await updateUser.fetchProfile()
             const updateProfile: NDKUserProfile = updateUser.profile || {} as NDKUserProfile;

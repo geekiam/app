@@ -19,32 +19,30 @@ const articles = articlesStore.articles as Set<Article>;
 <template>
   <section class="container mx-auto px-1 max-h-screen overflow-visible">
     <article v-for="article in articles" :key="article.id" class="border-2 border-gray-700 rounded-lg m-1 shadow-md">
-      <div class=" article-container content" @click="select(article.id)">
+      <div class="article-container content" @click="select(article.id)">
         <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" class="image">
-        <nuxt-img v-else :alt="article.title" src="brand/question-mark" :title="article.title" loading="lazy"
-                  class="image"/>
+        <nuxt-img v-else :alt="article.title" src="brand/question-mark" :title="article.title" loading="lazy" class="image" />
         <div class="flex flex-col flex-grow lg:max-w-full">
           <div class="flex items-center mb-2">
-            <feeds-author :author="article.author" lazy="true" class="mr-2"/>
+            <feeds-author :author="article.author" lazy="true" class="mr-2" />
             <p class="text-xs text-gray-400 ml-2">{{ article.published }}</p>
           </div>
           <p class="text-lg font-semibold text-orange-500 justify-center m-2">{{ article.title }}</p>
         </div>
-          <div v-if="article.summary" class="break-all ">
-            <div v-html="marked.parse(article.summary)"></div>
-          </div>
-          <div class="flex justify-center gap-2 flex-wrap p-4">
-            <span class="text-md text-orange-300 ml-1" v-for="tag in article.tags" :key="tag">#{{ tag }}</span>
-          </div>
-        </div>
-
+      </div>
+      <div class="mt-2 px-5">
+      <div v-if="article.summary" class="break-all content">
+        <div v-html="marked.parse(article.summary)"></div>
+      </div>
+      <div class="flex flex-wrap gap-2"> <span class="text-md text-orange-300" v-for="tag in article.tags" :key="tag">#{{ tag }}</span>
+      </div>
+      </div>
     </article>
   </section>
 </template>
-
 <style scoped>
 .article-container {
-  @apply grid gap-8 sm:grid-cols-2 sm:gap-12 lg:grid-cols-4 xl:grid-cols-2 xl:gap-16 cursor-pointer ;
+  @apply grid gap-8 sm:grid-cols-2 sm:gap-12 lg:grid-cols-4 xl:grid-cols-2 xl:gap-8 cursor-pointer ;
   @apply flex flex-col items-center gap-4 md:flex-row lg:gap-9   lg:items-start lg:p-4 ;
 }
 
@@ -53,7 +51,7 @@ const articles = articlesStore.articles as Set<Article>;
 }
 
 .content {
-  @apply prose prose-sm max-w-full dark:text-gray-200 text-gray-800 sm:px-1
+  @apply prose prose-sm max-w-full dark:text-gray-300 text-gray-800 sm:px-1
   dark:prose-blockquote:text-orange-500 prose-blockquote:text-xl
   prose-headings:text-orange-500 prose-a:no-underline
   prose-a:text-orange-500 dark:prose-a:text-orange-500 justify-evenly prose-strong:text-orange-500

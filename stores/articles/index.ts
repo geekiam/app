@@ -99,7 +99,7 @@ export const useArticlesStore = defineStore('articleStore', {
 
             const subscriptionConfig: NDKFilter<NDKKind> = {
                 kinds: [NDKKind.Article],
-                authors: followSet
+                authors: followSet,
             };
 
             const subscriptionOptions = {
