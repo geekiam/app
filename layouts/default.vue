@@ -44,7 +44,9 @@ function select(id: string) : boolean {
               <!-- Sidebar component, swap this element with another sidebar if you like -->
               <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-800 px-6 ring-1 ring-white/10">
                 <div class="flex h-16 shrink-0 items-center">
-                  <nuxt-img class="h-8 w-auto" src="brand/icon" alt="Geekiam"/>
+                  <nuxt-link to="/">
+                    <nuxt-img class="h-16 w-auto mt-6" src="brand/icon" alt="Geekiam"/>
+                  </nuxt-link>
                 </div>
                 <sidebars-wide/>
               </div>
@@ -59,7 +61,9 @@ function select(id: string) : boolean {
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-800/10 px-6 ring-1 ring-white/5">
         <div class="flex h-16 shrink-0 items-center">
-          <nuxt-img class="h-8 w-auto" src="brand/icon" alt="geekiam"/>
+          <nuxt-link to="/">
+            <nuxt-img class="h-16 w-auto mt-6" src="brand/icon" alt="geekiam"/>
+          </nuxt-link>
         </div>
         <sidebars-narrow/>
       </div>

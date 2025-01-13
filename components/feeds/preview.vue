@@ -13,6 +13,7 @@ onMounted(async () => {
 function select(id: string) {
   emit('selectedArticle', id);
 }
+
 const articles = articlesStore.articles as Set<Article>;
 </script>
 <template>
@@ -45,9 +46,11 @@ const articles = articlesStore.articles as Set<Article>;
   @apply grid gap-8 sm:grid-cols-2 sm:gap-12 lg:grid-cols-4 xl:grid-cols-2 xl:gap-16 cursor-pointer ;
   @apply flex flex-col items-center gap-4 md:flex-row lg:gap-9   lg:items-start lg:p-4 ;
 }
+
 .image {
   @apply w-28 h-28 object-cover rounded-t-lg mr-4 ml-2;
 }
+
 .content {
   @apply prose prose-sm max-w-full dark:text-gray-200 text-gray-800 sm:px-1
   dark:prose-blockquote:text-orange-500 prose-blockquote:text-xl
