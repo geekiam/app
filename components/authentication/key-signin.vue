@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import {useAuthStore} from "~/stores/auth";
+const toastService = useToast();
 const router = useRouter();
 const authStore = useAuthStore();
+const UNABLE_TO_SIGNIN_MESSAGE = 'Unable to sign in with the key provided';
 
 async function signInWithExtension(): Promise<void> {
   const inputField = document.getElementById('nostrkey') as HTMLInputElement;
   let authenticated = await authStore.signInWithKey(inputField.value);
-  if(authenticated){
+  if (authenticated) {
     await router.push('/');
+  } else {
+    toastService.add({title: UNABLE_TO_SIGNIN_MESSAGE, color : "red"});
   }
 }
 </script>
