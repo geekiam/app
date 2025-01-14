@@ -1,12 +1,11 @@
 
 import { bech32 } from "bech32";
 import { bytesToHex } from "@noble/hashes/utils";
+
 export async function getPubKey(key: string) : Promise<string> {
 
-
-
     if(key.startsWith("npub")) {
-        return  getHex(key)
+        return getHex(key)
     }
 
     return ""
