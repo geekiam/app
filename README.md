@@ -12,12 +12,12 @@
 experience with full Nostr integration.
 </p>
 
-<p>
+<p style="text-align: left">
 Nostr is a decentralized, open-source, and censorship-resistant social network protocol. It allows users to create and 
 share content in the form of posts, similar to traditional social media platforms, but with a focus on decentralization, 
 privacy, and free speech. 
 </p>
-<p>
+<p style="text-align: left">
 Nostr uses a relay-based architecture, where users can choose which relays they want to connect to, allowing them to 
 control their own data and online presence.
 </p>
