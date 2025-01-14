@@ -25,13 +25,16 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.23",
+    "@noble/secp256k1": "^2.2.3",
     "@nostr-dev-kit/ndk": "^2.11.0",
     "@pinia/nuxt": "^0.5.1",
     "axios": "^1.7.9",
+    "bech32": "^2.0.0",
     "date-fns": "^4.1.0",
     "marked": "^15.0.0",
     "nostr-tools": "^2.10.4",
     "nuxt-mitter": "^1.1.1",
-    "pinia": "^2.2.4"
+    "pinia": "^2.2.4",
+    "util": "^0.12.5"
   }
 }

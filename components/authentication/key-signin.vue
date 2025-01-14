@@ -1,5 +1,15 @@
 <script setup lang="ts">
+import {useAuthStore} from "~/stores/auth";
+const router = useRouter();
+const authStore = useAuthStore();
 
+async function signInWithExtension(): Promise<void> {
+  const inputField = document.getElementById('nostrkey') as HTMLInputElement;
+  let authenticated = await authStore.signInWithKey(inputField.value);
+  if(authenticated){
+    await router.push('/');
+  }
+}
 </script>
 
 <template>
@@ -8,10 +18,10 @@
       <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
        <Icon name="material-symbols-light:key-outline" class="w-8 h-8 mr-3 text-orange-500" />
       </div>
-      <input type="text" id="input-group-1" class="input-style" placeholder="npub / nsec / hex">
+      <input type="text" id="nostrkey" class="input-style" placeholder="npub / nsec / hex">
     </div>
     <div class="relative mb-6">
-    <button type="button" class="button-style">
+    <button type="button" class="button-style" @click="signInWithExtension">
      <Icon name="game-icons:ostrich" class="w-6 h-6 mr-2" />
      Sign in
     </button>
