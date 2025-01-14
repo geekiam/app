@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['@pinia/nuxt', '@nuxt/image', '@nuxt/ui', '@vite-pwa/nuxt', 'nuxt-mitter'],
+  modules: ['@pinia/nuxt', '@nuxt/image', '@nuxt/ui', '@vite-pwa/nuxt', 'nuxt-mitter', '@vee-validate/nuxt'],
   ssr: false,
 
   tailwindcss: {

@@ -1,41 +1,60 @@
 <script setup lang="ts">
+import {Field, Form, ErrorMessage, defineRule, configure, type SubmissionHandler} from 'vee-validate';
+import { required } from '@vee-validate/rules';
+defineRule('required', required);
 import {useAuthStore} from "~/stores/auth";
-
+configure({
+  generateMessage: (context) => {
+    const messages = {
+      required: `A valid npub, nsec or hex key is required.`,
+    };
+    return messages[context?.rule?.name as keyof typeof messages] || `The field ${context.field} is invalid.`;
+  },
+});
 const toastService = useToast();
 const router = useRouter();
 const authStore = useAuthStore();
 const UNABLE_TO_SIGNIN_MESSAGE = 'Unable to sign in with the key provided';
 const KEY_NOT_PROVIDED = 'Key has not been provided';
+const onSubmit = async (values: { key: string }) => {
 
-async function signInWithExtension(): Promise<void> {
-  const inputField = document.getElementById('nostrkey') as HTMLInputElement;
-  if (inputField.value === '' || inputField.value === null) {
-    toastService.add({title: KEY_NOT_PROVIDED, color: "red"});
-    return;
-  }
-  let authenticated = await authStore.signInWithKey(inputField.value);
+
+  let authenticated = await authStore.signInWithKey(values.key);
   if (authenticated) {
     await router.push('/');
   } else {
-    toastService.add({title: UNABLE_TO_SIGNIN_MESSAGE, color: "red"});
+    toastService.add({ title: UNABLE_TO_SIGNIN_MESSAGE, color: "red" });
   }
-}
+};
+
+
+
 </script>
 
 <template>
   <div class="sign-up-container">
+    <Form @submit="onSubmit as unknown as SubmissionHandler">
     <div class="relative mb-6">
+
       <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
         <Icon name="material-symbols-light:key-outline" class="w-8 h-8 mr-3 text-orange-500"/>
       </div>
-      <input type="text" id="nostrkey" class="input-style" placeholder="npub / nsec / hex">
+      <Field name="key" type="text" id="key" class="input-style" placeholder="npub / nsec / hex" rules="required"  />
+
     </div>
     <div class="relative mb-6">
-      <button type="button" class="button-style" @click="signInWithExtension">
+
+      <button type="submit" class="button-style">
         <Icon name="game-icons:ostrich" class="w-6 h-6 mr-2"/>
         Sign in
       </button>
+      <div class="break-before-all">
+
+        <ErrorMessage as="p" name="key" class="text-red-500 mt-3"  />
+      </div>
+
     </div>
+    </Form>
   </div>
 </template>
 

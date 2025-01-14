@@ -29,6 +29,8 @@
     "@noble/secp256k1": "^2.2.3",
     "@nostr-dev-kit/ndk": "^2.11.0",
     "@pinia/nuxt": "^0.5.1",
+    "@vee-validate/nuxt": "^4.15.0",
+    "@vee-validate/rules": "^4.15.0",
     "axios": "^1.7.9",
     "bech32": "^2.0.0",
     "date-fns": "^4.1.0",
