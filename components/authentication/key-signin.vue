@@ -1,17 +1,23 @@
 <script setup lang="ts">
 import {useAuthStore} from "~/stores/auth";
+
 const toastService = useToast();
 const router = useRouter();
 const authStore = useAuthStore();
 const UNABLE_TO_SIGNIN_MESSAGE = 'Unable to sign in with the key provided';
+const KEY_NOT_PROVIDED = 'Key has not been provided';
 
 async function signInWithExtension(): Promise<void> {
   const inputField = document.getElementById('nostrkey') as HTMLInputElement;
+  if (inputField.value === '' || inputField.value === null) {
+    toastService.add({title: KEY_NOT_PROVIDED, color: "red"});
+    return;
+  }
   let authenticated = await authStore.signInWithKey(inputField.value);
   if (authenticated) {
     await router.push('/');
   } else {
-    toastService.add({title: UNABLE_TO_SIGNIN_MESSAGE, color : "red"});
+    toastService.add({title: UNABLE_TO_SIGNIN_MESSAGE, color: "red"});
   }
 }
 </script>
@@ -20,18 +26,16 @@ async function signInWithExtension(): Promise<void> {
   <div class="sign-up-container">
     <div class="relative mb-6">
       <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-       <Icon name="material-symbols-light:key-outline" class="w-8 h-8 mr-3 text-orange-500" />
+        <Icon name="material-symbols-light:key-outline" class="w-8 h-8 mr-3 text-orange-500"/>
       </div>
       <input type="text" id="nostrkey" class="input-style" placeholder="npub / nsec / hex">
     </div>
     <div class="relative mb-6">
-    <button type="button" class="button-style" @click="signInWithExtension">
-     <Icon name="game-icons:ostrich" class="w-6 h-6 mr-2" />
-     Sign in
-    </button>
+      <button type="button" class="button-style" @click="signInWithExtension">
+        <Icon name="game-icons:ostrich" class="w-6 h-6 mr-2"/>
+        Sign in
+      </button>
     </div>
-
-
   </div>
 </template>
 

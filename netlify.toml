@@ -2,11 +2,11 @@ title = "geekiam netlify deployment configuration file"
 
 [build]
     publish = "dist"
-    command = "yarn build"
+    command = "pnpm run build"
 
 [dev]
     framework="nuxt"
-    command = "yarn dev" # Command to start your dev server
+    command = "pnpm run dev" # Command to start your dev server
     port= 3850
     publish = "dist" # The path to your static content folder
     autoLaunch = true # a Boolean value that determines if Netlify Dev launches the local server address in your browser
@@ -32,4 +32,4 @@ title = "geekiam netlify deployment configuration file"
         immutable
         '''
 [context.branch-deploy]
-    command = "yarn build"
+    command = "pnpm run build"
