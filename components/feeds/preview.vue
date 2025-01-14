@@ -1,26 +1,30 @@
 <script setup lang="ts">
-import {marked} from "marked";
-import {useArticlesStore} from '~/stores/articles';
-import type {Article} from "~/types";
+import { marked } from "marked";
+import { useArticlesStore } from '~/stores/articles';
+import type { Article } from "~/types";
 
-const {emit} = useMitter()
+const { emit } = useMitter();
 const articlesStore = useArticlesStore();
-
+const sortedArticles = ref<Article[]>([]);
 onMounted(async () => {
   await articlesStore.getArticles();
-})
+  sortedArticles.value = Array.from(articlesStore.articles).sort((a, b) => {
+    return new Date(b.published).getTime() - new Date(a.published).getTime();
+  });
+});
 
 function select(id: string) {
   emit('selectedArticle', id);
 }
 
-const articles = Array.from(articlesStore.articles).sort((a, b) => {
-  return new Date(a.published).getTime() - new Date(b.published).getTime();
-});
+// Sort articles and store them in a reactive reference
+import { ref } from 'vue';
+
+
 </script>
 <template>
   <section class="container mx-auto px-1 max-h-screen overflow-visible">
-    <article v-for="article in articles" :key="article.id" class="border-2 border-gray-700 rounded-lg m-1 shadow-md">
+    <article v-for="article in sortedArticles" :key="article.id" class="border-2 border-gray-700 rounded-lg m-1 shadow-md">
       <div class="article-container content" @click="select(article.id)">
         <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" class="image">
         <nuxt-img v-else :alt="article.title" src="brand/question-mark" :title="article.title" loading="lazy" class="image" />
