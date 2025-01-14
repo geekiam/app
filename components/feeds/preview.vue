@@ -5,14 +5,19 @@ import type { Article } from "~/types";
 
 const { emit } = useMitter();
 const articlesStore = useArticlesStore();
-const sortedArticles = ref<Article[]>([]);
+
 onMounted(async () => {
   await articlesStore.getArticles();
-  sortedArticles.value = Array.from(articlesStore.articles).sort((a, b) => {
-    return new Date(b.published).getTime() - new Date(a.published).getTime();
-  });
 });
 
+const articles = computed(() => {
+  return [...articlesStore.articles].sort((a, b) => {
+    const dateA = new Date(a.published).getTime();
+    const dateB = new Date(b.published).getTime();
+    return dateB - dateA; // Ascending order, use `dateB - dateA` for descending
+  });
+});
+//const sortedArticles = articlesStore.articles as Set<Article>;
 function select(id: string) {
   emit('selectedArticle', id);
 }
@@ -24,7 +29,7 @@ import { ref } from 'vue';
 </script>
 <template>
   <section class="container mx-auto px-1 max-h-screen overflow-visible">
-    <article v-for="article in sortedArticles" :key="article.id" class="border-2 border-gray-700 rounded-lg m-1 shadow-md">
+    <article v-for="article in articles" :key="article.id" class="border-2 border-gray-700 rounded-lg m-1 shadow-md">
       <div class="article-container content" @click="select(article.id)">
         <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" class="image">
         <nuxt-img v-else :alt="article.title" src="brand/question-mark" :title="article.title" loading="lazy" class="image" />
