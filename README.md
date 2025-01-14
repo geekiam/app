@@ -11,6 +11,13 @@
   A decentralized long-form content media platform, with the aim to provide users with an intuitive and seamless 
 experience with full Nostr integration.
 
+Nostr is a decentralized, open-source, and censorship-resistant social network protocol. It allows users to create and 
+share content in the form of posts, similar to traditional social media platforms, but with a focus on decentralization, 
+privacy, and free speech. 
+
+Nostr uses a relay-based architecture, where users can choose which relays they want to connect to, allowing them to 
+control their own data and online presence.
+
 <br />
     <a href="https://github.com/geekiam/app/wiki"><strong>Explore the docs »</strong></a>
     <br />

@@ -26,7 +26,6 @@ export const useAuthStore = defineStore('useAuthStore', {
                 this.ndkStore.close()
                 return true
             }
-
             return false
         },
 

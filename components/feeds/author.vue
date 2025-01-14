@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import type {Author} from "~/types";
 
-
 const props = defineProps({
   author: {
         type: Object as () => Author,
         required : true
   }
 })
-
-
-
-
 </script>
 
 <template>
@@ -20,7 +15,6 @@ const props = defineProps({
     <nuxt-img v-else src="brand/incognito" :alt="props.author.name" class="avatar" />
     <p class="text-sm ml-2 mr-2">{{ props.author.name }}</p>
   </div>
-
 </template>
 
 <style scoped>
