@@ -3,7 +3,8 @@
 </script>
 
 <template>
-
+  <html class="h-full bg-gray-800">
+  <body class="h-full">
     <div class="flex h-screen flex-col justify-center bg-gray-200 dark:bg-gray-800">
       <div class="container mx-auto px-4">
         <div class="flex flex-wrap -mx-2">
@@ -21,11 +22,15 @@
           </div>
         </div>
       </div>
+
     </div>
-
-
-
     <geekiam-footer/>
+  </body>
+  </html>
+
+
+
+
 
 </template>
 
