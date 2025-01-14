@@ -113,9 +113,9 @@ export const useArticlesStore = defineStore('articleStore', {
             subscription.on("event", async event => {
                 if (!event || !event.created_at) return;
 
-                const isDuplicate = Array.from(this.articleSet).some(existingArticle => existingArticle.id === event.id);
+                let isDuplicate = Array.from(this.articleSet).some(existingArticle => existingArticle.id === event.id);
                 if (isDuplicate || event.publishStatus !== "success") return;
-                const profile = await event.author.fetchProfile();
+                let profile = await event.author.fetchProfile();
                 let article = mapArticle(NDKArticle.from(event), profile as NDKUserProfile);
                 this.articleSet.add(article);
             });

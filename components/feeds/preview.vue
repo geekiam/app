@@ -14,7 +14,9 @@ function select(id: string) {
   emit('selectedArticle', id);
 }
 
-const articles = articlesStore.articles as Set<Article>;
+const articles = Array.from(articlesStore.articles).sort((a, b) => {
+  return new Date(a.published).getTime() - new Date(b.published).getTime();
+});
 </script>
 <template>
   <section class="container mx-auto px-1 max-h-screen overflow-visible">
