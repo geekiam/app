@@ -10,7 +10,7 @@
         <div class="flex flex-wrap -mx-2">
           <!-- Column 1 -->
           <div class="w-full sm:w-1/2 px-2">
-            <div class="p-4 mb-4 mt-5  justify-center h-full">
+            <div class="p-10 mb-4 mt-5  justify-center h-full">
               <slot name="left" />
             </div>
           </div>
