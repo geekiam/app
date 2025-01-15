@@ -28,19 +28,19 @@ function select(id: string) {
   <section class="container mx-auto px-1 max-h-screen overflow-visible pt-1">
     <article v-for="article in articles" :key="article.id" class="border-2 border-gray-700 rounded-lg mb-2 shadow-md">
       <div class="article-container content" @click="select(article.id)">
-        <div class="flex flex-col px-2">
+        <div class="flex flex-col px-2 lg:w-full">
           <div class="flex flex-row items-center justify-start gap-2 pt-2">
             <feeds-author :author="article.author" lazy="true" class="mr-1" />
             <span class="text-xs text-gray-400">{{ article.published }}</span>
           </div>
 
-          <div class="flex flex-col items-center gap-2 mt-1">
+          <div class="flex flex-col gap-2 mt-1">
 
-            <div class="flex flex-1 flex-col sm:flex-row items-center sm:items-center lg:items-center gap-2">
+            <div class="flex flex-1 lg:w-full flex-col sm:flex-row items-center sm:items-center lg:items-center gap-2">
               <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" class="image">
               <nuxt-img v-else :alt="article.title" src="brand/question-mark" :title="article.title" loading="lazy" class="mb-2 image" />
               <div class="text-center sm:text-left lg:text-center mt-2 sm:mt-0 sm:ml-2 lg:ml-0 lg:flex-1">
-                <span class="text-lg font-semibold text-orange-500">{{ article.title }}</span>
+                <span class="text-md font-semibold text-orange-500">{{ article.title }}</span>
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@ function select(id: string) {
   @apply flex flex-col items-center gap-4 lg:flex-row lg:gap-2 lg:items-start lg:p-4;
 }
 .image {
-  @apply w-full lg:w-20 h-auto object-scale-down sm:h-16 rounded-t-lg;
+  @apply w-full lg:w-20 h-auto object-scale-down sm:h-16 rounded-t-lg ;
 }
 
 .content {
