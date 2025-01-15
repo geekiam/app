@@ -41,7 +41,8 @@ function select(id: string) {
           </div>
           <div v-if="article.summary" class="summary lg:order-3 px-4 text-xs">
             <div v-html="marked.parse(article.summary)"></div>
-            <div class="flex flex-1 mb-2"> <span class="text-xs text-orange-300 mr-2" v-for="tag in article.tags" :key="tag">#{{ tag }}</span>
+            <div class="flex flex-1 mb-2"> <span class="nline-flex items-center rounded-md bg-orange-50 px-1.5 py-0.5 text-xs font-medium text-orange-600 mr-2" v-for="tag in article.tags" :key="tag">{{ tag }}</span>
+
           </div>
           </div>
         </div>
