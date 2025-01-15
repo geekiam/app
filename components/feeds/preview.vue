@@ -25,44 +25,52 @@ function select(id: string) {
 
 </script>
 <template>
-  <section class="container mx-auto px-1 max-h-screen overflow-visible">
-    <article v-for="article in articles" :key="article.id" class="border-2 border-gray-700 rounded-lg m-1 shadow-md">
+  <section class="container mx-auto px-1 max-h-screen overflow-visible pt-1">
+    <article v-for="article in articles" :key="article.id" class="border-2 border-gray-700 rounded-lg mb-2 shadow-md">
       <div class="article-container content" @click="select(article.id)">
-        <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" class="image">
-        <nuxt-img v-else :alt="article.title" src="brand/question-mark" :title="article.title" loading="lazy" class="image" />
-        <div class="flex flex-col flex-grow lg:max-w-full">
-          <div class="flex items-center mb-1">
-            <feeds-author :author="article.author" lazy="true" class="mr-2" />
-            <p class="text-xs text-gray-400 ml-2">{{ article.published }}</p>
+        <div class="flex flex-col px-2">
+          <div class="flex flex-row items-center justify-start gap-2 pt-2">
+            <feeds-author :author="article.author" lazy="true" class="mr-1" />
+            <span class="text-xs text-gray-400">{{ article.published }}</span>
           </div>
-          <p class="text-lg font-semibold text-orange-500 justify-center m-1">{{ article.title }}</p>
+
+          <div class="flex flex-col items-center gap-2 mt-1">
+
+            <div class="flex flex-1 flex-col sm:flex-row items-center sm:items-center lg:items-center gap-2">
+              <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" class="image">
+              <nuxt-img v-else :alt="article.title" src="brand/question-mark" :title="article.title" loading="lazy" class="mb-2 image" />
+              <div class="text-center sm:text-left lg:text-center mt-2 sm:mt-0 sm:ml-2 lg:ml-0 lg:flex-1">
+                <span class="text-lg font-semibold text-orange-500">{{ article.title }}</span>
+              </div>
+            </div>
+          </div>
+          <div v-if="article.summary" class="content lg:order-3 lg:mt-2">
+            <div v-html="marked.parse(article.summary)"></div>
+            <div class="flex flex-1 gap-2 mb-2"> <span class="text-md text-orange-300" v-for="tag in article.tags" :key="tag">#{{ tag }}</span>
+          </div>
+
+          </div>
         </div>
       </div>
-      <div class="mt-2 px-5">
-      <div v-if="article.summary" class="break-all content">
-        <div v-html="marked.parse(article.summary)"></div>
-      </div>
-      <div class="flex flex-wrap gap-2 mb-2"> <span class="text-md text-orange-300" v-for="tag in article.tags" :key="tag">#{{ tag }}</span>
-      </div>
-      </div>
+
     </article>
   </section>
 </template>
 <style scoped>
 .article-container {
   @apply grid gap-8 sm:grid-cols-2 sm:gap-12 lg:grid-cols-4 xl:grid-cols-2 xl:gap-8 cursor-pointer ;
-  @apply flex flex-col items-center gap-4 md:flex-row lg:gap-9   lg:items-start lg:p-4 ;
+  @apply flex flex-col items-center gap-4 lg:flex-row lg:gap-2 lg:items-start lg:p-4;
 }
-
 .image {
-  @apply w-28 h-28 object-cover rounded-t-lg mr-4 ml-2;
+  @apply w-full lg:w-20 h-auto object-scale-down sm:h-16 rounded-t-lg;
 }
 
 .content {
   @apply prose prose-sm max-w-full dark:text-gray-300 text-gray-800 sm:px-1
   dark:prose-blockquote:text-orange-500 prose-blockquote:text-xl
   prose-headings:text-orange-500 prose-a:no-underline
-  prose-a:text-orange-500 dark:prose-a:text-orange-500 justify-evenly prose-strong:text-orange-500
+  prose-a:text-orange-500 dark:prose-a:text-orange-500 justify-evenly prose-strong:text-orange-500;
 }
 
 </style>
+
