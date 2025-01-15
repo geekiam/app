@@ -14,16 +14,13 @@ const articles = computed(() => {
   return [...articlesStore.articles].sort((a, b) => {
     const dateA = new Date(a.published).getTime();
     const dateB = new Date(b.published).getTime();
-    return dateB - dateA; // Ascending order, use `dateB - dateA` for descending
+    return dateB - dateA;
   });
 });
-//const sortedArticles = articlesStore.articles as Set<Article>;
+
 function select(id: string) {
   emit('selectedArticle', id);
 }
-
-// Sort articles and store them in a reactive reference
-import { ref } from 'vue';
 
 
 </script>
