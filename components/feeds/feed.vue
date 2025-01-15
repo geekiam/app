@@ -32,7 +32,7 @@ onMounted(async () => {
     <div v-for="event in events" :key="event.id" class="box-style">
       <h1>{{ event.title }}</h1>
       <div class="text-orange-500 text-lg break-all">
-        <div class="content" v-html="marked.parse(event.content )"> </div>
+        <div class="summary" v-html="marked.parse(event.content )"> </div>
         </div>
       <p class="text-orange-200 text-xl">{{ format(new Date(event.created_at * 1000 ),'dd MMM yyyy')}}</p>
       <p class="dark:text-gray-100 text-gray-900 pt-5 text-sm">{{ event.author }}</p>
@@ -47,7 +47,7 @@ onMounted(async () => {
 .box-style {
   @apply border p-2 rounded mb-2 border-orange-100 text-wrap
 }
-.content {
+.summary {
   @apply prose prose-lg max-w-full dark:text-gray-200 text-gray-800 sm:px-1
   dark:prose-blockquote:text-orange-500 prose-blockquote:text-xl
   prose-headings:text-orange-500 prose-a:no-underline

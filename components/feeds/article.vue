@@ -20,7 +20,7 @@ const article = computed(() => articlesStore.selectedArticle);
 
 <template>
   <section class="container mx-auto max-h-screen overflow-visible">
-    <article v-if="article" class="article-container content">
+    <article v-if="article" class="article-container summary">
       <div class="flex flex-col flex-grow max-w-full">
        <div class="text-center">
         <h3 class="text-base font-bold text-orange-500">
@@ -28,7 +28,7 @@ const article = computed(() => articlesStore.selectedArticle);
         </h3>
       </div>
         <div>
-          <div class="break-all mt-2 lg:mt-4 content justify-start">
+          <div class="break-all mt-2 lg:mt-4 summary justify-start">
             <div v-html="marked.parse(article.content)" ></div>
           </div>
         </div>
@@ -45,7 +45,7 @@ const article = computed(() => articlesStore.selectedArticle);
   @apply flex flex-col items-center gap-4 md:flex-row lg:gap-9 m-1 rounded-lg lg:items-start lg:p-4 shadow-md;
 }
 
-.content {
+.summary {
   @apply prose prose-base text-base max-w-full dark:text-gray-200 text-gray-800 sm:px-1
   dark:prose-blockquote:text-orange-500 prose-blockquote:text-lg
   prose-headings:text-orange-500 prose-a:no-underline
