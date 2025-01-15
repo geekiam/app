@@ -1,64 +1,13 @@
 import {defineStore} from "pinia";
 import {NDKArticle, NDKEvent, NDKKind} from "@nostr-dev-kit/ndk";
 import type { NDKFilter, NDKUserProfile } from "@nostr-dev-kit/ndk";
-import {format} from "date-fns";
 import {useNdkStore} from "~/stores/ndk";
-import type {Article, Author} from "~/types";
+import type {Article} from "~/types";
 import {useProfileStore} from "~/stores/profile";
 import {useAuthStore} from "~/stores/auth";
 import {getUserSettings} from "~/stores/extensions";
+import {mapArticle} from "~/stores/articles/utilities";
 
-function mapArticle(event: NDKArticle , profile : NDKUserProfile): Article {
-    const tags = event.tags as [string, ...any[]][];
-
-    return <Article>{
-        id: event.id,
-        pubkey: event.pubkey,
-        title: getTitleFromTags(tags) || "",
-        summary: getSummaryFromTags(tags) || "",
-        content: event.content || "",
-        date: event.created_at ? new Date(event.created_at * 1000).toISOString() : "",
-        image: getImageFromTags(tags) || "",
-        tags: getTopicTagsFromTags(event) || [],
-        published: event.created_at ? format(new Date(event.created_at * 1000), 'dd MMM yyyy') : new Date(),
-        author: mapAuthor(profile),
-    }
-}
-
-function getTitleFromTags(tags: [string, ...string[]][]): string {
-    const titleTag = tags.find(tag => tag[0] === "title");
-    return titleTag ? titleTag[1] : "";
-}
-
-function getImageFromTags(tags: [string, ...string[]][]): string {
-    const titleTag = tags.find(tag => tag[0] === "image");
-    return titleTag ? titleTag[1] : "";
-}
-
-function getSummaryFromTags(tags: [string, ...any[]][]): string {
-    const titleTag = tags.find(tag => tag[0] === "summary");
-    return titleTag ? titleTag[1] : "";
-}
-function getTopicTagsFromTags(article: NDKArticle): string[] {
-    const articleTags = article.getMatchingTags("t");
-    return articleTags.map(tag => tag[1] as string).filter(Boolean);
-}
-function shouldExcludeArticle(tags: string[][]): boolean {
-    return tags.some(tag => excludeTags.has(tag[1]));
-}
-function mapAuthor(profile: NDKUserProfile) : Author {
-    return <Author>{
-        name: profile.name,
-        avatar: profile.image,
-        npub: profile.npub,
-        displayName: profile.displayName,
-        lightning: profile.lud16,
-        lnUrl: profile.lnurl,
-        website: profile.website,
-        about: profile.about,
-    }
-
-}
 export const excludeTags = new Set([
     "gitlog", "nostrcooking", "travelblog", "airdrop", "test", "cryptoairdrops", "CryptoAirdrop", "earnfreecrypto"
 ])
@@ -99,7 +48,8 @@ export const useArticlesStore = defineStore('articleStore', {
 
             const subscriptionConfig: NDKFilter<NDKKind> = {
                 kinds: [NDKKind.Article],
-                authors: followSet
+                authors: followSet,
+                limit: 20
             };
 
             const subscriptionOptions = {

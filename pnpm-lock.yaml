@@ -81,15 +81,15 @@ importers:
       '@nuxt/ui':
         specifier: ^2.18.7
         version: 2.21.0(axios@1.7.9)(change-case@5.4.4)(magicast@0.3.5)(rollup@4.30.1)(typescript@5.7.3)(vite@6.0.7(@types/node@22.10.6)(jiti@2.4.2)(terser@5.37.0)(yaml@2.7.0))(vue@3.5.13(typescript@5.7.3))
-      '@ubclaunchpad/vue-fathom':
-        specifier: ^2.0.0
-        version: 2.0.0(typescript@5.7.3)
       '@vite-pwa/nuxt':
         specifier: ^0.10.6
         version: 0.10.6(magicast@0.3.5)(rollup@4.30.1)(vite@6.0.7(@types/node@22.10.6)(jiti@2.4.2)(terser@5.37.0)(yaml@2.7.0))(workbox-build@7.3.0)(workbox-window@7.3.0)
       nuxt:
         specifier: ^3.15.0
         version: 3.15.1(@parcel/watcher@2.5.0)(@types/node@22.10.6)(bufferutil@4.0.9)(db0@0.2.1)(ioredis@5.4.2)(magicast@0.3.5)(rollup@4.30.1)(terser@5.37.0)(typescript@5.7.3)(utf-8-validate@5.0.10)(vite@6.0.7(@types/node@22.10.6)(jiti@2.4.2)(terser@5.37.0)(yaml@2.7.0))(yaml@2.7.0)
+      nuxt-fathom:
+        specifier: ^0.0.2
+        version: 0.0.2(magicast@0.3.5)(rollup@4.30.1)
       nuxt-headlessui:
         specifier: ^1.1.4
         version: 1.2.0(magicast@0.3.5)(rollup@4.30.1)(vue@3.5.13(typescript@5.7.3))
@@ -1530,9 +1530,6 @@ packages:
 
   '@types/web-bluetooth@0.0.20':
     resolution: {integrity: sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==}
-
-  '@ubclaunchpad/vue-fathom@2.0.0':
-    resolution: {integrity: sha512-QbO0O46a2uVpGhufDyqUArOUR5mgvbpS7p0Ug01hNtXK0Qhhy1Mh1Kn6xaVpkd0+8Vp9RsvJAMoufakpTT4iRQ==}
 
   '@unhead/dom@1.11.18':
     resolution: {integrity: sha512-zQuJUw/et9zYEV0SZWTDX23IgurwMaXycAuxt4L6OgNL0T4TWP3a0J/Vm3Q02hmdNo/cPKeVBrwBdnFUXjGU4w==}
@@ -3472,6 +3469,9 @@ packages:
     resolution: {integrity: sha512-E1R6QvUoinlAkP1EMesU0Dn1xLDLFli9LzaVAYdsmC2frHGIc15jMDRzwkAgK/8ae0H+tjHlfi/Qps/jZwF+7g==}
     engines: {node: ^16.10.0 || >=18.0.0}
     hasBin: true
+
+  nuxt-fathom@0.0.2:
+    resolution: {integrity: sha512-eRGzVErQMkwwpMqJCDq/wOnWw4CFBGjmkdca1zyRGmsbu4MrVzqOxDXXlZcVojnwU4YXq4KpClM+uu3bRM+3KA==}
 
   nuxt-headlessui@1.2.0:
     resolution: {integrity: sha512-eidWwA4SFLWFk2KcGMHlrPTJb+ODEt5Bsj6cXjmhDtRYydqvgYXHU1U7563E6/qMuayThumbGUopF1IRqlYHwA==}
@@ -6781,13 +6781,6 @@ snapshots:
 
   '@types/web-bluetooth@0.0.20': {}
 
-  '@ubclaunchpad/vue-fathom@2.0.0(typescript@5.7.3)':
-    dependencies:
-      fathom-client: 3.7.2
-      vue: 3.5.13(typescript@5.7.3)
-    transitivePeerDependencies:
-      - typescript
-
   '@unhead/dom@1.11.18':
     dependencies:
       '@unhead/schema': 1.11.18
@@ -9029,6 +9022,16 @@ snapshots:
       boolbase: 1.0.0
 
   nuxi@3.20.0: {}
+
+  nuxt-fathom@0.0.2(magicast@0.3.5)(rollup@4.30.1):
+    dependencies:
+      '@nuxt/kit': 3.15.1(magicast@0.3.5)(rollup@4.30.1)
+      defu: 6.1.4
+      fathom-client: 3.7.2
+    transitivePeerDependencies:
+      - magicast
+      - rollup
+      - supports-color
 
   nuxt-headlessui@1.2.0(magicast@0.3.5)(rollup@4.30.1)(vue@3.5.13(typescript@5.7.3)):
     dependencies:
