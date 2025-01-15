@@ -25,26 +25,24 @@ function select(id: string) {
 
 </script>
 <template>
-  <section class="container mx-auto px-1 max-h-screen overflow-visible pt-1">
+  <section class="container mx-auto max-h-screen overflow-visible pt-1">
     <article v-for="article in articles" :key="article.id" class="border-2 border-gray-700 rounded-lg mb-2 shadow-md">
       <div class="article-container summary" @click="select(article.id)">
-        <div class="flex flex-col px-2 lg:w-full">
-          <div class="flex flex-row items-center justify-start gap-2 pt-2">
+        <div class="flex flex-col px-1 lg:w-full">
+          <div class="flex flex-row items-center justify-start gap-1 pt-2">
             <feeds-author :author="article.author" lazy="true" class="mr-1" />
             <span class="text-xs text-gray-400">{{ article.published }}</span>
           </div>
-
-          <div class="flex flex-col gap-2 mt-1">
-
-            <div class="flex flex-1 lg:w-full flex-col sm:flex-row items-center sm:items-center lg:items-center">
+          <div class="flex flex-col gap-1">
+            <div class="flex flex-col lg:w-full sm:flex-row items-center">
               <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" class="image">
               <nuxt-img v-else :alt="article.title" src="brand/question-mark" :title="article.title" loading="lazy" class="mb-2 image" />
-              <div class="text-center sm:text-left lg:text-left mt-2 sm:mt-0 sm:ml-2 lg:ml-0 lg:flex-1 lg:ml-2">
-                <span class="text-md font-semibold text-orange-500">{{ article.title }}</span>
+              <div class="text-left lg:flex-1 ml-2">
+                <span class="text-base sm:text-lg font-semibold text-orange-500">{{ article.title }}</span>
               </div>
             </div>
           </div>
-          <div v-if="article.summary" class="summary lg:order-3 lg:mt-2 text-xs">
+          <div v-if="article.summary" class="summary lg:order-3 px-4 text-xs">
             <div v-html="marked.parse(article.summary)"></div>
             <div class="flex flex-1 mb-2"> <span class="text-xs text-orange-300 mr-2" v-for="tag in article.tags" :key="tag">#{{ tag }}</span>
           </div>
