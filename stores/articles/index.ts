@@ -119,9 +119,7 @@ export const useArticlesStore = defineStore('articleStore', {
                 let article = mapArticle(NDKArticle.from(event), profile as NDKUserProfile);
                 this.articleSet.add(article);
             });
-
-
         }
     }
-
 })
+
