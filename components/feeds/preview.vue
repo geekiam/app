@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { marked } from "marked";
 import { useArticlesStore } from '~/stores/articles';
-import type { Article } from "~/types";
 
 const { emit } = useMitter();
 const articlesStore = useArticlesStore();
@@ -21,8 +20,6 @@ const articles = computed(() => {
 function select(id: string) {
   emit('selectedArticle', id);
 }
-
-
 </script>
 <template>
   <section class="container mx-auto max-h-screen overflow-y-visible overflow-x-hidden pt-1">
