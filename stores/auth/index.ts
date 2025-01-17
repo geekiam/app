@@ -30,7 +30,7 @@ export const useAuthStore = defineStore('useAuthStore', {
             return false
         },
         signInWithKey: async function(key: string): Promise<boolean> {
-
+            if(!this.ndkStore.initialized) await this.ndkStore.initialize()
             let pubkey = await this.derivePubKey(key)
             if (pubkey) {
                 this.setPubkey(pubkey);
