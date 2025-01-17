@@ -19,7 +19,7 @@ const KEY_NOT_PROVIDED = 'Key has not been provided';
 const onSubmit = async (values: { key: string }) => {
 
 
-  let authenticated = await authStore.signInWithKey(values.key);
+  let authenticated = await authStore.signInWithKey(values.key.trim());
   if (authenticated) {
     await router.push('/');
   } else {
