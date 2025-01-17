@@ -4,20 +4,14 @@ import type { NDKFilter, NDKUserProfile } from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/ndk";
 import type {Article} from "~/types";
 import {useProfileStore} from "~/stores/profile";
-import {useAuthStore} from "~/stores/auth";
+
 import {getUserSettings} from "~/stores/extensions";
 import {mapArticle} from "~/stores/articles/utilities";
-
-export const excludeTags = new Set([
-    "gitlog", "nostrcooking", "travelblog", "airdrop", "test", "cryptoairdrops", "CryptoAirdrop", "earnfreecrypto"
-])
-
 
 export const useArticlesStore = defineStore('articleStore', {
     state: () => ({
         ndkStore: useNdkStore(),
         profileStore: useProfileStore(),
-        authStore: useAuthStore(),
         articleSet: new Set<Article>,
         selectedArticle: null as Article | null,
 
