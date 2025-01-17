@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { marked } from "marked";
-import { useArticlesStore } from '~/stores/articles';
+import {marked} from "marked";
+import {useArticlesStore} from '~/stores/articles';
 
-const { emit } = useMitter();
+const {emit} = useMitter();
 const articlesStore = useArticlesStore();
 
 onMounted(async () => {
@@ -27,13 +27,14 @@ function select(id: string) {
       <div class="article-container summary" @click="select(article.id)">
         <div class="flex flex-col px-1 lg:w-full">
           <div class="flex flex-row items-center justify-start gap-1 pt-2">
-            <feeds-author :author="article.author" lazy="true" class="mr-1" />
+            <feeds-author :author="article.author" lazy="true" class="mr-1"/>
             <span class="text-xs text-gray-400">{{ article.published }}</span>
           </div>
           <div class="flex flex-col gap-1">
             <div class="flex flex-col lg:w-full sm:flex-row items-center">
               <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" class="image">
-              <nuxt-img v-else :alt="article.title" src="brand/question-mark" :title="article.title" loading="lazy" class="mb-2 image" />
+              <nuxt-img v-else :alt="article.title" src="brand/question-mark" :title="article.title" loading="lazy"
+                        class="mb-2 image"/>
               <div class="text-left lg:flex-1 ml-2">
                 <span class="text-base sm:text-lg font-semibold text-orange-500">{{ article.title }}</span>
               </div>
@@ -42,9 +43,13 @@ function select(id: string) {
           <div v-if="article.summary" class="summary lg:order-3 px-4 text-xs">
             <div v-html="marked.parse(article.summary)"></div>
             <div class="flex flex-1 mb-2">
-              <span class="inline-flex items-center rounded-md bg-orange-50 px-1.5 py-0.5 text-xs font-medium text-orange-600 mr-2" v-for="tag in article.tags" :key="tag">{{ tag }}</span>
-
-          </div>
+              <div class="flex flex-wrap flex-1 mb-2">
+    <span
+        class="inline-flex items-center rounded-md bg-orange-100 px-1.5 py-0.5 text-xs font-medium text-orange-600 mr-2 mt-1"
+        v-for="tag in article.tags" :key="tag">{{ tag }}
+    </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -56,6 +61,7 @@ function select(id: string) {
   @apply grid  sm:grid-cols-2 sm:gap-12 lg:grid-cols-4 xl:grid-cols-2 xl:gap-8 cursor-pointer ;
   @apply flex flex-col items-center gap-4 lg:flex-row lg:gap-2 lg:items-start lg:p-4;
 }
+
 .image {
   @apply w-full lg:w-20 h-auto object-scale-down sm:h-16 rounded-t-lg ;
 }
