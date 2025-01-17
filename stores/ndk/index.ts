@@ -3,7 +3,8 @@ import NDK from "@nostr-dev-kit/ndk";
 
 const DEFAULT_EXPLICIT_RELAY_URLS = [
     'wss://relay.damus.io',
-    'wss://relay.primal.net'
+    'wss://relay.primal.net',
+    'wss://relay.geekiam.services'
 ];
 
 const DEFAULT_OUTBOX_RELAY_URLS = [
@@ -17,11 +18,8 @@ function createNdkInstance(explicitRelayUrls: string[], outboxRelayUrls: string[
        explicitRelayUrls:  explicitRelayUrls,
         outboxRelayUrls: outboxRelayUrls,
         clientName: "geekiam",
-
     });
 }
-
-
 export const useNdkStore = defineStore('ndkStore', {
     state: () => ({
         initialized: false,
@@ -49,9 +47,6 @@ export const useNdkStore = defineStore('ndkStore', {
                 this.ndkInstance = null
                 this.initialized = false
             }
-
         }
-
-
     },
 })
