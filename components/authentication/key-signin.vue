@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import {Field, Form, ErrorMessage, defineRule, configure, type SubmissionHandler} from 'vee-validate';
-import { required } from '@vee-validate/rules';
-defineRule('required', required);
+import {configure, defineRule, ErrorMessage, Field, Form, type SubmissionHandler} from 'vee-validate';
+import {required} from '@vee-validate/rules';
 import {useAuthStore} from "~/stores/auth";
+
+defineRule('required', required);
+
 configure({
   generateMessage: (context) => {
     const messages = {
@@ -16,44 +18,38 @@ const router = useRouter();
 const authStore = useAuthStore();
 const UNABLE_TO_SIGNIN_MESSAGE = 'Unable to sign in with the key provided';
 const KEY_NOT_PROVIDED = 'Key has not been provided';
-const onSubmit = async (values: { key: string }) => {
+async function onSubmit(values: { key: string }): Promise<boolean> {
+    let authenticated = await authStore.signInWithKey(values.key.trim());
 
+    if (authenticated) {
+        await router.push('/');
+    } else {
+        toastService.add({title: UNABLE_TO_SIGNIN_MESSAGE, color: "red"});
+    }
 
-  let authenticated = await authStore.signInWithKey(values.key.trim());
-  if (authenticated) {
-    await router.push('/');
-  } else {
-    toastService.add({ title: UNABLE_TO_SIGNIN_MESSAGE, color: "red" });
-  }
+    return authenticated;
 };
-
-
-
 </script>
 
 <template>
   <div class="sign-up-container">
-    <Form @submit="onSubmit as unknown as SubmissionHandler">
-    <div class="relative mb-6">
-
-      <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-        <Icon name="material-symbols-light:key-outline" class="w-8 h-8 mr-3 text-orange-500"/>
+    <Form @submit="onSubmit as SubmissionHandler<{ key: string }>">
+      <div class="relative mb-6">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+          <Icon name="material-symbols-light:key-outline" class="w-8 h-8 mr-3 text-orange-500"/>
+        </div>
+        <Field name="key" type="text" id="key" class="input-style" placeholder="npub / nsec / hex" rules="required"/>
       </div>
-      <Field name="key" type="text" id="key" class="input-style" placeholder="npub / nsec / hex" rules="required"  />
+      <div class="relative mb-6">
 
-    </div>
-    <div class="relative mb-6">
-
-      <button type="submit" class="button-style">
-        <Icon name="game-icons:ostrich" class="w-6 h-6 mr-2"/>
-        Sign in
-      </button>
-      <div class="break-before-all">
-
-        <ErrorMessage as="p" name="key" class="text-red-500 mt-3"  />
+        <button type="submit" class="button-style">
+          <Icon name="game-icons:ostrich" class="w-6 h-6 mr-2"/>
+          Sign in
+        </button>
+        <div class="break-before-all">
+          <ErrorMessage as="p" name="key" class="text-red-500 mt-3"/>
+        </div>
       </div>
-
-    </div>
     </Form>
   </div>
 </template>
