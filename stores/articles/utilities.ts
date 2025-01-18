@@ -47,7 +47,7 @@ function mapAuthor(profile: NDKUserProfile) : Author {
         displayName: profile.displayName,
         lightning: profile.lud16,
         lnUrl: profile.lnurl,
-        website: profile.website,
+        website: profile.website?.startsWith("https://") ? profile.website : "https://" + profile.website,
         about: profile.about,
     }
 

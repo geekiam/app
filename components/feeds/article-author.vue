@@ -12,12 +12,9 @@ console.log(props.author)
 </script>
 
 <template>
-  <div class="w-full rounded max-w-2xl mx-auto overflow-hidden bg-white dark:bg-gray-800/50 backdrop-blur-lg">
+  <div class="w-full rounded max-w-2xl mx-auto overflow-hidden bg-gray-300 dark:bg-gray-800 backdrop-blur-lg">
     <div class="relative p-6 ">
-
-      <!-- Content Container -->
       <div class="relative flex flex-col md:flex-row md:items-center gap-6">
-        <!-- Profile Image -->
         <div class="flex-shrink-0">
           <div class="relative group">
             <div
@@ -30,22 +27,18 @@ console.log(props.author)
             />
           </div>
         </div>
-
-        <!-- Text Content -->
         <div class="flex-1 space-y-4">
           <div>
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{{author.displayName}}</h2>
-            <p class="mt-1 text-gray-600 dark:text-gray-300">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{author.displayName}}</h2>
+            <p class="mt-1 text-gray-600 dark:text-gray-100">
               {{ author.about }}
             </p>
           </div>
 
-          <!-- Social Links -->
           <div class="flex gap-4">
             <a :href="author.website" target="_blank" rel="noopener noreferrer"
                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700/50 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600/50 transition-colors duration-200">
               <Icon name="lineicons:website" class="w-6 h-6 text-orange-500" />
-
               <span>Website</span>
             </a>
           </div>
