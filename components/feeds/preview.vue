@@ -34,18 +34,18 @@ function select(id: string) {
             <div class="flex flex-col lg:w-full sm:flex-row items-center">
               <img v-if="article.image" :src="article.image" :alt="article.title" :title="article.title" class="image">
               <nuxt-img v-else :alt="article.title" src="brand/question-mark" :title="article.title" loading="lazy"
-                        class="mb-2 image"/>
+                        class="mb-1 image"/>
               <div class="text-left lg:flex-1 ml-2">
                 <span class="text-base sm:text-lg font-semibold text-orange-500">{{ article.title }}</span>
               </div>
             </div>
           </div>
-          <div v-if="article.summary" class="summary lg:order-3 px-4 text-xs">
+          <div v-if="article.summary" class="summary lg:order-3 px-1 text-xs">
             <div v-html="marked.parse(article.summary)"></div>
-            <div class="flex flex-1 mb-2">
-              <div class="flex flex-wrap flex-1 mb-2">
+            <div class="flex flex-1 mb-1">
+              <div class="flex flex-wrap flex-1 mb-1">
     <span
-        class="inline-flex items-center rounded-md bg-orange-100 px-1.5 py-0.5 text-xs font-medium text-orange-600 mr-2 mt-1"
+        class="inline-flex items-center rounded-md bg-orange-100 me-1 px-1.5 py-0.5 text-xs font-medium text-orange-600 mr-2 mt-1"
         v-for="tag in article.tags" :key="tag">{{ tag }}
     </span>
               </div>
