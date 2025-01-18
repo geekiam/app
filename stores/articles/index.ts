@@ -42,8 +42,7 @@ export const useArticlesStore = defineStore('articleStore', {
 
             const subscriptionConfig: NDKFilter<NDKKind> = {
                 kinds: [NDKKind.Article],
-                authors: followSet,
-                limit: 50
+                authors: followSet
             };
 
             const subscriptionOptions = {
