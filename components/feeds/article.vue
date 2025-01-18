@@ -24,8 +24,9 @@ const article = computed(() => articlesStore.selectedArticle) ;
   <section class="container mx-auto max-h-screen overflow-visible">
     <article v-if="article" class="article-container summary">
       <div class="flex flex-col flex-grow max-w-full">
-        <div>
-          <img class=" w-full object-fill" :src="article.image" :alt="article.title" height="30" />
+        <div v-if="article.image" class="flex-shrink-0">
+          <img class=" w-full object-contain  max-h-[400px]
+" :src="article.image" :alt="article.title"  />
         </div>
         <div class="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
           <div class="mt-6 min-w-0 flex-1 sm:hidden md:block text-center">
