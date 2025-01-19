@@ -38,6 +38,12 @@ function getTopicTagsFromTags(article: NDKArticle): string[] {
     const articleTags = article.getMatchingTags("t");
     return articleTags.map(tag => tag[1] as string).filter(Boolean);
 }
+function getWebsiteLink(website: string): string {
+    if(website === undefined) return "";
+    if(website.startsWith("https://")) return website;
+    return "https://" + website;
+
+}
 
 function mapAuthor(profile: NDKUserProfile) : Author {
     return <Author>{
@@ -47,7 +53,7 @@ function mapAuthor(profile: NDKUserProfile) : Author {
         displayName: profile.displayName,
         lightning: profile.lud16,
         lnUrl: profile.lnurl,
-        website: profile.website?.startsWith("https://") ? profile.website : "https://" + profile.website,
+        website: getWebsiteLink(profile.website),
         about: profile.about,
     }
 

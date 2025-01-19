@@ -36,7 +36,7 @@ console.log(props.author)
             </p>
           </div>
 
-          <div class="flex gap-4">
+          <div class="flex gap-4" v-if="author.website">
             <a :href="author.website" target="_blank" rel="noopener noreferrer"
                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700/50 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600/50 transition-colors duration-200">
               <Icon name="lineicons:website" class="w-6 h-6 text-orange-500" />
