@@ -20,10 +20,11 @@ console.log(props.author)
             <div
                 class="absolute w-28 h-28 -inset-0.5  rounded-full">
             </div>
-            <img
+            <u-avatar
                 :src="author.avatar"
-                class="relative w-24 h-24 rounded-full object-cover border-2 border-white dark:border-gray-700"
-                alt="Christian Nguyen"
+                class="border-2 border-white dark:border-gray-700"
+                :alt="author.displayName"
+                size="3xl"
             />
           </div>
         </div>

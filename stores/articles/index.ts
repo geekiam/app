@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
+import type {NDKFilter, NDKUserProfile} from "@nostr-dev-kit/ndk";
 import {NDKArticle, NDKEvent, NDKKind} from "@nostr-dev-kit/ndk";
-import type { NDKFilter, NDKUserProfile } from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/ndk";
 import type {Article} from "~/types";
 import {useProfileStore} from "~/stores/profile";
@@ -43,6 +43,7 @@ export const useArticlesStore = defineStore('articleStore', {
             const subscriptionConfig: NDKFilter<NDKKind> = {
                 kinds: [NDKKind.Article],
                 authors: followSet
+
             };
 
             const subscriptionOptions = {
