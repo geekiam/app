@@ -19,6 +19,18 @@ export function mapArticle(event: NDKArticle , profile : NDKUserProfile): Articl
         author: mapAuthor(profile),
     }
 }
+export function mapAuthor(profile: NDKUserProfile) : Author {
+    return <Author>{
+        name: profile.name,
+        avatar: profile.image,
+        npub: profile.npub,
+        displayName: profile.displayName,
+        lightning: profile.lud16,
+        lnUrl: profile.lnurl,
+        website: getWebsiteLink(profile.website),
+        about: profile.about,
+    }
+}
 
 function getTitleFromTags(tags: [string, ...string[]][]): string {
     const titleTag = tags.find(tag => tag[0] === "title");
@@ -42,17 +54,4 @@ function getWebsiteLink(website: string | undefined): string {
     if(website === undefined || website ==="") return "";
     if(website.startsWith("https://")|| website.startsWith("http://")) return website;
     return "https://" + website;
-}
-
-function mapAuthor(profile: NDKUserProfile) : Author {
-    return <Author>{
-        name: profile.name,
-        avatar: profile.image,
-        npub: profile.npub,
-        displayName: profile.displayName,
-        lightning: profile.lud16,
-        lnUrl: profile.lnurl,
-        website: getWebsiteLink(profile.website),
-        about: profile.about,
-    }
 }
