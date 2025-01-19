@@ -31,5 +31,7 @@ control their own data and online presence.
     <a href="https://github.com/geekiam/app/issues">Report Bug</a>
     ·
     <a href="https://github.com/geekiam/app/issues">Request Feature</a>
+    ·
+    <a href="https://github.com/geekiam/app/wiki">Wiki</a>
   </p>
 </div>
