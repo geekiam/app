@@ -39,8 +39,8 @@ function getTopicTagsFromTags(article: NDKArticle): string[] {
     return articleTags.map(tag => tag[1] as string).filter(Boolean);
 }
 function getWebsiteLink(website: string | undefined): string {
-    if(website === undefined) return "";
-    if(website.startsWith("https://")) return website;
+    if(website === undefined || website ==="") return "";
+    if(website.startsWith("https://")|| website.startsWith("http://")) return website;
     return "https://" + website;
 }
 
