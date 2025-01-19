@@ -36,7 +36,7 @@ function getSummaryFromTags(tags: [string, ...any[]][]): string {
 }
 function getTopicTagsFromTags(article: NDKArticle): string[] {
     const articleTags = article.getMatchingTags("t");
-    return articleTags.map(tag => tag[1] as string).filter(Boolean);
+    return articleTags.map(tag => tag[1].toLowerCase() as string).filter(Boolean);
 }
 function getWebsiteLink(website: string | undefined): string {
     if(website === undefined || website ==="") return "";
