@@ -34,7 +34,6 @@ export const useNdkStore = defineStore('ndkStore', {
     actions: {
         async initialize() {
             if (this.ndkInstance === null) {
-                console.log("Initializing NDK")
                 this.ndkInstance = createNdkInstance(this.explicitRelayUrls, this.defaultOutboxRelayUrls)
                 await this.ndkInstance.connect()
                 this.initialized = true
@@ -42,8 +41,7 @@ export const useNdkStore = defineStore('ndkStore', {
             }
         },
         async close(): Promise<void> {
-            console.log("Closing NDK")
-            if (this.ndkInstance !== null) {
+             if (this.ndkInstance !== null) {
                 this.ndkInstance = null
                 this.initialized = false
             }

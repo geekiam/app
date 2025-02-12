@@ -1,8 +1,6 @@
 import {defineStore} from "pinia";
 import type {NDKUser, NDKUserProfile} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/ndk";
-
-import {USER_STORAGE_KEY} from "~/types/Globals";
 import {useAuthStore} from "~/stores/auth"
 import type {Profile} from "~/types";
 
@@ -43,7 +41,6 @@ export const useProfileStore = defineStore('profileStore', {
                     await user.fetchProfile()
                     return mapUserToProfile(user)
                 }
-
             }
             return null;
         },
@@ -60,15 +57,13 @@ export const useProfileStore = defineStore('profileStore', {
                     return mapUserToProfile(user)
                 }
             }
-
-
             return null;
         },
 
         updateProfile: async function (profile: Profile | null): Promise<void> {
             if (profile === null) return;
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
-            let updateUser: NDKUser = this.ndkStore.ndk.getUser({ pubkey: this.authStore.pubkey as string})
+            let updateUser: NDKUser = this.ndkStore.ndk.getUser({pubkey: this.authStore.pubkey as string})
             await updateUser.fetchProfile()
             const updateProfile: NDKUserProfile = updateUser.profile || {} as NDKUserProfile;
             if (updateProfile !== undefined) {
@@ -78,13 +73,7 @@ export const useProfileStore = defineStore('profileStore', {
                 updateProfile.displayName = profile.displayName
                 updateProfile.website = profile.website
                 await updateUser.publish()
-
             }
-
-
-        },
-        setUser(user: NDKUser) {
-            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
         },
     }
 })

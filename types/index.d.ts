@@ -1,5 +1,3 @@
-import {type Hexpubkey} from "@nostr-dev-kit/ndk";
-
 export interface User  {
     name: string;
     avatar: string;
@@ -8,7 +6,6 @@ export interface User  {
     following: Set<string>;
 
 }
-
 export interface Settings {
     following: string[];
     relays: string[];
@@ -21,9 +18,6 @@ export interface Profile {
     nip05: string | "";
     lightning: string | "";
 }
-
-
-
 export interface Author  {
     name: string;
     avatar: string;
@@ -34,13 +28,11 @@ export interface Author  {
     website: string;
     about: string;
 }
-
 export interface Note {
     content: string;
     date: string;
     author: Author;
 }
-
 export interface Article {
     id: string;
     pubkey: string;
