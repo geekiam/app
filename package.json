@@ -18,7 +18,7 @@
     "@nuxt/image": "^1.8.1",
     "@nuxt/ui": "^2.18.7",
     "@vite-pwa/nuxt": "^0.10.6",
-    "nuxt": "^3.15.0",
+    "nuxt": "^3.15.4",
     "nuxt-fathom": "^0.0.2",
     "nuxt-headlessui": "^1.1.4",
     "tailwindcss": "^3.2.4"
@@ -39,5 +39,6 @@
     "nuxt-mitter": "^1.1.1",
     "pinia": "^2.2.4",
     "util": "^0.12.5"
-  }
+  },
+  "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee"
 }
