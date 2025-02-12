@@ -4,7 +4,6 @@ export interface User  {
     npub: string ;
     pubKey: string;
     following: Set<string>;
-
 }
 export interface Settings {
     following: string[];
