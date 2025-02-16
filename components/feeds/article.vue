@@ -58,6 +58,6 @@ const article = computed(() => articlesStore.selectedArticle) ;
   dark:prose-blockquote:text-orange-500 prose-blockquote:text-lg
   prose-headings:text-orange-500 prose-a:no-underline
   prose-a:text-orange-500 dark:prose-a:text-orange-500  prose-strong:text-orange-500
-  prose-code:text-orange-500;
+  dark:prose-code:text-orange-300  prose-code:text-gray-500;
 }
 </style>
