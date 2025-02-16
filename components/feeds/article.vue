@@ -3,7 +3,6 @@ import {useArticlesStore} from "~/stores/articles";
 import {marked} from "marked";
 import ArticleAuthor from "~/components/feeds/article-author.vue";
 
-
 const articlesStore = useArticlesStore();
 const {listen} = useMitter()
 
@@ -37,11 +36,9 @@ const article = computed(() => articlesStore.selectedArticle) ;
           <div class="break-all mt-2 lg:mt-4 summary justify-start">
             <div v-html="marked.parse(article.content)" ></div>
           </div>
-
         </div>
         <article-author :author="article.author" />
       </div>
-
     </article>
   </section>
 </template>
