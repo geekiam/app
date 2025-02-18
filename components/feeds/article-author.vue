@@ -3,7 +3,7 @@ import type {Author} from "~/types";
 
 const props = defineProps({
   author: {
-    type : Object as () => Author,
+    type: Object as () => Author,
     required: true
   }
 })
@@ -30,7 +30,7 @@ let author = props.author;
         </div>
         <div class="flex-1 space-y-4">
           <div>
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{author.displayName}}</h2>
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ author.displayName }}</h2>
             <p class="mt-1 text-gray-600 dark:text-gray-100">
               {{ author.about }}
             </p>
@@ -39,7 +39,7 @@ let author = props.author;
           <div class="flex gap-4" v-if="author.website">
             <a :href="author.website" target="_blank" rel="noopener noreferrer"
                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700/50 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600/50 transition-colors duration-200">
-              <Icon name="lineicons:website" class="w-6 h-6 text-orange-500" />
+              <Icon name="lineicons:website" class="w-6 h-6 text-orange-500"/>
               <span>Website</span>
             </a>
           </div>
