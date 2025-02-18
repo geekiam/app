@@ -16,7 +16,7 @@ function select(id: string) : boolean {
 }
 </script>
 <template>
-  <html class="h-full bg-gray-800">
+  <html class="h-full bg-gray-800 min-h-screen">
   <body class="h-full">
   <div>
     <TransitionRoot as="template" :show="sidebarOpen">
