@@ -21,13 +21,14 @@
     "nuxt": "^3.15.4",
     "nuxt-fathom": "^0.0.2",
     "nuxt-headlessui": "^1.1.4",
+    "nuxt-shiki": "0.3.0",
     "tailwindcss": "^3.2.4"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.23",
     "@noble/hashes": "^1.7.0",
     "@noble/secp256k1": "^2.2.3",
-    "@nostr-dev-kit/ndk": "^2.11.0",
+    "@nostr-dev-kit/ndk": "^2.11.2",
     "@pinia/nuxt": "^0.5.1",
     "@vee-validate/nuxt": "^4.15.0",
     "@vee-validate/rules": "^4.15.0",
