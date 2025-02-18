@@ -25,7 +25,5 @@ export default defineNuxtConfig({
 
   mitt: {
       types: './types/event.d.ts'
-  },
-
-  compatibilityDate: '2025-02-16'
+  }
 })
