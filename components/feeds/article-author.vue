@@ -8,7 +8,7 @@ const props = defineProps({
   }
 })
 
-console.log(props.author)
+let author = props.author;
 </script>
 
 <template>
