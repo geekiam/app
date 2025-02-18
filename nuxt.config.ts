@@ -4,12 +4,6 @@ export default defineNuxtConfig({
     pwa: {
         /* your pwa options */
     },
-    shiki: {
-        themes: {
-            default: 'material-palenight'
-        },
-        langs: ['javascript', 'typescript', 'bash']
-    },
     ssr: false,
 
     tailwindcss: {
