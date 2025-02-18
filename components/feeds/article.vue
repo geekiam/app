@@ -20,7 +20,7 @@ const article = computed(() => articlesStore.selectedArticle) ;
 </script>
 
 <template>
-  <section class="container mx-auto max-h-screen overflow-visible">
+  <section class="container mx-auto max-h-screen overflow-visible min-h-screen">
     <article v-if="article" class="article-container summary">
       <div class="flex flex-col flex-grow max-w-full">
         <div v-if="article.image" class="flex-shrink-0">
@@ -54,7 +54,7 @@ const article = computed(() => articlesStore.selectedArticle) ;
   @apply prose prose-base text-base max-w-full dark:text-gray-200 text-gray-800 sm:px-1
   dark:prose-blockquote:text-orange-500 prose-blockquote:text-lg
   prose-headings:text-orange-500 prose-a:no-underline
-  prose-a:text-orange-500 dark:prose-a:text-orange-500  prose-strong:text-orange-500 dark:prose-invert;
+  prose-a:text-orange-500 dark:prose-a:text-orange-500  prose-strong:text-orange-500;
 
 
 }
