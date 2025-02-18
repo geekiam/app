@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {useArticlesStore} from "~/stores/articles";
 import {marked} from "marked";
+
 import ArticleAuthor from "~/components/feeds/article-author.vue";
 
 const articlesStore = useArticlesStore();
