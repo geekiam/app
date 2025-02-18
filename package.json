@@ -13,6 +13,7 @@
     "@iconify-json/bitcoin-icons": "^1.2.1",
     "@iconify-json/gg": "^1.2.1",
     "@iconify-json/heroicons-outline": "^1.2.0",
+    "@iconify-json/lineicons": "^1.2.4",
     "@iconify-json/material-symbols": "^1.2.4",
     "@iconify-json/simple-icons": "^1.2.18",
     "@nuxt/image": "^1.8.1",

@@ -6,7 +6,9 @@ const {emit} = useMitter();
 const articlesStore = useArticlesStore();
 
 onMounted(async () => {
-  await articlesStore.getArticles();
+  let setttings = getUserSettings()
+
+  await articlesStore.getArticles(setttings ? setttings.following : null);
 });
 
 const articles = computed(() => {

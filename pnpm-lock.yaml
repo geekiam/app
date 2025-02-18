@@ -69,6 +69,9 @@ importers:
       '@iconify-json/heroicons-outline':
         specifier: ^1.2.0
         version: 1.2.1
+      '@iconify-json/lineicons':
+        specifier: ^1.2.4
+        version: 1.2.4
       '@iconify-json/material-symbols':
         specifier: ^1.2.4
         version: 1.2.14
@@ -847,6 +850,9 @@ packages:
 
   '@iconify-json/heroicons@1.2.2':
     resolution: {integrity: sha512-qoW4pXr5kTTL6juEjgTs83OJIwpePu7q1tdtKVEdj+i0zyyVHgg/dd9grsXJQnpTpBt6/VwNjrXBvFjRsKPENg==}
+
+  '@iconify-json/lineicons@1.2.4':
+    resolution: {integrity: sha512-OKvUL14Z7CgD027OWtse56GK0T8MDDMnFw75MjOlGAgleLJBR9Uue7nSEteF5K/fLjvSKtIhjnRLsN8BC3TpLg==}
 
   '@iconify-json/material-symbols@1.2.14':
     resolution: {integrity: sha512-S0AAFFQPVr8Dkrprspz/otNjxdD3rJRXDGZjbO8a8zn8ZR5mO8jAF81lVoTfUWxPH6SCtH2lK1JQGXHGPxld7g==}
@@ -5876,6 +5882,10 @@ snapshots:
       '@iconify/types': 2.0.0
 
   '@iconify-json/heroicons@1.2.2':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/lineicons@1.2.4':
     dependencies:
       '@iconify/types': 2.0.0
 

@@ -5,7 +5,6 @@ import {useNdkStore} from "~/stores/ndk";
 import type {Article} from "~/types";
 import {useProfileStore} from "~/stores/profile";
 
-import {getUserSettings} from "~/stores/extensions";
 import {mapArticle} from "~/stores/articles/utilities";
 
 export const useArticlesStore = defineStore('articleStore', {
@@ -34,17 +33,16 @@ export const useArticlesStore = defineStore('articleStore', {
 
             this.selectedArticle = Array.from(this.articleSet).find(x => x.id === id) || null
         },
-        getArticles: async function getArticles(): Promise<void> {
+        getArticles: async function getArticles(follows: string[] | null): Promise<void> {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
-
-            let settings = getUserSettings()
-            let followSet = settings?.following ? Array.from(settings.following) : [];
 
             const subscriptionConfig: NDKFilter<NDKKind> = {
                 kinds: [NDKKind.Article],
-                authors: followSet
-
             };
+
+            if(follows !== null) {
+                subscriptionConfig.authors = follows
+            }
 
             const subscriptionOptions = {
                 closeOnEose: false,
@@ -60,6 +58,7 @@ export const useArticlesStore = defineStore('articleStore', {
                 let isDuplicate = Array.from(this.articleSet).some(existingArticle => existingArticle.id === event.id);
                 if (isDuplicate || event.publishStatus !== "success") return;
                 let profile = await event.author.fetchProfile();
+                if(profile === undefined || profile === null) return;
                 let article = mapArticle(NDKArticle.from(event), profile as NDKUserProfile);
                 this.articleSet.add(article);
             });
