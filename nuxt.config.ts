@@ -5,7 +5,9 @@ export default defineNuxtConfig({
         /* your pwa options */
     },
     shiki: {
-        theme: 'material-palenight',
+        themes: {
+            default: 'material-palenight'
+        },
         langs: ['javascript', 'typescript', 'bash']
     },
     ssr: false,
