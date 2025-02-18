@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     },
     shiki: {
         theme: 'material-palenight',
+        langs: ['javascript', 'typescript', 'bash']
     },
     ssr: false,
 
