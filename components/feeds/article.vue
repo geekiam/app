@@ -16,7 +16,7 @@ function select(id: string) {
   articlesStore.select(id);
 }
 
-const article = computed(() => articlesStore.selectedArticle) ;
+const article = computed(() => { return articlesStore.selectedArticle}) ;
 
 </script>
 
@@ -55,8 +55,6 @@ const article = computed(() => articlesStore.selectedArticle) ;
   @apply prose prose-base text-base max-w-full dark:text-gray-200 text-gray-800 sm:px-1
   dark:prose-blockquote:text-orange-500 prose-blockquote:text-lg
   prose-headings:text-orange-500 prose-a:no-underline
-  prose-a:text-orange-500 dark:prose-a:text-orange-500  prose-strong:text-orange-500 dark:prose-invert;
-
-
+  prose-a:text-orange-500 dark:prose-a:text-orange-500 prose-strong:text-orange-500 dark:prose-invert;
 }
 </style>

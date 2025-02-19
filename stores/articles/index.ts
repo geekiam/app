@@ -34,6 +34,7 @@ export const useArticlesStore = defineStore('articleStore', {
         select: function select(id: string): void {
 
             this.selectedArticle = Array.from(this.articleSet).find(x => x.id === id) || null
+            console.log(this.selectedArticle)
         },
         getArticles: async function getArticles(follows: string[] | null): Promise<void> {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
@@ -62,9 +63,7 @@ export const useArticlesStore = defineStore('articleStore', {
                 let profile = await event.author.fetchProfile();
                 if(profile === undefined || profile === null) return;
                 let author = mapAuthor(profile as NDKUserProfile);
-                console.log("author: ",author)
                 let existingAuthor = Array.from(this.authorSet).some(x => x.name === author.name);
-                console.log("existingAuthor: ", existingAuthor)
                 if(!existingAuthor){
                     this.authorSet.add(author)
                 }

@@ -5,6 +5,7 @@ import {format} from "date-fns";
 
 export function mapArticle(event: NDKArticle , profile : NDKUserProfile): Article {
     const tags = event.tags as [string, ...any[]][];
+
     return <Article>{
         id: event.id,
         pubkey: event.pubkey,
@@ -15,10 +16,11 @@ export function mapArticle(event: NDKArticle , profile : NDKUserProfile): Articl
         image: getImageFromTags(tags) || "",
         tags: getTopicTagsFromTags(event) || [],
         published: event.created_at ? format(new Date(event.created_at * 1000), 'dd MMM yyyy') : new Date(),
-        author: mapAuthor(profile)
+        author: mapAuthor(profile),
     }
 }
 export function mapAuthor(profile: NDKUserProfile) : Author {
+
 
     return <Author>{
         name: profile.name,
@@ -31,7 +33,9 @@ export function mapAuthor(profile: NDKUserProfile) : Author {
         about: profile.about,
     }
 }
-
+function checkName(name: string): string {
+   return name || "Anonymous";
+}
 function getTitleFromTags(tags: [string, ...string[]][]): string {
     const titleTag = tags.find(tag => tag[0] === "title");
     return titleTag ? titleTag[1] : "";

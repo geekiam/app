@@ -8,7 +8,6 @@ const props = defineProps({
   }
 })
 
-let author = props.author;
 </script>
 
 <template>
