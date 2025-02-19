@@ -2,10 +2,10 @@ import {defineStore} from "pinia";
 import type {NDKFilter, NDKUserProfile} from "@nostr-dev-kit/ndk";
 import {NDKArticle, NDKEvent, NDKKind} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/ndk";
-import type {Article} from "~/types";
+import type {Article, Author} from "~/types";
 import {useProfileStore} from "~/stores/profile";
 
-import {mapArticle} from "~/stores/articles/utilities";
+import {mapArticle, mapAuthor} from "~/stores/articles/utilities";
 
 export const useArticlesStore = defineStore('articleStore', {
     state: () => ({
@@ -13,11 +13,13 @@ export const useArticlesStore = defineStore('articleStore', {
         profileStore: useProfileStore(),
         articleSet: new Set<Article>,
         selectedArticle: null as Article | null,
+        authorSet: new Set<Author>(),
 
     }),
     getters: {
         articles: state => state.articleSet,
         article: state => state.selectedArticle,
+        authors: state => state.authorSet
     },
     actions: {
         fetchFeed: async function fetchUserFeed(kinds: NDKKind[]): Promise<Set<NDKEvent>> {
@@ -59,6 +61,13 @@ export const useArticlesStore = defineStore('articleStore', {
                 if (isDuplicate || event.publishStatus !== "success") return;
                 let profile = await event.author.fetchProfile();
                 if(profile === undefined || profile === null) return;
+                let author = mapAuthor(profile as NDKUserProfile);
+                console.log("author: ",author)
+                let existingAuthor = Array.from(this.authorSet).some(x => x.name === author.name);
+                console.log("existingAuthor: ", existingAuthor)
+                if(!existingAuthor){
+                    this.authorSet.add(author)
+                }
                 let article = mapArticle(NDKArticle.from(event), profile as NDKUserProfile);
                 this.articleSet.add(article);
             });

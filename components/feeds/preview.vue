@@ -6,25 +6,53 @@ const {emit} = useMitter();
 const articlesStore = useArticlesStore();
 
 onMounted(async () => {
-  let setttings = getUserSettings()
-
-  await articlesStore.getArticles(setttings ? setttings.following : null);
+  let settings = getUserSettings()
+  await articlesStore.getArticles(settings ? settings.following : null);
 });
-
+function select(id: string) {
+  emit('selectedArticle', id);
+}
+const selected = ref<string | undefined>(undefined)
 const articles = computed(() => {
-  return [...articlesStore.articles].sort((a, b) => {
+  let filteredArticles = [...articlesStore.articles];
+
+  // Filter by selected author if one is chosen
+  if (selected.value) {
+    filteredArticles = filteredArticles.filter(article =>
+        article.author.name === selected.value
+    );
+  }
+
+  // Sort by date
+  return filteredArticles.sort((a, b) => {
     const dateA = new Date(a.published).getTime();
     const dateB = new Date(b.published).getTime();
     return dateB - dateA;
   });
 });
 
-function select(id: string) {
-  emit('selectedArticle', id);
-}
+
+
+const authors = Array.from(articlesStore.authors)
+
+const options = computed(() =>
+    authors.map(author => ({
+      label: author.displayName,
+      value: author.name,
+    }))
+)
+
+
+
 </script>
 <template>
   <section class="container mx-auto max-h-screen overflow-y-visible overflow-x-hidden pt-1 min-h-screen">
+    <USelect
+        v-model="selected"
+        :options="options"
+        placeholder="All"
+        class=" mb-2 mx-auto w-auto m-2"  />
+
     <article v-for="article in articles" :key="article.id" class="border-2 border-gray-700 rounded-lg mb-2 shadow-md">
       <div class="article-container summary" @click="select(article.id)">
         <div class="flex flex-col px-1 lg:w-full">
