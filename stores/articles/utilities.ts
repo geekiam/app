@@ -33,9 +33,7 @@ export function mapAuthor(profile: NDKUserProfile) : Author {
         about: profile.about,
     }
 }
-function checkName(name: string): string {
-   return name || "Anonymous";
-}
+
 function getTitleFromTags(tags: [string, ...string[]][]): string {
     const titleTag = tags.find(tag => tag[0] === "title");
     return titleTag ? titleTag[1] : "";
