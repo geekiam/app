@@ -12,7 +12,7 @@ const authors = computed(() => Array.from(articlesStore.authors))
 
 const options = computed(() =>
     authors.value.map(author => ({
-      label: author.displayName,
+      label: `${author.name} - ${author.displayName}`,
       value: author.name,
     }))
 )
