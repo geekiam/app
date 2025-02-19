@@ -1,49 +1,46 @@
 <script setup lang="ts">
-import {marked} from "marked";
-import {useArticlesStore} from '~/stores/articles';
+import { ref, computed } from 'vue'
+import { marked } from "marked"
+import { useArticlesStore } from '~/stores/articles'
 
-const {emit} = useMitter();
-const articlesStore = useArticlesStore();
-
-onMounted(async () => {
-  let settings = getUserSettings()
-  await articlesStore.getArticles(settings ? settings.following : null);
-});
-function select(id: string) {
-  emit('selectedArticle', id);
-}
+const { emit } = useMitter()
+const articlesStore = useArticlesStore()
 const selected = ref<string | undefined>(undefined)
-const articles = computed(() => {
-  let filteredArticles = [...articlesStore.articles];
 
-  // Filter by selected author if one is chosen
-  if (selected.value) {
-    filteredArticles = filteredArticles.filter(article =>
-        article.author.name === selected.value
-    );
-  }
-
-  // Sort by date
-  return filteredArticles.sort((a, b) => {
-    const dateA = new Date(a.published).getTime();
-    const dateB = new Date(b.published).getTime();
-    return dateB - dateA;
-  });
-});
-
-
-
-const authors = Array.from(articlesStore.authors)
+// Make authors reactive by moving it into a computed property
+const authors = computed(() => Array.from(articlesStore.authors))
 
 const options = computed(() =>
-    authors.map(author => ({
+    authors.value.map(author => ({
       label: author.displayName,
       value: author.name,
     }))
 )
 
+onMounted(async () => {
+  let settings = getUserSettings()
+  await articlesStore.getArticles(settings ? settings.following : null)
+})
 
+function select(id: string) {
+  emit('selectedArticle', id)
+}
 
+const articles = computed(() => {
+  let filteredArticles = [...articlesStore.articles]
+
+  if (selected.value) {
+    filteredArticles = filteredArticles.filter(article =>
+        article.author.name === selected.value
+    )
+  }
+
+  return filteredArticles.sort((a, b) => {
+    const dateA = new Date(a.published).getTime()
+    const dateB = new Date(b.published).getTime()
+    return dateB - dateA
+  })
+})
 </script>
 <template>
   <section class="container mx-auto max-h-screen overflow-y-visible overflow-x-hidden pt-1 min-h-screen">
