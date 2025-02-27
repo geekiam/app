@@ -2,7 +2,7 @@
 import {useFollowingStore} from "~/stores/following";
 import {marked} from "marked";
 
-import ArticleAuthor from "~/components/feeds/article-author.vue";
+import ViewAuthor from "~/components/articles/view-author.vue";
 
 const articlesStore = useFollowingStore();
 const {listen} = useMitter()
@@ -37,7 +37,7 @@ const article = computed(() => articlesStore.selectedArticle) ;
             <div v-html="marked.parse(article.content)" ></div>
           </div>
         </div>
-        <article-author :author="article.author" />
+        <view-author :author="article.author" />
       </div>
     </article>
   </section>

@@ -12,11 +12,11 @@ definePageMeta({
 <template>
   <nuxt-layout>
     <template #list >
-      <feeds-preview />
+      <articles-list />
     </template>
 
   <template #content>
-     <feeds-article />
+     <articles-view />
   </template>
 
   </nuxt-layout>
