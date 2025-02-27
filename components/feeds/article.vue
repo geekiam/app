@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import {useArticlesStore} from "~/stores/articles";
+import {useFollowingStore} from "~/stores/following";
 import {marked} from "marked";
 
 import ArticleAuthor from "~/components/feeds/article-author.vue";
 
-const articlesStore = useArticlesStore();
+const articlesStore = useFollowingStore();
 const {listen} = useMitter()
 
 listen('selectedArticle', e => select(e))
@@ -15,8 +15,7 @@ onMounted(async () => {
 function select(id: string) {
   articlesStore.select(id);
 }
-
-const article = computed(() => { return articlesStore.selectedArticle}) ;
+const article = computed(() => articlesStore.selectedArticle) ;
 
 </script>
 

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { marked } from "marked"
-import { useArticlesStore } from '~/stores/articles'
+import { useFollowingStore } from '~/stores/following'
 
 const { emit } = useMitter()
-const articlesStore = useArticlesStore()
+const articlesStore = useFollowingStore()
 const selected = ref<string | undefined>(undefined)
 
 // Make authors reactive by moving it into a computed property
@@ -12,14 +12,16 @@ const authors = computed(() => Array.from(articlesStore.authors))
 
 const options = computed(() =>
     authors.value.map(author => ({
-      label: `${author.name} ${author.displayName !== undefined || true|| author.displayName !== ''? `- ${author.displayName}` : ''}`,
+      label: `${author.name} ${author.displayName !== undefined || true ? `- ${author.displayName}` : ''}`,
       value: author.name,
     }))
 )
 
 onMounted(async () => {
   let settings = getUserSettings()
-  await articlesStore.getArticles(settings ? settings.following : null)
+  await articlesStore.feed(settings ? settings.following : null)
+
+
 })
 
 function select(id: string) {

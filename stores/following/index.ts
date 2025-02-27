@@ -1,42 +1,30 @@
 import {defineStore} from "pinia";
 import type {NDKFilter, NDKUserProfile} from "@nostr-dev-kit/ndk";
-import {NDKArticle, NDKEvent, NDKKind} from "@nostr-dev-kit/ndk";
+import {NDKArticle, NDKKind} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/ndk";
 import type {Article, Author} from "~/types";
 import {useProfileStore} from "~/stores/profile";
 
-import {mapArticle, mapAuthor} from "~/stores/articles/utilities";
+import {mapArticle, mapAuthor} from "~/stores/following/utilities";
 
-export const useArticlesStore = defineStore('articleStore', {
+export const useFollowingStore = defineStore('followingStore', {
     state: () => ({
         ndkStore: useNdkStore(),
         profileStore: useProfileStore(),
         articleSet: new Set<Article>,
         selectedArticle: null as Article | null,
         authorSet: new Set<Author>(),
-
     }),
     getters: {
-        articles: state => state.articleSet,
-        article: state => state.selectedArticle,
-        authors: state => state.authorSet
+        articles: state => state.articleSet as Set<Article>,
+        article: state => state.selectedArticle as Article,
+        authors: state => state.authorSet as Set<Author>,
     },
     actions: {
-        fetchFeed: async function fetchUserFeed(kinds: NDKKind[]): Promise<Set<NDKEvent>> {
-            if (!this.ndkStore.initialized) await this.ndkStore.initialize()
-            const filter: NDKFilter = {
-                kinds: kinds,
-                limit: 50,
-
-            };
-            return await this.ndkStore.ndk.fetchEvents(filter);
-        },
         select: function select(id: string): void {
-
             this.selectedArticle = Array.from(this.articleSet).find(x => x.id === id) || null
-            console.log(this.selectedArticle)
         },
-        getArticles: async function getArticles(follows: string[] | null): Promise<void> {
+        feed: async function getArticles(follows: string[] | null): Promise<void> {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
 
             const subscriptionConfig: NDKFilter<NDKKind> = {
