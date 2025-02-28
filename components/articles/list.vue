@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue'
 import { marked } from "marked"
 import { useFollowingStore } from '~/stores/following'
-
+import ListAuthor from "~/components/articles/list-author.vue";
 
 const { emit } = useMitter()
 const articlesStore = useFollowingStore()
@@ -57,7 +57,7 @@ const articles = computed(() => {
       <div class="article-container summary" @click="select(article.id)">
         <div class="flex flex-col px-1 lg:w-full">
           <div class="flex flex-row items-center justify-start gap-1 pt-2">
-            <list-author :author="article.author" lazy="true" class="mr-1"/>
+            <list-author :author="article.author" lazy="true" class="mr-1" />
             <span class="text-xs text-gray-400">{{ article.published }}</span>
           </div>
           <div class="flex flex-col gap-1">

@@ -8,6 +8,7 @@ import {useProfileStore} from "~/stores/profile";
 import {mapArticle, mapAuthor} from "~/stores/following/utilities";
 
 export const useFollowingStore = defineStore('followingStore', {
+
     state: () => ({
         ndkStore: useNdkStore(),
         profileStore: useProfileStore(),

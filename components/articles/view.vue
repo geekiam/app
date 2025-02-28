@@ -10,12 +10,12 @@ const {listen} = useMitter()
 listen('selectedArticle', e => select(e))
 
 onMounted(async () => {
-
+   console.log("View On Mounted")
 })
 function select(id: string) {
   articlesStore.select(id);
 }
-const article = computed(() => articlesStore.selectedArticle) ;
+const article = computed(() => articlesStore.selectedArticle);
 
 </script>
 
@@ -33,8 +33,8 @@ const article = computed(() => articlesStore.selectedArticle) ;
           </div>
         </div>
         <div>
-          <div class="break-all mt-2 lg:mt-4 summary justify-start">
-            <div v-html="marked.parse(article.content)" ></div>
+          <div class="break-all mt-2 lg:mt-4 justify-evenly">
+            <div v-html="marked.parse(article.content)" class="summary break-all p-3 m-1" ></div>
           </div>
         </div>
         <view-author :author="article.author" />
@@ -54,6 +54,6 @@ const article = computed(() => articlesStore.selectedArticle) ;
   @apply prose prose-base text-base max-w-full dark:text-gray-200 text-gray-800 sm:px-1
   dark:prose-blockquote:text-orange-500 prose-blockquote:text-lg
   prose-headings:text-orange-500 prose-a:no-underline
-  prose-a:text-orange-500 dark:prose-a:text-orange-500 prose-strong:text-orange-500 dark:prose-invert;
+  prose-a:text-orange-500 dark:prose-a:text-orange-500 prose-strong:text-orange-500 dark:prose-invert text-justify;
 }
 </style>
