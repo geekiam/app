@@ -1,7 +1,14 @@
 <script setup lang="ts">
 
+import {useAuthStore} from "~/stores/auth";
+
 const {listen} = useMitter()
 import {Dialog, DialogPanel, TransitionChild, TransitionRoot,} from '@headlessui/vue'
+import {useProfileStore} from "~/stores/profile";
+import type {Profile} from "~/types";
+const authStore = useAuthStore();
+const profileStore = useProfileStore();
+const profile =  await profileStore.getProfile(<string>authStore.pubkey) as Profile;
 listen('selectedArticle', e => select(e))
 
 const sidebarOpen = ref(false)
@@ -60,7 +67,7 @@ function select(id: string) : boolean {
 
     <!-- Static sidebar for desktop -->
     <div class="hidden xl:fixed xl:inset-y-0 xl:z-50 xl:flex xl:w-q6 xl:flex-col">
-      <!-- Sidebar component, swap this element with another sidebar if you like -->
+      <!-- Sidebar component -->
       <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-800/10 px-6 ring-1 ring-white/5">
         <div class="flex h-16 shrink-0 items-center">
           <nuxt-link to="/">
@@ -81,6 +88,13 @@ function select(id: string) : boolean {
               name="streamline:interface-setting-menu-parallel-hamburger-circle-navigation-parallel-hamburger-buttonmenu-circle"
               class="size-5" aria-hidden="true"/>
         </button>
+       <!-- Header section -->
+        <div class="block md:hidden  items-center justify-end ml-auto ">
+                  <nuxt-link to="/settings/profile" class="flex items-center gap-x-4 hover:bg-gray-700 rounded-md w-full group">
+                  <LazyUAvatar class=" rounded-full bg-gray-700 group-hover:bg-gray-700" :src="profile.user.avatar" :alt="profile.user.name" :title="profile.user.name" />
+                  <span class="sr-only">Your profile</span>
+                </nuxt-link>
+        </div>
       </div>
       <div>
         <div class="lg:hidden">

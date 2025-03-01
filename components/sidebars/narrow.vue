@@ -23,7 +23,7 @@ const profile =  await profileStore.getProfile(<string>authStore.pubkey) as Prof
             </li>
           </ul>
         </li>
-        <li class="-mx-6 absolute bottom-0 w-full">
+        <li class="hidden md:block -mx-6 absolute bottom-0 w-full">
           <nuxt-link to="/settings/profile" class="flex items-center gap-x-4 px-6 py-3 hover:bg-gray-700 rounded-md w-full group">
             <LazyUAvatar class=" rounded-full bg-gray-700 group-hover:bg-gray-700" :src="profile.user.avatar" :alt="profile.user.name" :title="profile.user.name" />
           </nuxt-link>
