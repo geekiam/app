@@ -37,7 +37,6 @@ export const useNdkStore = defineStore('ndkStore', {
                 this.ndkInstance = createNdkInstance(this.explicitRelayUrls, this.defaultOutboxRelayUrls)
                 await this.ndkInstance.connect()
                 this.initialized = true
-
             }
         },
         async close(): Promise<void> {

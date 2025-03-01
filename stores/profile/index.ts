@@ -3,22 +3,7 @@ import type {NDKUser, NDKUserProfile} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/ndk";
 import {useAuthStore} from "~/stores/auth"
 import type {Profile} from "~/types";
-
-function mapUserToProfile(user: NDKUser): Profile {
-    const profile = user.profile || {} as NDKUserProfile;
-    return <Profile>{
-        user: {
-            name: profile.name || '',
-            avatar: profile.image || '',
-            npub: user.npub || ''
-        },
-        about: profile.about || '',
-        website: profile.website || '',
-        displayName: profile.displayName || '',
-        nip05: profile.nip05 || '',
-        lightning: profile.lud16 || ''
-    };
-}
+import {mapUserToProfile} from "~/stores/profile/utilities";
 
 export const useProfileStore = defineStore('profileStore', {
 
@@ -44,7 +29,7 @@ export const useProfileStore = defineStore('profileStore', {
             }
             return null;
         },
-        getAuthor: async function getAuthor(pubKey: string): Promise<Profile | null> {
+        getAuthor: async function (pubKey: string): Promise<Profile | null> {
 
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
 

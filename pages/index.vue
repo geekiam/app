@@ -4,7 +4,6 @@ definePageMeta({
   layout: 'default',
   middleware: 'auth',
   title: 'Home'
-
  })
 
 </script>

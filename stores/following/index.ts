@@ -25,7 +25,7 @@ export const useFollowingStore = defineStore('followingStore', {
         select: function select(id: string): void {
             this.selectedArticle = Array.from(this.articleSet).find(x => x.id === id) || null
         },
-        feed: async function getArticles(follows: string[] | null): Promise<void> {
+        feed: async function feed(follows: string[] | null): Promise<void> {
             if (!this.ndkStore.initialized) await this.ndkStore.initialize()
 
             const subscriptionConfig: NDKFilter<NDKKind> = {
