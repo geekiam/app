@@ -13,7 +13,7 @@ experience with full Nostr integration.
 </div>
 <div align="center">
     <a href="https://github.com/geekiam/app/pulse">
-      <img alt="Last commit" src="https://img.shields.io/github/last-commit/geekiam/app?style=for-the-badge&logo=starship&color=FFAC1C&logoColor=D9E0EE&labelColor=302D41"/>
+      <img alt="Last commit" src="https://img.shields.io/github/last-commit/geekiam/app?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"/>
     </a>
     <a href="https://github.com/geekiam/app/stargazers">
       <img alt="Stars" src="https://img.shields.io/github/stars/geekiam/app?style=for-the-badge&logo=starship&color=c69ff5&logoColor=D9E0EE&labelColor=FFAC1C" />
