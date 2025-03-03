@@ -22,7 +22,6 @@
     "nuxt": "^3.15.4",
     "nuxt-fathom": "^0.0.2",
     "nuxt-headlessui": "^1.1.4",
-    "nuxt-shiki": "0.3.0",
     "tailwindcss": "^3.2.4"
   },
   "dependencies": {

@@ -2,7 +2,10 @@
 import {useFollowingStore} from "~/stores/articles/followingStore";
 
 const store = useFollowingStore()
-
+onMounted(async () => {
+  let settings = getUserSettings()
+  await store.feed(settings ? settings.following : null)
+})
 definePageMeta({
   layout: 'default',
   middleware: 'auth',

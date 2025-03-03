@@ -26,12 +26,12 @@ const options = computed(() =>
     }))
 )
 
-onMounted(async () => {
+/*onMounted(async () => {
   let settings = getUserSettings()
   await articlesStore.feed(settings ? settings.following : null)
 
 
-})
+})*/
 
 function select(id: string) {
   emit('selectedArticle', id)

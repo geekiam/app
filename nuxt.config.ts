@@ -1,6 +1,5 @@
 export default defineNuxtConfig({
-    modules: ['@pinia/nuxt', '@nuxt/image', '@nuxt/ui', '@vite-pwa/nuxt', 'nuxt-mitter', '@vee-validate/nuxt', 'nuxt-fathom', 'nuxt-shiki'],
-
+    modules: ['@pinia/nuxt', '@nuxt/image', '@nuxt/ui', '@vite-pwa/nuxt', 'nuxt-mitter', '@vee-validate/nuxt', 'nuxt-fathom'],
     pwa: {
         /* your pwa options */
     },

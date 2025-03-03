@@ -4,7 +4,7 @@ import {NDKArticle, NDKKind} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/ndk";
 import type {Article, Author} from "~/types";
 import {useProfileStore} from "~/stores/profile";
-import {IStore} from "~/types/IStore";
+import type {IStore} from "~/types";
 import {mapArticle, mapAuthor} from "~/stores/articles/utilities";
 
 export const useFollowingStore = defineStore('followingStore', {
