@@ -11,7 +11,7 @@
 experience with full Nostr integration.
 </p>
 </div>
-<div style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
+<div align="center" style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
     <a href="https://github.com/geekiam/app/pulse">
       <img alt="Last commit" src="https://img.shields.io/github/last-commit/geekiam/app?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"/>
     </a>
