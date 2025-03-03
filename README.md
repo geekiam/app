@@ -22,7 +22,7 @@ experience with full Nostr integration.
       <img alt="Issues" src="https://img.shields.io/github/issues/geekiam/app?style=for-the-badge&logo=bilibili&color=F5E0DC&logoColor=D9E0EE&labelColor=302D41" />
     </a>
     <a href="https://github.com/geekiam/app">
-      <img alt="Repo size" src="https://img.shields.io/github/repo-size/geekiam/app?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
+      <img alt="Repo size" src="https://img.shields.io/github/repo-size/geekiam/app?color=%23FFAC1C&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
     </a>
 </div>
 
