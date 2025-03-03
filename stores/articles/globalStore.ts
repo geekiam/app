@@ -30,7 +30,7 @@ export const useGlobalStore = defineStore('globalStore',
                 if (!this.ndkStore.initialized) await this.ndkStore.initialize()
 
                 const subscriptionConfig: NDKFilter<NDKKind> = {
-                    kinds: [NDKKind.Article],
+                    kinds: [NDKKind.Article]
                 };
 
                 const subscription = this.ndkStore.ndk.subscribe(subscriptionConfig, subscriptionOptions);
