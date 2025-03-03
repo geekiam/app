@@ -1,10 +1,18 @@
 <script setup lang="ts">
-import {useFollowingStore} from "~/stores/articles/followingStore";
+
 import {marked} from "marked";
 
 import ViewAuthor from "~/components/articles/view-author.vue";
+import type {IStore} from "~/types";
 
-const articlesStore = useFollowingStore();
+
+const props = defineProps({
+  store: {
+    type:  Object as () => IStore,
+    required: true
+  }
+})
+const articlesStore = props.store;
 const {listen} = useMitter()
 
 listen('selectedArticle', e => select(e))

@@ -57,3 +57,8 @@ function getWebsiteLink(website: string | undefined): string {
     if(website.startsWith("https://")|| website.startsWith("http://")) return website;
     return "https://" + website;
 }
+export const subscriptionOptions = {
+    closeOnEose: false,
+    groupable: false,
+    includeSelf: true,
+}

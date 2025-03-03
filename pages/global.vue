@@ -1,16 +1,15 @@
 <script lang="ts" setup>
-import {useFollowingStore} from "~/stores/articles/followingStore";
+import {useGlobalStore} from "~/stores/articles/globalStore";
 
 definePageMeta({
   layout: 'default',
   middleware: 'auth',
-  title: 'Home'
+  title: 'Global Feed'
 })
 
-const store = useFollowingStore()
+const store = useGlobalStore()
 onMounted(async () => {
-  let settings = getUserSettings()
-  await store.feed(null)
+  await store.feed()
 })
 
 
@@ -22,11 +21,10 @@ onMounted(async () => {
       <articles-list :store="store" />
     </template>
 
-  <template #content>
-     <articles-view :store="store" />
-  </template>
+    <template #content>
+      <articles-view :store="store" />
+    </template>
 
   </nuxt-layout>
 
 </template>
-
