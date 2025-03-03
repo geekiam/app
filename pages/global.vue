@@ -9,7 +9,7 @@ definePageMeta({
 
 const store = useGlobalStore()
 onMounted(async () => {
-  await store.feed()
+  await store.feed(null)
 })
 
 
