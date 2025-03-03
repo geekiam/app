@@ -13,16 +13,16 @@ experience with full Nostr integration.
 </div>
 <div align="center">
     <a href="https://github.com/geekiam/app/pulse">
-      <img alt="Last commit" src="https://img.shields.io/github/last-commit/geekiam/app?style=for-the-badge&logo=starship&color=#FFAC1C&logoColor=D9E0EE&labelColor=302D41"/>
+      <img alt="Last commit" src="https://img.shields.io/github/last-commit/geekiam/app?style=for-the-badge&logo=starship&color=FFAC1C&logoColor=D9E0EE&labelColor=302D41"/>
     </a>
     <a href="https://github.com/geekiam/app/stargazers">
-      <img alt="Stars" src="https://img.shields.io/github/stars/geekiam/app?style=for-the-badge&logo=starship&color=c69ff5&logoColor=D9E0EE&labelColor=302D41" />
+      <img alt="Stars" src="https://img.shields.io/github/stars/geekiam/app?style=for-the-badge&logo=starship&color=c69ff5&logoColor=D9E0EE&labelColor=FFAC1C" />
     </a>
     <a href="https://github.com/geekiam/app/issues">
-      <img alt="Issues" src="https://img.shields.io/github/issues/geekiam/app?style=for-the-badge&logo=bilibili&color=F5E0DC&logoColor=D9E0EE&labelColor=302D41" />
+      <img alt="Issues" src="https://img.shields.io/github/issues/geekiam/app?style=for-the-badge&logo=bilibili&color=F5E0DC&logoColor=D9E0EE&labelColor=FFAC1C" />
     </a>
     <a href="https://github.com/geekiam/app">
-      <img alt="Repo size" src="https://img.shields.io/github/repo-size/geekiam/app?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
+      <img alt="Repo size" src="https://img.shields.io/github/repo-size/geekiam/app?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=FFAC1C" />
     </a>
 </div>
 
