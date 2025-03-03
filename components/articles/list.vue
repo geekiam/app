@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { marked } from "marked"
-import { useFollowingStore } from '~/stores/following'
 import ListAuthor from "~/components/articles/list-author.vue";
+import type {IStore} from "~/types";
+
+
+const props = defineProps({
+  store: {
+    type:  Object as () => IStore,
+    required: true
+  }
+})
 
 const { emit } = useMitter()
-const articlesStore = useFollowingStore()
+const articlesStore = props.store;
 const selected = ref<string | undefined>(undefined)
 
 // Make authors reactive by moving it into a computed property

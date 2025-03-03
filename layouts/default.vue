@@ -1,11 +1,12 @@
 <script setup lang="ts">
-
 import {useAuthStore} from "~/stores/auth";
-
-const {listen} = useMitter()
 import {Dialog, DialogPanel, TransitionChild, TransitionRoot,} from '@headlessui/vue'
 import {useProfileStore} from "~/stores/profile";
 import type {Profile} from "~/types";
+
+const {listen} = useMitter()
+
+
 const authStore = useAuthStore();
 const profileStore = useProfileStore();
 const profile =  await profileStore.getProfile(<string>authStore.pubkey) as Profile;

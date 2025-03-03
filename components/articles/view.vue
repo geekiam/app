@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {useFollowingStore} from "~/stores/following";
+import {useFollowingStore} from "~/stores/articles/followingStore";
 import {marked} from "marked";
 
 import ViewAuthor from "~/components/articles/view-author.vue";
@@ -12,8 +12,8 @@ listen('selectedArticle', e => select(e))
 onMounted(async () => {
    console.log("View On Mounted")
 })
-function select(id: string) {
-  articlesStore.select(id);
+async function select(id: string) {
+  await articlesStore.select(id);
 }
 const article = computed(() => articlesStore.selectedArticle);
 

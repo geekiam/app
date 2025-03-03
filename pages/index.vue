@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import {useFollowingStore} from "~/stores/articles/followingStore";
+
+const store = useFollowingStore()
 
 definePageMeta({
   layout: 'default',
@@ -11,7 +14,7 @@ definePageMeta({
 <template>
   <nuxt-layout>
     <template #list >
-      <articles-list />
+      <articles-list :store="store" />
     </template>
 
   <template #content>

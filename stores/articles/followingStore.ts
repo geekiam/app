@@ -4,8 +4,8 @@ import {NDKArticle, NDKKind} from "@nostr-dev-kit/ndk";
 import {useNdkStore} from "~/stores/ndk";
 import type {Article, Author} from "~/types";
 import {useProfileStore} from "~/stores/profile";
-
-import {mapArticle, mapAuthor} from "~/stores/following/utilities";
+import {IStore} from "~/types/IStore";
+import {mapArticle, mapAuthor} from "~/stores/articles/utilities";
 
 export const useFollowingStore = defineStore('followingStore', {
 
@@ -22,7 +22,7 @@ export const useFollowingStore = defineStore('followingStore', {
         authors: state => state.authorSet as Set<Author>,
     },
     actions: {
-        select: function select(id: string): void {
+        select: async function select(id: string): Promise<void> {
             this.selectedArticle = Array.from(this.articleSet).find(x => x.id === id) || null
         },
         feed: async function feed(follows: string[] | null): Promise<void> {
@@ -61,5 +61,5 @@ export const useFollowingStore = defineStore('followingStore', {
             });
         }
     }
-})
+}) as unknown as () => IStore
 

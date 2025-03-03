@@ -44,3 +44,16 @@ export interface Article {
     published: Date;
     author: Author;
 }
+export interface IStore {
+    articleSet: Set<Article>;
+    selectedArticle: Article | null;
+    authorSet: Set<Author>;
+
+    readonly  articles: Set<Article>;
+    readonly article: Article;
+    readonly authors:  Set<Author>;
+
+    select(id: string): Promise<void>;
+    feed(follows: string[] | null): Promise<void>;
+
+}
