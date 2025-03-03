@@ -26,6 +26,8 @@ experience with full Nostr integration.
     </a>
 </div>
 
+
+
 <p style="text-align: left">
 Nostr is a decentralized, open-source, and censorship-resistant social network protocol. It allows users to create and 
 share content in the form of posts, similar to traditional social media platforms, but with a focus on decentralization, 
