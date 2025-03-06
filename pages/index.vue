@@ -9,8 +9,8 @@ definePageMeta({
 
 const store = useFollowingStore()
 onMounted(async () => {
-  let settings = getUserSettings()
-  await store.feed(settings.following)
+  const settings = getUserSettings()
+  await store.feed(settings?.following ?? null)
 })
 
 
