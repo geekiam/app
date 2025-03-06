@@ -106,8 +106,8 @@ function select(id: string) : boolean {
                           leave-from="translate-x-0" leave-to="translate-x-full">
             <section v-show="show" id="content"
                      class="lg:block w-full lg:w-3/4 fixed lg:inset-y-0 inset-0 right-0 border border-solid border-gray-700 p-2 h-full min-w-0 flex-col overflow-y-auto dark:bg-gray-800 bg-gray-100 dark:text-gray-100 z-50">
-                 <button class="absolute top-2 right-2" @click="show = false">
-                <Icon name="material-symbols:cancel" class="text-white h-6 w-6"/>
+                 <button class="absolute top-2 left-2 mb-3" @click="show = false">
+                <Icon name="material-symbols:arrow-circle-left-outline" class="text-white h-10 w-10 mb-10"/>
               </button>
               <slot name="content" />
             </section>
