@@ -83,6 +83,7 @@ function select(id: string) : boolean {
       <!-- Sticky search header -->
       <div
           class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-6 border-b border-white/5 bg-gray-800 px-4 shadow-sm sm:px-6 lg:px-8">
+
         <button type="button" class="-m-2.5 p-2.5 text-white xl:hidden" @click="sidebarOpen = true">
           <span class="sr-only">Open sidebar</span>
           <Icon
@@ -96,6 +97,7 @@ function select(id: string) : boolean {
                   <span class="sr-only">Your profile</span>
                 </nuxt-link>
         </div>
+
       </div>
       <div>
         <div class="lg:hidden">
@@ -106,10 +108,11 @@ function select(id: string) : boolean {
                           leave-from="translate-x-0" leave-to="translate-x-full">
             <section v-show="show" id="content"
                      class="lg:block w-full lg:w-3/4 fixed lg:inset-y-0 inset-0 right-0 border border-solid border-gray-700 p-2 h-full min-w-0 flex-col overflow-y-auto dark:bg-gray-800 bg-gray-100 dark:text-gray-100 z-50">
-                 <button class="absolute top-2 left-2 mb-3" @click="show = false">
-                <Icon name="material-symbols:arrow-circle-left-outline" class="text-white h-10 w-10 mb-10"/>
+                 <button class="absolute top-2 left-2" @click="show = false">
+                <Icon name="material-symbols:arrow-circle-left-outline" class="text-white h-10 w-10 "/>
               </button>
-              <slot name="content" />
+              <div class="mt-4"> <slot name="content" /></div>
+
             </section>
           </TransitionRoot>
         </div>
