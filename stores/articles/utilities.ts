@@ -21,7 +21,6 @@ export function mapArticle(event: NDKArticle , profile : NDKUserProfile): Articl
 }
 export function mapAuthor(profile: NDKUserProfile) : Author {
 
-
     return <Author>{
         name: profile.name,
         avatar: profile.image,

@@ -1,35 +1,36 @@
+
 title = "geekiam netlify deployment configuration file"
 
 [build]
-    publish = "dist"
-    command = "pnpm run build"
+publish = "dist"
+command = "pnpm run build"
 
 [dev]
-    framework="nuxt"
-    command = "pnpm run dev" # Command to start your dev server
-    port= 3850
-    publish = "dist" # The path to your static content folder
-    autoLaunch = true # a Boolean value that determines if Netlify Dev launches the local server address in your browser
+framework="nuxt"
+command = "pnpm run dev" # Command to start your dev server
+port= 3850
+publish = "dist" # The path to your static content folder
+autoLaunch = true # a Boolean value that determines if Netlify Dev launches the local server address in your browser
 
 [build.environment]
-    NODE_VERSION = "20.12.0"
+NODE_VERSION = "20.12.0"
 
 [[redirects]]
-    from = "/*"
-    to = "/index.html"
-    status = 200
+from = "/*"
+to = "/index.html"
+status = 200
 
 [[headers]]
-    for = "/manifest.webmanifest"
+for = "/manifest.webmanifest"
 [headers.values]
-    Content-Type = "application/manifest+json"
+Content-Type = "application/manifest+json"
 
 [[headers]]
-    for = "/assets/*"
+for = "/assets/*"
 [headers.values]
-    cache-control = '''
+cache-control = '''
         max-age=31536000,
         immutable
         '''
 [context.branch-deploy]
-    command = "pnpm run build"
+command = "pnpm run build"

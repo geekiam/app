@@ -10,18 +10,18 @@ export default defineNuxtConfig({
         configPath: 'tailwind.config',
     },
 
-    image: {
-        provider: 'cloudinary',
-        cloudinary: {
-            baseURL: 'https://res.cloudinary.com/geekiam-io/image/upload/'
-        }
-    },
+  image: {
+      provider: 'cloudinary',
+      cloudinary: {
+          baseURL: 'https://res.cloudinary.com/geekiam-io/image/upload/'
+      }
+  },
 
-    fathom: {
-        siteId: process.env.fathom_analytics_id
-    },
+  fathom: {
+      siteId: process.env.fathom_analytics_id
+  },
 
-    mitt: {
-        types: './types/event.d.ts'
-    }
+  mitt: {
+      types: './types/event.d.ts'
+  }
 })
