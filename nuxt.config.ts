@@ -1,10 +1,12 @@
 export default defineNuxtConfig({
-    modules: ['@pinia/nuxt', '@nuxt/image', '@nuxt/ui', '@vite-pwa/nuxt', 'nuxt-mitter', '@vee-validate/nuxt', 'nuxt-fathom'],
+    modules: ['@pinia/nuxt', '@nuxt/image', '@nuxt/ui', '@vite-pwa/nuxt', 'nuxt-mitter', '@vee-validate/nuxt', 'nuxt-fathom', 'nuxt-headlessui'],
     pwa: {
         /* your pwa options */
     },
     ssr: false,
-
+    headlessui: {
+        prefix: 'Headless'
+    },
     tailwindcss: {
         cssPath: '~/assets/css/tailwind.css',
         configPath: 'tailwind.config',

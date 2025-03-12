@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import {useAuthStore} from "~/stores/auth";
-import {Dialog, DialogPanel, TransitionChild, TransitionRoot,} from '@headlessui/vue'
+
 import {useProfileStore} from "~/stores/profile";
 import type {Profile} from "~/types";
 
 const {listen} = useMitter()
-
-
 const authStore = useAuthStore();
 const profileStore = useProfileStore();
 const profile =  await profileStore.getProfile(<string>authStore.pubkey) as Profile;
@@ -27,21 +25,21 @@ function select(id: string) : boolean {
   <html class="h-full bg-gray-800 min-h-screen">
   <body class="h-full">
   <div>
-    <TransitionRoot as="template" :show="sidebarOpen">
-      <Dialog class="relative z-50 xl:hidden" @close="sidebarOpen = false">
-        <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0"
+    <HeadlessTransitionRoot as="template" :show="sidebarOpen">
+      <HeadlessDialog class="relative z-50 xl:hidden" @close="sidebarOpen = false">
+        <HeadlessTransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0"
                          enter-to="opacity-100" leave="transition-opacity ease-linear duration-300"
                          leave-from="opacity-100" leave-to="opacity-0">
           <div class="fixed inset-0 bg-gray-800/80"/>
-        </TransitionChild>
+        </HeadlessTransitionChild>
 
         <div class="fixed inset-0 flex">
-          <TransitionChild as="template" enter="transition ease-in-out duration-300 transform"
+          <HeadlessTransitionChild as="template" enter="transition ease-in-out duration-300 transform"
                            enter-from="-translate-x-full"
                            enter-to="translate-x-0" leave="transition ease-in-out duration-300 transform"
                            leave-from="translate-x-0" leave-to="-translate-x-full">
-            <DialogPanel class="relative mr-16 flex w-full max-w-xs flex-1">
-              <TransitionChild as="template" enter="ease-in-out duration-300" enter-from="opacity-0"
+            <HeadlessDialogPanel class="relative mr-16 flex w-full max-w-xs flex-1">
+              <HeadlessTransitionChild as="template" enter="ease-in-out duration-300" enter-from="opacity-0"
                                enter-to="opacity-100" leave="ease-in-out duration-300" leave-from="opacity-100"
                                leave-to="opacity-0">
                 <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
@@ -50,7 +48,7 @@ function select(id: string) : boolean {
                     <Icon name="material-symbols:cancel" class="size-6 text-white" aria-hidden="true"/>
                   </button>
                 </div>
-              </TransitionChild>
+              </HeadlessTransitionChild>
               <!-- Sidebar component, swap this element with another sidebar if you like -->
               <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-800 px-6 ring-1 ring-white/10">
                 <div class="flex h-16 shrink-0 items-center">
@@ -60,11 +58,11 @@ function select(id: string) : boolean {
                 </div>
                 <sidebars-wide/>
               </div>
-            </DialogPanel>
-          </TransitionChild>
+            </HeadlessDialogPanel>
+          </HeadlessTransitionChild>
         </div>
-      </Dialog>
-    </TransitionRoot>
+      </HeadlessDialog>
+    </HeadlessTransitionRoot>
 
     <!-- Static sidebar for desktop -->
     <div class="hidden xl:fixed xl:inset-y-0 xl:z-50 xl:flex xl:w-q6 xl:flex-col">
@@ -102,7 +100,7 @@ function select(id: string) : boolean {
       <div>
         <div class="lg:hidden">
           <div v-if="show" class="fixed inset-0 bg-black/50 z-40"/>
-          <TransitionRoot appear :show="show" as="template" enter="transition-all duration-500 ease-in-out transform"
+          <HeadlessTransitionRoot appear :show="show" as="template" enter="transition-all duration-500 ease-in-out transform"
                           enter-from="translate-x-full" enter-to="translate-x-0"
                           leave="transition-all duration-500 ease-in-out transform"
                           leave-from="translate-x-0" leave-to="translate-x-full">
@@ -114,7 +112,7 @@ function select(id: string) : boolean {
               <div class="mt-4"> <slot name="content" /></div>
 
             </section>
-          </TransitionRoot>
+          </HeadlessTransitionRoot>
         </div>
         <main class="flex flex-col lg:flex-row min-w-0 flex-1">
           <aside id="feed" class="lg:w-1/4 w-full dark:bg-gray-800 border border-solid border-gray-700 p-2

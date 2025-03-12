@@ -21,11 +21,10 @@
     "@vite-pwa/nuxt": "^0.10.6",
     "nuxt": "^3.15.4",
     "nuxt-fathom": "^0.0.2",
-    "nuxt-headlessui": "^1.1.4",
+    "nuxt-headlessui": "^1.2.0",
     "tailwindcss": "^3.2.4"
   },
   "dependencies": {
-    "@headlessui/vue": "^1.7.23",
     "@noble/hashes": "^1.7.0",
     "@noble/secp256k1": "^2.2.3",
     "@nostr-dev-kit/ndk": "^2.11.2",

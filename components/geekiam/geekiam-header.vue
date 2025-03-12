@@ -12,7 +12,7 @@
       <!-- Mobile menu button -->
       <button type="button" class="-mr-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-600" @click="mobileMenuOpen = true">
         <span class="sr-only">Open main menu</span>
-        <Icon name="iconamoon:menu-burger-horizontal-bold" class="block h-6 w-6" aria-hidden="true" />
+
       </button>
     </div>
 
