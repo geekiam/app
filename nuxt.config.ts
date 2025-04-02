@@ -1,29 +1,16 @@
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    modules: ['@pinia/nuxt', '@nuxt/image', '@nuxt/ui', '@vite-pwa/nuxt', 'nuxt-mitter', '@vee-validate/nuxt', 'nuxt-fathom', 'nuxt-headlessui'],
-    pwa: {
-        /* your pwa options */
+  compatibilityDate: '2024-11-01',
+    future: {
+      compatibilityVersion: 4,
     },
-    ssr: false,
-    headlessui: {
-        prefix: 'Headless'
-    },
-    tailwindcss: {
-        cssPath: '~/assets/css/tailwind.css',
-        configPath: 'tailwind.config',
-    },
-
-    image: {
-        provider: 'cloudinary',
-        cloudinary: {
-            baseURL: 'https://res.cloudinary.com/geekiam-io/image/upload/'
-        }
-    },
-
-    fathom: {
-        siteId: process.env.fathom_analytics_id
-    },
-
-    mitt: {
-        types: './types/event.d.ts'
-    }
+  devtools: { enabled: true },
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/fonts',
+    '@nuxt/icon',
+    '@nuxt/image',
+    '@nuxt/ui-pro'
+  ],
+    css: ['~/assets/css/main.css']
 })
