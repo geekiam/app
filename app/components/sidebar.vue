@@ -1,12 +1,12 @@
 <script setup lang="ts">
 const links = [[{
   label: 'Global',
-  icon: 'i-lucide-house',
+  icon: 'hugeicons-global-education',
   active: true
 }, {
-  label: 'Inbox',
-  icon: 'i-lucide-inbox',
-  badge: '4'
+  label: 'Following',
+  icon: 'mingcute-user-follow-2-line',
+  badge: '100'
 }, {
   label: 'Contacts',
   icon: 'i-lucide-users'
