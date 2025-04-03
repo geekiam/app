@@ -1,0 +1,21 @@
+{
+	"siteId": "ac959d1d-cbd5-4e19-a06d-27d90ce2456f",
+	"geolocation": {
+		"data": {
+			"city": "Swindon",
+			"country": {
+				"code": "GB",
+				"name": "United Kingdom"
+			},
+			"subdivision": {
+				"code": "ENG",
+				"name": "England"
+			},
+			"timezone": "Europe/London",
+			"latitude": 51.5747,
+			"longitude": -1.7823,
+			"postalCode": "SN2"
+		},
+		"timestamp": 1743541754775
+	}
+}
