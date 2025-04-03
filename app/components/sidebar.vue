@@ -8,9 +8,6 @@ const links = [[{
   icon: 'mingcute-user-follow-2-line',
   badge: '100'
 }, {
-  label: 'Contacts',
-  icon: 'i-lucide-users'
-}, {
   label: 'Settings',
   icon: 'i-lucide-settings',
   defaultOpen: true,
