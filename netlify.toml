@@ -8,6 +8,7 @@ title = "geekiam netlify deployment configuration file"
     framework="nuxt"
     command = "pnpm run dev" # Command to start your dev server
     port= 3850
+    targetPort = 3000
     publish = "dist" # The path to your static content folder
     autoLaunch = true # a Boolean value that determines if Netlify Dev launches the local server address in your browser
 

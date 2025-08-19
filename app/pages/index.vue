@@ -1,21 +1,91 @@
 <script setup lang="ts">
+import { computed, ref, watch } from 'vue'
+import {breakpointsTailwind, useBreakpoints} from '@vueuse/core'
+import type { Mail } from '~/types'
+
+const tabItems = [{
+  label: 'All',
+  value: 'all'
+}, {
+  label: 'Unread',
+  value: 'unread'
+}]
+const selectedTab = ref('all')
+
+const { data: mails } = await useFetch<Mail[]>('/api/mails', { default: () => [] })
+
+// Filter mails based on the selected tab
+const filteredMails = computed(() => {
+  if (selectedTab.value === 'unread') {
+    return mails.value.filter(mail => !!mail.unread)
+  }
+
+  return mails.value
+})
+
+const selectedMail = ref<Mail | null>()
+
+const isMailPanelOpen = computed({
+  get() {
+    return !!selectedMail.value
+  },
+  set(value: boolean) {
+    if (!value) {
+      selectedMail.value = null
+    }
+  }
+})
+
+// Reset selected mail if it's not in the filtered mails
+watch(filteredMails, () => {
+  if (!filteredMails.value.find(mail => mail.id === selectedMail.value?.id)) {
+    selectedMail.value = null
+  }
+})
+
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const isMobile = breakpoints.smaller('lg')
 </script>
 
 <template>
- <nuxt-layout name="dashboard">
+  <UDashboardPanel
+      id="inbox-1"
+      :default-size="25"
+      :min-size="20"
+      :max-size="30"
+      resizable
+  >
+    <UDashboardNavbar title="Inbox">
+      <template #leading>
+        <UDashboardSidebarCollapse />
+      </template>
+      <template #trailing>
+        <UBadge :label="filteredMails.length" variant="subtle" />
+      </template>
 
-   <template #sidebar>
-   <UBlogPost
-       title="Introducing Nuxt Icon v1"
-       description="Discover Nuxt Icon v1 - a modern, versatile, and customizable icon solution for your Nuxt projects."
-       image="https://nuxt.com/assets/blog/nuxt-icon/cover.png"
-       date="2024-11-25"
-   />
-     </template>
- </nuxt-layout>
+      <template #right>
+        <UTabs
+            v-model="selectedTab"
+            :items="tabItems"
+            class="w-32"
+            :content="false"
+            size="xs"
+        />
+      </template>
+    </UDashboardNavbar>
+    <ArticlesList  />
+  </UDashboardPanel>
 
+  <ArticlesView v-if="selectedMail" />
+  <div v-else class="hidden lg:flex flex-1 items-center justify-center">
+    <UIcon name="i-lucide-inbox" class="size-32 text-(--ui-text-dimmed)" />
+  </div>
 
-
+  <ClientOnly>
+    <USlideover v-if="isMobile" v-model:open="isMailPanelOpen">
+      <template #content>
+        <ArticlesView v-if="selectedMail" :mail="selectedMail" @close="selectedMail = null" />
+      </template>
+    </USlideover>
+  </ClientOnly>
 </template>
-
-<style scoped></style>
